@@ -1,9 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Nav from './Nav.jsx';
+
 
 class App extends Component {
   render() {
     return (
-      <h1>Hello React :)</h1>
+      <div>
+        <h1>Boobs!</h1>
+      </div>
+      
     );
   }
 }
