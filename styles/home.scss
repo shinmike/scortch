@@ -13,16 +13,28 @@ h1 {
   float: right;
 }
 
-.login-signup {
-  float: right;
-}
-
 .card {
   background: white;
   border: 1px #aaa solid;
   border-radius: 10px;
   box-shadow: 2px 2px 2px grey;
+  .card-header {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
+  .card-footer {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+}
+
+
 
 .scorecard {
   margin-bottom: 20px;
