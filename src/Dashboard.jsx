@@ -11,26 +11,23 @@ class Dashboard extends React.Component {
           <div className="card-deck">
             <div className="row">
 
-              <div className="col-sm-4 scorecard">
+              <div className="col-sm-6 col-md-4 scorecard">
                 <div className="card text-center">
                   <div className="card-header">
-                    5:10 PM PT
+                    <i className="fa fa-star" aria-hidden="true"></i>
+                    <p>5:10 PM PT</p>
                   </div>
                   <div className="card-block">
                     <h3 className="card-title ">SEA @ CWS</h3>
                     <h2 className="card-title">0 - 0</h2>
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">Cras justo odio</li>
-                      <li className="list-group-item">Dapibus ac facilisis in</li>
-                      <li className="list-group-item">Vestibulum at eros</li>
-                    </ul>
                     <div className="card-footer">
+                      <i className="fa fa-commenting-o" aria-hidden="true"></i>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="col-sm-4 scorecard">
+              <div className="col-sm-6 col-md-4 scorecard">
                 <div className="card text-center">
                   <div className="card-header">
                     4:10 PM PT
@@ -44,7 +41,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
 
-              <div className="col-sm-4 scorecard">
+              <div className="col-sm-6 col-md-4 scorecard">
                 <div className="card text-center">
                   <div className="card-header">
                     4:05 PM PT
