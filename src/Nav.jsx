@@ -8,22 +8,22 @@ class Nav extends React.Component {
 
       <div>
 
-        <nav className="navbar navbar-light navbar-fixed-top navbar-offset" style={{backgroundColor: "skyblue"}} id="my-navbar">
-          <div className="container">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-              </button>
-              <a href="" className="navbar-brand">Scortch</a>
-            </div>
-            <div className="collapse navbar-collapse" id="navbar-collapse">
-              <a href="" className="btn navbar-btn navbar-right">Login</a>
-              <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
-            </div>
+      <nav className="navbar navbar-light navbar-fixed-top" style={{backgroundColor: "skyblue"}} id="my-navbar">
+        <div className="container">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle user-border" data-toggle="collapse" data-target="#navbar-collapse">
+              <span className="user-icon">
+                <i className="fa fa-user" aria-hidden="true"></i>
+              </span>
+            </button>
+            <a href="" className="navbar-brand">Scortch</a>
           </div>
-        </nav>
+          <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
+            <a href="" className="btn navbar-btn navbar-right">Login</a>
+            <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
+          </div>
+        </div>
+      </nav>
 
         <div className="container-fluid scrollable" style={{ paddingTop: "70px"}}>
           <div className="col-sm-3 col-md-2 sidebar">
