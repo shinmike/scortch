@@ -23,7 +23,6 @@ class Nav extends React.Component {
               <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
             </div>
           </div>
-<<<<<<< HEAD
         </nav>
 
         <div className="container-fluid sideMenuBar">
@@ -77,23 +76,6 @@ class Nav extends React.Component {
                 </div>
               </ul>
             </div>
-=======
-          <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
-            <a href="" className="btn navbar-btn navbar-right">Login</a>
-            <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
-          </div>
-        </div>
-      </nav>
-
-        <div className="container-fluid scrollable" style={{ paddingTop: "70px"}}>
-          <div className="col-sm-3 col-md-2 sidebar">
-            <ul className="nav nav-sidebar">
-              <li className="active"><a href="#">NBA <span className="sr-only">(current)</span></a></li>
-              <li><a href="#">MLB</a></li>
-              <li><a href="#">NHL</a></li>
-              <li><a href="#">NFL</a></li>
-            </ul>
->>>>>>> 50390572238bba1d15679044276d30f3f6c9ba5d
           </div>
         </div>
       
