@@ -8,38 +8,35 @@ class Nav extends React.Component {
 
       <div>
 
-      <nav className="navbar navbar-light navbar-fixed-top" style={{backgroundColor: "skyblue"}} id="my-navbar">
-        <div className="container">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-            </button>
-            <a href="" className="navbar-brand">Scortch</a>
+        <nav className="navbar navbar-light navbar-fixed-top navbar-offset" style={{backgroundColor: "skyblue"}} id="my-navbar">
+          <div className="container">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
+                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
+                <span className="icon-bar" style={{backgroundColor: "black"}}></span>
+              </button>
+              <a href="" className="navbar-brand">Scortch</a>
+            </div>
+            <div className="collapse navbar-collapse" id="navbar-collapse">
+              <a href="" className="btn navbar-btn navbar-right">Login</a>
+              <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
+            </div>
           </div>
-          <div className="collapse navbar-collapse" id="navbar-collapse">
-            <a href="" className="btn navbar-btn navbar-right">Login</a>
-            <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
-          </div>
-        </div>
-      </nav>
+        </nav>
 
-      <div className="container-fluid">
-        <div className="row">
+        <div className="container-fluid scrollable" style={{ paddingTop: "70px"}}>
           <div className="col-sm-3 col-md-2 sidebar">
             <ul className="nav nav-sidebar">
-              <li className="active"><a href="#">Overview <span className="sr-only">(current)</span></a></li>
-              <li><a href="#">NBA</a></li>
-              <li><a href="#">NBA</a></li>
+              <li className="active"><a href="#">NBA <span className="sr-only">(current)</span></a></li>
+              <li><a href="#">MLB</a></li>
+              <li><a href="#">NHL</a></li>
               <li><a href="#">NFL</a></li>
-              <li><a href="#">MLB</a></li>
-              <li><a href="#">MLB</a></li>
             </ul>
           </div>
         </div>
+      
       </div>
-    </div>
 
     );
   }
