@@ -11,14 +11,14 @@ class Nav extends React.Component {
       <nav className="navbar navbar-light navbar-fixed-top" style={{backgroundColor: "skyblue"}} id="my-navbar">
         <div className="container">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
-              <span className="icon-bar" style={{backgroundColor: "black"}}></span>
+            <button type="button" className="navbar-toggle user-border" data-toggle="collapse" data-target="#navbar-collapse">
+              <span className="user-icon">
+                <i className="fa fa-user" aria-hidden="true"></i>
+              </span>
             </button>
             <a href="" className="navbar-brand">Scortch</a>
           </div>
-          <div className="collapse navbar-collapse" id="navbar-collapse">
+          <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
             <a href="" className="btn navbar-btn navbar-right">Login</a>
             <a href="" className="btn navbar-btn navbar-right">Sign-up</a>
           </div>
