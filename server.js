@@ -1,25 +1,34 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var express = require('express');
 var MySportsFeeds = require("mysportsfeeds-node");
 var msf = new MySportsFeeds("1.0", true);
 
-new WebpackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000,
-      ignored: /node_modules/
-    }
-  })
-  .listen(3000, '0.0.0.0', function (err, result) {
-    if (err) {
-      console.log(err);
-    }
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-    console.log('Running at http://0.0.0.0:3000');
+app.use(express.static('public'))
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
+
+// io.on('connection', function(socket){
+//   console.log('a user connected');
+// });
+
+// io.on('connection', function(socket){
+//   socket.on('chat message', function(msg){
+//     console.log('message: ' + msg);
+//   });
+// });
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
   });
+});
 
-msf.authenticate("kian", "fransen34");
 
-    var data = msf.getData( 'mlb', 'current', 'overall_team_standings', 'json', {});
+// msf.authenticate("kian", "fransen34");
+
+//     var data = msf.getData( 'mlb', 'current', 'overall_team_standings', 'json', {});

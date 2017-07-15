@@ -4,7 +4,8 @@
   "description": "Simple and lightweight Boilerplate for ReactJS projects",
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack:dev": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0 --hot --port 8080"
   },
   "repository": {
     "type": "git",
@@ -45,8 +46,10 @@
     "webpack-dev-server": "2.3.0"
   },
   "dependencies": {
+    "express": "^4.15.3",
     "mysportsfeeds-node": "^0.2.2",
     "react": "15.4.2",
-    "react-dom": "15.4.2"
+    "react-dom": "15.4.2",
+    "socket.io": "^2.0.3"
   }
 }
