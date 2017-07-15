@@ -7,7 +7,6 @@ class Nav extends React.Component {
     return (
 
       <div>
-
         <nav className="navbar navbar-light navbar-fixed-top" style={{ backgroundColor: "skyblue" }} id="my-navbar">
           <div className="container">
             <div className="navbar-header">
@@ -30,45 +29,45 @@ class Nav extends React.Component {
             <div className="col-sm-3 col-md-2 sidebar">
               <ul className="nav nav-sidebar">
                 <div id="accordion" role="tablist" aria-multiselectable="true">
-                  <div class="card">
-                    <div class="card-header" role="tab" id="headingOne">
-                      <h5 class="mb-0">
+                  <div className="card">
+                    <div className="card-header" role="tab" id="headingOne">
+                      <h5 className="mb-0">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           NBA
                         </a>
                       </h5>
                     </div>
 
-                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                      <div class="card-block">
+                    <div id="collapseOne" className="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                      <div className="card-block">
                         hello React!
                       </div>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-header" role="tab" id="headingTwo">
-                      <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <div className="card">
+                    <div className="card-header" role="tab" id="headingTwo">
+                      <h5 className="mb-0">
+                        <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                           NFL
                       </a>
                       </h5>
                     </div>
-                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="card-block">
+                    <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div className="card-block">
                         hello React2
                       </div>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-header" role="tab" id="headingThree">
-                      <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <div className="card">
+                    <div className="card-header" role="tab" id="headingThree">
+                      <h5 className="mb-0">
+                        <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           MLB
                         </a>
                       </h5>
                     </div>
-                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="card-block">
+                    <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div className="card-block">
                         hello React 3  
                       </div>
                     </div>
@@ -79,8 +78,6 @@ class Nav extends React.Component {
           </div>
         </div>
 
-        
-      
       </div>
 
     );
