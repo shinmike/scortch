@@ -20,12 +20,12 @@
     "edit",
     "webpack"
   ],
-  "author": "Noah-Jerome Lotzer <n.lotzer@neusta.de>",
-  "license": "MIT",
+  "author": "Bill, Chris, Mike, Kian",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/noahlotzer/react-simple-boilerplate/issues"
+    "url": "https://github.com/shinmike/scortch"
   },
-  "homepage": "https://github.com/noahlotzer/react-simple-boilerplate",
+  "homepage": "https://github.com/shinmike/scortch",
   "engines": {
     "node": ">=6.0.0"
   },
