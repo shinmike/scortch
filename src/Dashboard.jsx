@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
                 <div className="card text-center boardcard">
                   <div className="card-header boardheader">
                     <i className="fa fa-star" aria-hidden="true"></i>
-                    4:10 PM PT
+                    {this.props.api.gameTime}
                   </div>
                   <div className="card-block">
                     <h3 className="card-title">NYY @ BOS</h3>
