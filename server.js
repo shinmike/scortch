@@ -10,8 +10,8 @@ const incoming = TestMethods.boxscore('20170716-TOR-DET', true);
 const rightNow = new Date();
 const res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
 
-const incoming2 = TestMethods.dailyGameSchedule(res, true);
-console.log(incoming2);
+// const incoming2 = TestMethods.dailyGameSchedule(res, true);
+// console.log(incoming2);
 // incoming2.then(function(data){
 //   console.log("BALSDFASDFAS", data);
 // })
