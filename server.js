@@ -53,8 +53,3 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
   });
 });
-
-
-// msf.authenticate("kian", "fransen34");
-
-//     var data = msf.getData( 'mlb', 'current', 'overall_team_standings', 'json', {});

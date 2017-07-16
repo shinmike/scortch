@@ -7,5 +7,16 @@ require("../styles/application.scss");
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
+import Nav from './Nav.jsx'
+import Dashboard from './Dashboard.jsx'
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+import { Router, Route, hashHistory} from 'react-router';
+
+
+ReactDOM.render((
+  <Router history={hashHistory}>
+    <Route path="/" component={App} />
+    <Route path="/games" component={Nav} />
+    <Route path="/dashboard" component={Dashboard} />
+  </Router>), document.getElementById('react-root')
+);
