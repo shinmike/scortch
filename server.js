@@ -19,6 +19,7 @@ app.get('/testData',(req,res)=>{
     const homeTeamAbbreviation = data.gameboxscore.game.homeTeam.Abbreviation;
     const awayScore = data.gameboxscore.inningSummary.inningTotals.awayScore;
     const homeScore = data.gameboxscore.inningSummary.inningTotals.homeScore;
+
     var resultData = {
       gameTime : gameTime,
       awayScore: awayScore,
@@ -26,27 +27,9 @@ app.get('/testData',(req,res)=>{
       homeTeamAbbreviation: homeTeamAbbreviation,
       homeScore: homeScore
     };
-    res.send(JSON.stringify(resultData));
-    // console.log(`
-    // ${gameTime}
-    // ${awayScore} | ${awayTeamAbbreviation} @ ${homeTeamAbbreviation} | ${homeScore}
-    // `);
-
+  res.send(JSON.stringify(resultData));
   });
-
 });
-
-
-
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
-
-// io.on('connection', function(socket){
-//   socket.on('chat message', function(msg){
-//     console.log('message: ' + msg);
-//   });
-// });
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){

@@ -8,7 +8,11 @@ class App extends React.Component {
     super(props);
     this.getApi = this.getApi.bind(this);
     this.state = {
-      api: undefined
+      gameTime: undefined,
+      awayTeam: undefined,
+      homeTeam: undefined,
+      awayScore: undefined,
+      homeScore: undefined
     };
   }
 
@@ -17,51 +21,35 @@ class App extends React.Component {
     this.getApi();
   }
 
-  getApi() {
+  getApi () {
     $.ajax({
       type: 'GET',
-      url:  '/testData',
+      url: '/testData',
       contentType: 'JSON',
       success: function(data) {
-        this.setState({
-          api: data
-        });
+        let parsedData = JSON.parse(data);
+        this.setState({gameTime: parsedData.gameTime});
+        this.setState({awayTeam: parsedData.awayTeamAbbreviation});
+        this.setState({homeTeam: parsedData.homeTeamAbbreviation});
+        this.setState({awayScore: parsedData.awayScore});
+        this.setState({homeScore: parsedData.homeScore});
       }.bind(this),
       error: function(error) {
         console.log(error);
       }.bind(this),
     });
-    console.log(this.state.api);
   }
-
-
-
-
-  // componentDidMount() {
-  //   let data;
-  //   $.ajax({
-  //     url: '/testData',
-  //     type: 'GET',
-  //     dataType: 'JSON',
-  //     success: function (result) {
-  //       data = result;
-  //     },
-  //     error: function (error) {
-  //       console.log(error);
-  //     }
-  //   });
-    
-  //   this.setState({api: data});
-  //   console.log("BALASHFHASHFHASFHWE", this.state.api);
-
-  // }
-
+  
   render() {
     return (
       <div>
         <Nav />
         <Dashboard 
-          api={this.state.api} 
+          gameTime={this.state.gameTime} 
+          awayTeam={this.state.awayTeam} 
+          homeTeam={this.state.homeTeam} 
+          awayScore={this.state.awayScore} 
+          homeScore={this.state.homeScore} 
         />
       </div>
     );
