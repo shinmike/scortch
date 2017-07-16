@@ -1,22 +1,35 @@
 h1 {
   color: tomato;
 }
-
 .user-border {
   .user-icon {
   font-size: 2em;
   color: #DDDDFF;
   }
 }
-
+.navbarTop {
+  background-color: #337ab7;
+  .navSidebar {
+    float: left;
+    background-color: black;
+  }
+  .navTitle {
+    color: skyblue;
+  }
+}
+.sidebar {
+  width: 200px;
+  background-color: #337ab7;
+  .navTitle {
+    color: skyblue;
+  }
+}
 .login-signup {
   float: right;
 }
-
 .sideMenuBar {
-  padding-top: 70px;
+  padding-top: 50px;
 }
-
 .boardcard {
 background: white;
 border: 1px #aaa solid;
