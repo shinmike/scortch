@@ -13,8 +13,6 @@ http.listen(3000, function(){
 });
 
 app.get('/testData',(req,res)=>{
-  console.log("hello");
-
   incoming.then(function(data){
     const gameTime = data.gameboxscore.game.time;
     const awayTeamAbbreviation = data.gameboxscore.game.awayTeam.Abbreviation;
