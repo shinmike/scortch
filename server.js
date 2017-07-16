@@ -1,12 +1,20 @@
 var express = require('express');
 
+// Boxscore
 const TestMethods = require('./test.js');
-const incoming = TestMethods.boxscore('mlb', '2017-regular', '20170716-TOR-DET', true);
+const incoming = TestMethods.boxscore('20170716-TOR-DET', true);
 
-const incoming2 = TestMethods.dailyGameSchedule('mlb', '2017-regular', '20170716-TOR-DET', true);
-incoming2.then(function(data){
-  console.log("BALSDFASDFAS", data);
-})
+// DailyGameSchedule
+
+// current date
+const rightNow = new Date();
+const res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
+
+const incoming2 = TestMethods.dailyGameSchedule(res, true);
+console.log(incoming2);
+// incoming2.then(function(data){
+//   console.log("BALSDFASDFAS", data);
+// })
 
 
 var app = require('express')();

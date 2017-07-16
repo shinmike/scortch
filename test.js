@@ -6,10 +6,10 @@ var msf = new MySportsFeeds("1.0", true, null);
 msf.authenticate("kian", "fransen34");
 
 // Boxscore
-exports.boxscore = function(league, seasonName, gameId, force){
+exports.boxscore = function(gameId, force){
   return msf.getData(
-    league,
-    seasonName,
+    'mlb',
+    'current',
     'game_boxscore', 
     'json', 
     { gameid: gameId, 
@@ -18,13 +18,13 @@ exports.boxscore = function(league, seasonName, gameId, force){
 }
 
 // Daily Game Schedule
-exports.dailyGameSchedule = function(league, seasonName, gameId, force){
+exports.dailyGameSchedule = function(forDate, force){
   return msf.getData(
-    league,
-    seasonName,
-    'game_boxscore', 
+    'mlb',
+    'current',
+    'daily_game_schedule', 
     'json', 
-    { gameid: gameId, 
+    { forDate: forDate, 
       force: force }
   );
 }
