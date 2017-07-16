@@ -1,10 +1,8 @@
 var express = require('express');
 
 // Boxscore
-const TestMethods = require('./test.js');
+const TestMethods = require('./api/boxscore.js');
 const incoming = TestMethods.boxscore('20170716-TOR-DET', true);
-
-// DailyGameSchedule
 
 // current date
 const rightNow = new Date();
