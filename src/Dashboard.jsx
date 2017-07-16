@@ -32,11 +32,11 @@ class Dashboard extends React.Component {
                 <div className="card text-center boardcard">
                   <div className="card-header boardheader">
                     <i className="fa fa-star" aria-hidden="true"></i>
-                    4:05 PM PT
+                    gametime
                   </div>
                   <div className="card-block">
-                    <h3 className="card-title">CHC @ BAL</h3>
-                    <h2 className="card-title">0 - 0</h2>
+                    <h3 className="card-title">awayTeam @ homeTeam</h3>
+                    <h2 className="card-title">awayScore - awayScore</h2>
                     <div className="card-footer boardfooter">
                       <i className="fa fa-commenting-o" aria-hidden="true"></i>
                     </div>

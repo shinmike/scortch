@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
 
@@ -44,6 +44,7 @@ class App extends React.Component {
     return (
       <div>
         <Nav />
+        <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Dashboard 
           gameTime={this.state.gameTime} 
           awayTeam={this.state.awayTeam} 

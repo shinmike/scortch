@@ -1,6 +1,13 @@
 var express = require('express');
-const games = require("./test.js");
-const incoming = games('mlb', '2017-regular', '20170714-NYY-BOS', true);
+
+const TestMethods = require('./test.js');
+const incoming = TestMethods.boxscore('mlb', '2017-regular', '20170716-TOR-DET', true);
+
+const incoming2 = TestMethods.dailyGameSchedule('mlb', '2017-regular', '20170716-TOR-DET', true);
+incoming2.then(function(data){
+  console.log("BALSDFASDFAS", data);
+})
+
 
 var app = require('express')();
 var http = require('http').Server(app);
@@ -20,7 +27,7 @@ app.get('/testData',(req,res)=>{
     const awayScore = data.gameboxscore.inningSummary.inningTotals.awayScore;
     const homeScore = data.gameboxscore.inningSummary.inningTotals.homeScore;
 
-    var resultData = {
+    const resultData = {
       gameTime : gameTime,
       awayScore: awayScore,
       awayTeamAbbreviation: awayTeamAbbreviation,
