@@ -1,6 +1,21 @@
 var express = require('express');
-const games = require("./test.js");
-const incoming = games('mlb', '2017-regular', '20170714-NYY-BOS', true);
+
+// Boxscore
+const TestMethods = require('./test.js');
+const incoming = TestMethods.boxscore('20170716-TOR-DET', true);
+
+// DailyGameSchedule
+
+// current date
+const rightNow = new Date();
+const res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
+
+// const incoming2 = TestMethods.dailyGameSchedule(res, true);
+// console.log(incoming2);
+// incoming2.then(function(data){
+//   console.log("BALSDFASDFAS", data);
+// })
+
 
 const schedule = require("./api/dailySchedule.js");
 
@@ -22,7 +37,7 @@ app.get('/testData',(req,res)=>{
     const awayScore = data.gameboxscore.inningSummary.inningTotals.awayScore;
     const homeScore = data.gameboxscore.inningSummary.inningTotals.homeScore;
 
-    var resultData = {
+    const resultData = {
       gameTime : gameTime,
       awayScore: awayScore,
       awayTeamAbbreviation: awayTeamAbbreviation,
