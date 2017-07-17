@@ -9,14 +9,22 @@ h1 {
 }
 .navbarTop {
   background-color: #337ab7;
+
   .navSidebar {
     float: left;
     background-color: black;
   }
+
   .navTitle {
     color: skyblue;
   }
 }
+#navbarSidebar {
+  position: fixed;
+  height: 100%!important;
+  z-index: 10;
+}
+
 .sidebar {
   width: 200px;
   background-color: #337ab7;
@@ -24,37 +32,42 @@ h1 {
     color: skyblue;
   }
 }
-.login-signup {
-  float: right;
-}
 .sideMenuBar {
   padding-top: 50px;
 }
-.boardcard {
-background: white;
-border: 1px #aaa solid;
-border-radius: 10px;
-box-shadow: 2px 2px 2px grey;
-}
-.boardheader {
-background: lightgray;
-color: white;
-padding: 10px;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
+.login-signup {
+  float: right;
 }
 
-.boardfooter {
-background: lightgray;
-color: white;
-padding: 10px;
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-}
+
+
+
 
 .scorecard {
   margin-top: 20px;
   margin-bottom: 20px;
+  .boardcard {
+  background: white;
+  border: 1px #aaa solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px grey;
+  width: 30%;
+  }
+  .boardheader {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  }
+  .boardfooter {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  }
+  
 }
 
 i {
@@ -72,24 +85,16 @@ i {
   color: #0088D8;
 }
 
-.footer a{
-    color: #000;
-    text-decoration: none;
-}
-.footer{
-    color: #000;
-    text-align: center;
-}
-
 .grayBody{
     background-color: #E9E9E9;
 }
+
 .modal-content {
   border: none!important;
 }
 
 .modal-backdrop {
-  background: rgba(255, 255, 255, 0.75)!important;
+  background: rgba(255, 255, 255, 0.35)!important;
   opacity: 0.5;
 }
 .loginbox{
