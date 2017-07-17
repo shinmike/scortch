@@ -18,7 +18,7 @@ const incomingDailySchedule = MyMethods.dailySchedule(now, true);
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule('20170714', true);
+const incomingSchedule = schedule(now, true);
 
 
 
