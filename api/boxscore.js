@@ -13,3 +13,15 @@ exports.boxscore = function(gameId, force){
       force: force }
   );
 }
+
+// daily schedule
+exports.dailySchedule = function(date, force) {
+  return msf.getData(
+		'mlb', 
+		'current', 
+		'daily_game_schedule', 
+		'json', 
+		{	fordate: date, 
+			force: force}
+	);
+};

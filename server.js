@@ -1,18 +1,25 @@
 var express = require('express');
 
 // Boxscore
-const TestMethods = require('./api/boxscore.js');
-const incoming = TestMethods.boxscore('20170716-TOR-DET', true);
+const MyMethods = require('./api/boxscore.js');
+const incomingBoxscore = MyMethods.boxscore('20170716-TOR-DET', true);
 
 // current date
 const rightNow = new Date();
-const res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
+const res = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
-// const incoming2 = TestMethods.dailyGameSchedule(res, true);
-// console.log(incoming2);
-// incoming2.then(function(data){
-//   console.log("BALSDFASDFAS", data);
-// })
+// DailySchedule
+const incomingDailySchedule = MyMethods.dailySchedule(res, true);
+
+incomingDailySchedule.then(function (data) {
+  data.dailygameschedule.gameentry.forEach(function(element, index, array){
+    const date = element.date.replace(/-/g, '');
+    const awayTeam = element.awayTeam.Abbreviation;
+    const homeTeam = element.homeTeam.Abbreviation;
+    console.log(`${date}-${awayTeam}-${homeTeam}`);
+  })
+})
+
 
 
 var app = require('express')();
@@ -21,12 +28,8 @@ var io = require('socket.io')(http);
 
 app.use(express.static('public'))
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
-
-app.get('/testData',(req,res)=>{
-  incoming.then(function(data){
+app.get('/testData', (req, res) => {
+  incomingBoxscore.then(function (data) {
     const gameTime = data.gameboxscore.game.time;
     const awayTeamAbbreviation = data.gameboxscore.game.awayTeam.Abbreviation;
     const homeTeamAbbreviation = data.gameboxscore.game.homeTeam.Abbreviation;
@@ -34,19 +37,22 @@ app.get('/testData',(req,res)=>{
     const homeScore = data.gameboxscore.inningSummary.inningTotals.homeScore;
 
     const resultData = {
-      gameTime : gameTime,
+      gameTime: gameTime,
       awayScore: awayScore,
       awayTeamAbbreviation: awayTeamAbbreviation,
       homeTeamAbbreviation: homeTeamAbbreviation,
       homeScore: homeScore
     };
-  res.send(JSON.stringify(resultData));
+    res.send(JSON.stringify(resultData));
   });
 });
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
+io.on('connection', function (socket) {
+  socket.on('chat message', function (msg) {
     io.emit('chat message', msg);
   });
 });
 
+http.listen(3000, function () {
+  console.log('listening on *:3000');
+});
