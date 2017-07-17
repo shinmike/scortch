@@ -39,25 +39,12 @@ class Sidebar extends React.Component {
                       </div>
                   </div>
                 </div>
-                <div className="card">
-                  <div className="card-header" role="tab" id="headingThree">
-                    <h5 className="mb-0">
-                      <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        MLB
-                        </a>
-                    </h5>
-                  </div>
-                  <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div className="card-block">
-                      hello React 3
-                      </div>
-                  </div>
-                </div>
               </div>
             </ul>
           </div>
         </div>
       </div>
+ 
     );
   }
 }
