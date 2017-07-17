@@ -2,11 +2,7 @@ import React from 'react';
 import Sidebar from './sidebar.jsx'
 import {
   Modal,
-  ModalHeader,
-  ModalTitle,
   ModalClose,
-  ModalBody,
-  ModalFooter
 } from 'react-modal-bootstrap';
 class Nav extends React.Component {
 
@@ -58,7 +54,7 @@ class Nav extends React.Component {
               </Modal>
               {/* register  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.registerModal}>Registration</button>
-              <Modal isOpen={this.props.isActive} onRequestClose={this.registerModal}>
+              <Modal isOpen={this.props.isActive2} onRequestClose={this.registerModal}>
                <div className="col-lg-4 col-md-6 col-sm-8">
                   <div className="row loginbox">
                     <div className="col-lg-12">
@@ -82,13 +78,13 @@ class Nav extends React.Component {
                     </div>
                   </div>
                </div>
-              </Modal>
-                </div>
-                </div>
-        </nav>
-            <Sidebar />
-          </div>
-          );
+               </Modal>
+             </div>
+           </div>
+         </nav>
+       <Sidebar />
+     </div>
+    );
   }
 }
 
