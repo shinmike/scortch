@@ -11,16 +11,19 @@ const res = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 // DailySchedule
 const incomingDailySchedule = MyMethods.dailySchedule(res, true);
 
+// could be used as gameIds in boxscore?
 incomingDailySchedule.then(function (data) {
+  let output = [];
   data.dailygameschedule.gameentry.forEach(function(element, index, array){
     const date = element.date.replace(/-/g, '');
     const awayTeam = element.awayTeam.Abbreviation;
     const homeTeam = element.homeTeam.Abbreviation;
-    console.log(`${date}-${awayTeam}-${homeTeam}`);
+    // const time = element.time;
+    output.push (`${date}-${awayTeam}-${homeTeam}`);
   })
+  console.log(output)
+  return output
 })
-
-
 
 var app = require('express')();
 var http = require('http').Server(app);
