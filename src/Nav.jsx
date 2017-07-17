@@ -11,7 +11,12 @@ class Nav extends React.Component {
 
     return (
       <div>
+<<<<<<< HEAD
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
+=======
+
+        <nav className="navbar navbar-light navbar-fixed-top" style={{ backgroundColor: "skyblue" }} id="my-navbar">
+>>>>>>> 9f2828778d4915cd171f6c29304bbfbeb38f1ccc
           <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">

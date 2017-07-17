@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
 
@@ -14,7 +14,8 @@ class App extends React.Component {
       awayScore: undefined,
       homeScore: undefined,
       isActive: false,
-      isActive2: false
+      isActive2: false,
+      games: []
     };
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
@@ -33,10 +34,6 @@ class App extends React.Component {
     })
   }
 
-  componentDidMount () {
-    console.log('api componentDidMount');
-    this.getApi();
-  }
 
   getApi () {
     $.ajax({
@@ -55,11 +52,29 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
+
+    $.ajax({
+      type: 'GET',
+      url: '/testData2',
+      contentType: 'JSON',
+      success: (data) => {
+        this.setState({games: JSON.parse(data)});
+      },
+      error: function(error) {
+        console.log(error);
+      }.bind(this),
+    });
   }
-  
+
+  componentDidMount () {
+    console.log('api componentDidMount');
+    this.getApi();
+  }
+
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <Nav
           loginModal={this.loginModal}
           registerModal={this.registerModal}
@@ -72,6 +87,27 @@ class App extends React.Component {
           homeTeam={this.state.homeTeam} 
           awayScore={this.state.awayScore} 
           homeScore={this.state.homeScore} 
+=======
+        <Nav>
+          {
+            this.state.games.filter(x=>x).map((game,i) =>{
+              console.log(game);
+              return (
+                <div key={i}>{game.gameTime} <br/>
+                    {game.teams}
+                </div>
+              )
+            })
+          }
+        </Nav>
+        <button type="button" className="btn" onClick={this.getApi}>Score!</button>
+        <Dashboard
+          gameTime={this.state.gameTime}
+          awayTeam={this.state.awayTeam}
+          homeTeam={this.state.homeTeam}
+          awayScore={this.state.awayScore}
+          homeScore={this.state.homeScore}
+>>>>>>> 9f2828778d4915cd171f6c29304bbfbeb38f1ccc
         />
       </div>
     );
