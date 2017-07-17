@@ -36,9 +36,8 @@ class Games extends React.Component {
   }
 
   render(){
-    console.log("rendering <Games template >");
     const messages = this.state.messages.map((message, index) => {
-      return (<li key={ index } >{ message.content }</li>);
+      return ( <p key={ index }> { message.content }</p>);
     });
 
     return (
@@ -51,7 +50,7 @@ class Games extends React.Component {
                   <div className="card-header boardheader">
                    Todays Game between:
                   </div>
-                  <div className="card-block">
+                  <div className="card-block"> 
                     <h3 className="card-title">Other logo             Logo</h3>
                     <h3 className="card-title">Mariners             Mets</h3>
                     <h1 className="card-title">Score: 5  -  2</h1>
