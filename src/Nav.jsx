@@ -68,8 +68,10 @@ class Nav extends React.Component {
                     </div>
                     <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div className="card-block">
-
                         <h1> testing </h1>
+                        <% for
+                        <h3 className="card-title">{this.props.gameTime2}</h3>
+                        <h2 className="card-title">{this.props.teams}</h2>
                       </div>
                     </div>
                   </div>

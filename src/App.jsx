@@ -12,7 +12,9 @@ class App extends React.Component {
       awayTeam: undefined,
       homeTeam: undefined,
       awayScore: undefined,
-      homeScore: undefined
+      homeScore: undefined,
+      gameTime2: undefined,
+      teams: undefined
     };
   }
 
@@ -38,15 +40,32 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
+
+    $.ajax({
+      type: 'GET',
+      url: '/testData2',
+      contentType: 'JSON',
+      success: function(data) {
+        let b = JSON.parse(data);
+        this.setState({gameTime2: b[0].gameTime});
+        this.setState({teams: b[0].teams});
+      }.bind(this),
+      error: function(error) {
+        console.log(error);
+      }.bind(this),
+    });
   }
+
 
 
 
   render() {
     return (
       <div>
-
-        <Nav />
+        <Nav
+          gameTime2={this.state.gameTime2}
+          teams={this.state.teams}
+        />
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Dashboard
           gameTime={this.state.gameTime}
