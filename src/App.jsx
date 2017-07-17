@@ -13,7 +13,11 @@ class App extends React.Component {
       homeTeam: undefined,
       awayScore: undefined,
       homeScore: undefined,
+<<<<<<< HEAD
       gameTime2: undefined,
+=======
+      gametTime2: undefined,
+>>>>>>> 4c6365492172e5ba0c5f94ee605cd8f992164370
       teams: undefined
     };
   }
@@ -40,6 +44,25 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
+<<<<<<< HEAD
+
+    $.ajax({
+      type: 'GET',
+      url: '/testData2',
+      contentType: 'JSON',
+      success: function(data) {
+        let b = JSON.parse(data);
+        this.setState({gameTime2: b[0].gameTime});
+        this.setState({teams: b[0].teams});
+      }.bind(this),
+      error: function(error) {
+        console.log(error);
+      }.bind(this),
+    });
+  }
+
+=======
+>>>>>>> 4c6365492172e5ba0c5f94ee605cd8f992164370
 
     $.ajax({
       type: 'GET',
@@ -57,11 +80,13 @@ class App extends React.Component {
   }
 
 
-
-
   render() {
     return (
       <div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c6365492172e5ba0c5f94ee605cd8f992164370
         <Nav
           gameTime2={this.state.gameTime2}
           teams={this.state.teams}

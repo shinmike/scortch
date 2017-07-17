@@ -24,7 +24,7 @@ class Nav extends React.Component {
           </div>
         </nav>
 
-        <div className="container-fluid sideMenuBar">
+        <aside className="container-fluid sideMenuBar">
           <div className="row">
             <div className="col-sm-3 col-md-2 sidebar">
               <ul className="nav nav-sidebar">
@@ -68,6 +68,11 @@ class Nav extends React.Component {
                     </div>
                     <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div className="card-block">
+<<<<<<< HEAD
+=======
+                        <h3 className="card-title">{this.props.gameTime2}</h3>
+                        <h2 className="card-title">{this.props.teams}</h2>
+>>>>>>> 4c6365492172e5ba0c5f94ee605cd8f992164370
                         <h1> testing </h1>
                         <% for
                         <h3 className="card-title">{this.props.gameTime2}</h3>
@@ -79,7 +84,7 @@ class Nav extends React.Component {
               </ul>
             </div>
           </div>
-        </div>
+        </aside>
 
       </div>
 
