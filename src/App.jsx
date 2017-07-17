@@ -39,18 +39,21 @@ class App extends React.Component {
       }.bind(this),
     });
   }
-  
+
+
+
   render() {
     return (
       <div>
+
         <Nav />
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
-        <Dashboard 
-          gameTime={this.state.gameTime} 
-          awayTeam={this.state.awayTeam} 
-          homeTeam={this.state.homeTeam} 
-          awayScore={this.state.awayScore} 
-          homeScore={this.state.homeScore} 
+        <Dashboard
+          gameTime={this.state.gameTime}
+          awayTeam={this.state.awayTeam}
+          homeTeam={this.state.homeTeam}
+          awayScore={this.state.awayScore}
+          homeScore={this.state.homeScore}
         />
       </div>
     );

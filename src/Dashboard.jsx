@@ -1,11 +1,11 @@
 import React from 'react';
 
 class Dashboard extends React.Component {
-  
+
 
   render(){
     console.log("rendering <Dashboard >");
-   
+
     return (
       <div>
 
@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
                     gameTime
                   </div>
                   <div className="card-block">
-                    <h3 className="card-title">awayTeam @ homeTeam</h3>
+                    <h3 className="card-title">awayTeam @ Toronto</h3>
                     <h2 className="card-title">awayScore - homeScore</h2>
                     <div className="card-footer boardfooter">
                       <i className="fa fa-commenting-o" aria-hidden="true"></i>

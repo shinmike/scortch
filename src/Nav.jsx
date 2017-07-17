@@ -24,7 +24,7 @@ class Nav extends React.Component {
           </div>
         </nav>
 
-        <div className="container-fluid sideMenuBar">
+        <aside className="container-fluid sideMenuBar">
           <div className="row">
             <div className="col-sm-3 col-md-2 sidebar">
               <ul className="nav nav-sidebar">
@@ -68,7 +68,8 @@ class Nav extends React.Component {
                     </div>
                     <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div className="card-block">
-                        hello React 3  
+
+                        <h1> testing </h1>
                       </div>
                     </div>
                   </div>
@@ -76,7 +77,7 @@ class Nav extends React.Component {
               </ul>
             </div>
           </div>
-        </div>
+        </aside>
 
       </div>
 
