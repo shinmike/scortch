@@ -1,9 +1,6 @@
 import React from 'react';
-import Sidebar from './sidebar.jsx'
-import {
-  Modal,
-  ModalClose,
-} from 'react-modal-bootstrap';
+import { Modal, ModalClose, } from 'react-modal-bootstrap';
+
 class Nav extends React.Component {
 
   render() {
@@ -11,12 +8,7 @@ class Nav extends React.Component {
 
     return (
       <div>
-<<<<<<< HEAD
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
-=======
-
-        <nav className="navbar navbar-light navbar-fixed-top" style={{ backgroundColor: "skyblue" }} id="my-navbar">
->>>>>>> 9f2828778d4915cd171f6c29304bbfbeb38f1ccc
           <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">
@@ -31,6 +23,7 @@ class Nav extends React.Component {
                 </span>
               </button>
               <a href="" className="navbar-brand navTitle">Scortch</a>
+               
             </div>
 
             <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
@@ -87,7 +80,7 @@ class Nav extends React.Component {
              </div>
            </div>
          </nav>
-       <Sidebar />
+   
      </div>
     );
   }

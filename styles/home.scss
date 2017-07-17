@@ -67,7 +67,24 @@ h1 {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   }
-  
+}
+
+.gamecard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .scoretop {
+  background: white;
+  border: 1px #aaa solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px grey;
+  }
+  .scoreheader {
+    background: lightgray;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
 
 i {

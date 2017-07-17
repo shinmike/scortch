@@ -3,8 +3,8 @@ import React from 'react';
 class Sidebar extends React.Component {
 
   render() {
-    console.log("rendering <sidebar>");
-
+     console.log("rendering <sidebar>", this.props.children);
+    
     return (
       <div className="container-fluid sideMenuBar">
         <div className="row">
@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
                   </div>
                   <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div className="card-block">
-                      hello React2
+                      {this.props.children}
                       </div>
                   </div>
                 </div>

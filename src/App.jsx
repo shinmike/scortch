@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
-
+import Sidebar from './sidebar.jsx'
 class App extends React.Component {
 
   constructor(props) {
@@ -74,24 +74,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <Nav
           loginModal={this.loginModal}
           registerModal={this.registerModal}
           isActive={this.state.isActive}
-          isActive2={this.state.isActive2}
-        />
-        <Dashboard 
-          gameTime={this.state.gameTime} 
-          awayTeam={this.state.awayTeam} 
-          homeTeam={this.state.homeTeam} 
-          awayScore={this.state.awayScore} 
-          homeScore={this.state.homeScore} 
-=======
-        <Nav>
-          {
+          isActive2={this.state.isActive2} >
+        </Nav>
+        <Sidebar>
+           {
             this.state.games.filter(x=>x).map((game,i) =>{
-              console.log(game);
+              console.log(game, "CHRIS");
               return (
                 <div key={i}>{game.gameTime} <br/>
                     {game.teams}
@@ -99,7 +91,8 @@ class App extends React.Component {
               )
             })
           }
-        </Nav>
+        </Sidebar>
+        
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Dashboard
           gameTime={this.state.gameTime}
@@ -107,7 +100,6 @@ class App extends React.Component {
           homeTeam={this.state.homeTeam}
           awayScore={this.state.awayScore}
           homeScore={this.state.homeScore}
->>>>>>> 9f2828778d4915cd171f6c29304bbfbeb38f1ccc
         />
       </div>
     );
