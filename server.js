@@ -1,15 +1,26 @@
 var express = require('express');
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-// Boxscore
-const MyMethods = require('./api/boxscore.js');
-const incomingBoxscore = MyMethods.boxscore('20170716-TOR-DET', true);
+
+app.use(express.static('public'))
+
 
 // current date
 const rightNow = new Date();
 const res = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
-// DailySchedule
+// Boxscore, DailySchedule - Mike
+const MyMethods = require('./api/boxscore.js');
+const incomingBoxscore = MyMethods.boxscore('20170716-TOR-DET', true);
 const incomingDailySchedule = MyMethods.dailySchedule(res, true);
+
+// DailySchedule - Kian
+const schedule = require('./api/dailySchedule.js');
+const incomingSchedule = schedule('20170714', true);
+
+
 
 // could be used as gameIds in boxscore?
 incomingDailySchedule.then(function (data) {
@@ -21,19 +32,13 @@ incomingDailySchedule.then(function (data) {
     // const time = element.time;
     output.push (`${date}-${awayTeam}-${homeTeam}`);
   })
+  console.log(output);
   return output
 })
 
 
 
-const schedule = require("./api/dailySchedule.js");
-
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-app.use(express.static('public'))
-
+// Boxscore promise fulfilled - from Mike
 app.get('/testData', (req, res) => {
   incomingBoxscore.then(function (data) {
     const gameTime = data.gameboxscore.game.time;
@@ -53,23 +58,22 @@ app.get('/testData', (req, res) => {
   });
 });
 
-//daily schedule
-const incomingSchedule = schedule('mlb', '20170714', true);
-
+// DailySchedule promise fulfilled from Kian
 app.get('/testData2',(req,res) => {
   const today = [];
   incomingSchedule.then((data) => {
-      data.dailygameschedule.gameentry.forEach(gameEntry => {
-        console.log(gameEntry.time)
-        today.push({
-                gameTime: gameEntry.time,
-                teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
-                gameId: gameEntry.id
-              });
-      })
-    res.send(JSON.stringify(today));
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      console.log(gameEntry.time)
+      today.push({
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+        gameId: gameEntry.id
+      });
+    })
+  res.send(JSON.stringify(today));
   });
 });
+
 
 
 io.on('connection', function(socket){
