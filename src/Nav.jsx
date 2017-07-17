@@ -24,7 +24,7 @@ class Nav extends React.Component {
           </div>
         </nav>
 
-        <div className="container-fluid sideMenuBar">
+        <aside className="container-fluid sideMenuBar">
           <div className="row">
             <div className="col-sm-3 col-md-2 sidebar">
               <ul className="nav nav-sidebar">
@@ -76,7 +76,7 @@ class Nav extends React.Component {
               </ul>
             </div>
           </div>
-        </div>
+        </aside>
 
       </div>
 
