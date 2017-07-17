@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
-
+import Sidebar from './sidebar.jsx'
 class App extends React.Component {
 
   constructor(props) {
@@ -13,15 +13,27 @@ class App extends React.Component {
       homeTeam: undefined,
       awayScore: undefined,
       homeScore: undefined,
-      gametTime2: undefined,
-      teams: undefined
+      isActive: false,
+      isActive2: false,
+      games: []
     };
+    this.loginModal = this.loginModal.bind(this);
+    this.registerModal = this.registerModal.bind(this);
   }
 
-  componentDidMount () {
-    console.log('api componentDidMount');
-    this.getApi();
+  //login register popup
+  loginModal () {
+    this.setState({
+      isActive: !this.state.isActive
+    })
   }
+
+  registerModal () {
+    this.setState({
+      isActive2: !this.state.isActive2
+    })
+  }
+
 
   getApi () {
     $.ajax({
@@ -45,25 +57,42 @@ class App extends React.Component {
       type: 'GET',
       url: '/testData2',
       contentType: 'JSON',
-      success: function(data) {
-        let b = JSON.parse(data);
-        this.setState({gameTime2: b[0].gameTime});
-        this.setState({teams: b[0].teams});
-      }.bind(this),
+      success: (data) => {
+        this.setState({games: JSON.parse(data)});
+      },
       error: function(error) {
         console.log(error);
       }.bind(this),
     });
   }
 
+  componentDidMount () {
+    console.log('api componentDidMount');
+    this.getApi();
+  }
+
   render() {
     return (
       <div>
-
         <Nav
-          gameTime2={this.state.gameTime2}
-          teams={this.state.teams}
-        />
+          loginModal={this.loginModal}
+          registerModal={this.registerModal}
+          isActive={this.state.isActive}
+          isActive2={this.state.isActive2} >
+        </Nav>
+        <Sidebar>
+           {
+            this.state.games.filter(x=>x).map((game,i) =>{
+              console.log(game, "CHRIS");
+              return (
+                <div key={i}>{game.gameTime} <br/>
+                    {game.teams}
+                </div>
+              )
+            })
+          }
+        </Sidebar>
+        
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Dashboard
           gameTime={this.state.gameTime}

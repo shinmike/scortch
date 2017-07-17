@@ -1,49 +1,146 @@
 h1 {
   color: tomato;
 }
-
 .user-border {
   .user-icon {
   font-size: 2em;
   color: #DDDDFF;
   }
 }
+.navbarTop {
+  background-color: #337ab7;
 
+  .navSidebar {
+    float: left;
+    background-color: black;
+  }
+
+  .navTitle {
+    color: skyblue;
+  }
+}
+#navbarSidebar {
+  position: fixed;
+  height: 100%!important;
+  z-index: 10;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #337ab7;
+  .navTitle {
+    color: skyblue;
+  }
+}
+.sideMenuBar {
+  padding-top: 50px;
+}
 .login-signup {
   float: right;
 }
 
-.sideMenuBar {
-  padding-top: 70px;
-}
 
-.boardcard {
-background: white;
-border: 1px #aaa solid;
-border-radius: 10px;
-box-shadow: 2px 2px 2px grey;
-}
-.boardheader {
-background: lightgray;
-color: white;
-padding: 10px;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-}
 
-.boardfooter {
-background: lightgray;
-color: white;
-padding: 10px;
-border-bottom-left-radius: 10px;
-border-bottom-right-radius: 10px;
-}
+
 
 .scorecard {
   margin-top: 20px;
   margin-bottom: 20px;
+  .boardcard {
+  background: white;
+  border: 1px #aaa solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px grey;
+  width: 30%;
+  }
+  .boardheader {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  }
+  .boardfooter {
+  background: lightgray;
+  color: white;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  }
+}
+
+.gamecard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .scoretop {
+  background: white;
+  border: 1px #aaa solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px grey;
+  }
+  .scoreheader {
+    background: lightgray;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
 
 i {
   float: right;
+}
+
+.form-control{
+  border-radius: 0px;
+  margin: 12px 3px;
+  height: 40px;
+}
+.labelstyle {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #0088D8;
+}
+
+.grayBody{
+    background-color: #E9E9E9;
+}
+
+.modal-content {
+  border: none!important;
+}
+
+.modal-backdrop {
+  background: rgba(255, 255, 255, 0.35)!important;
+  opacity: 0.5;
+}
+.loginbox{
+    width : 600px;
+    margin-top: 20%;
+    border-top: 6px solid #0088D8;
+    background-color:#fff;
+    padding: 20px;
+    box-shadow: 0 10px 10px -2px rgba(0,0,0,0.12),0 -2px 10px -2px rgba(0,0,0,0.12);    
+}
+.singtext{    
+    font-size: 28px;  
+    color: #0088D8;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.submitButton{
+    background-color: #0088D8;
+    color: #fff;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    width: 100%;
+    margin-left: 2px;
+    font-size: 16px;
+    border-radius: 0px;
+    outline: none;
+}
+.submitButton:hover,.submitButton:focus{
+    color: #fff;  
+    outline: none;
 }
