@@ -12,8 +12,24 @@ class App extends React.Component {
       awayTeam: undefined,
       homeTeam: undefined,
       awayScore: undefined,
-      homeScore: undefined
+      homeScore: undefined,
+      isActive: false
     };
+    this.loginModal = this.loginModal.bind(this);
+    this.registerModal = this.registerModal.bind(this);
+  }
+
+  //login register popup
+  loginModal () {
+    this.setState({
+      isActive: !this.state.isActive
+    })
+  }
+
+  registerModal () {
+    this.setState({
+      isActive: !this.state.isActive
+    })
   }
 
   componentDidMount () {
@@ -43,7 +59,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav
+          loginModal={this.loginModal}
+          registerModal={this.registerModal}
+          isActive={this.state.isActive}
+        />
         <Dashboard 
           gameTime={this.state.gameTime} 
           awayTeam={this.state.awayTeam} 
