@@ -39,17 +39,21 @@ class App extends React.Component {
       }.bind(this),
     });
   }
-  
+
+
+
   render() {
     return (
       <div>
-        <Nav />
-        <Dashboard 
-          gameTime={this.state.gameTime} 
-          awayTeam={this.state.awayTeam} 
-          homeTeam={this.state.homeTeam} 
-          awayScore={this.state.awayScore} 
-          homeScore={this.state.homeScore} 
+        <Nav
+
+        />
+        <Dashboard
+          gameTime={this.state.gameTime}
+          awayTeam={this.state.awayTeam}
+          homeTeam={this.state.homeTeam}
+          awayScore={this.state.awayScore}
+          homeScore={this.state.homeScore}
         />
       </div>
     );

@@ -68,7 +68,8 @@ class Nav extends React.Component {
                     </div>
                     <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div className="card-block">
-                        hello React 3  
+
+                        <h1> testing </h1>
                       </div>
                     </div>
                   </div>
