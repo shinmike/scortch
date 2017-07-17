@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
-
+import Sidebar from './sidebar.jsx'
 class App extends React.Component {
 
   constructor(props) {
@@ -13,9 +13,25 @@ class App extends React.Component {
       homeTeam: undefined,
       awayScore: undefined,
       homeScore: undefined,
+      isActive: false,
+      isActive2: false,
       games: []
-
     };
+    this.loginModal = this.loginModal.bind(this);
+    this.registerModal = this.registerModal.bind(this);
+  }
+
+  //login register popup
+  loginModal () {
+    this.setState({
+      isActive: !this.state.isActive
+    })
+  }
+
+  registerModal () {
+    this.setState({
+      isActive2: !this.state.isActive2
+    })
   }
 
 
@@ -58,10 +74,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav>
-          {
+        <Nav
+          loginModal={this.loginModal}
+          registerModal={this.registerModal}
+          isActive={this.state.isActive}
+          isActive2={this.state.isActive2} >
+        </Nav>
+        <Sidebar>
+           {
             this.state.games.filter(x=>x).map((game,i) =>{
-              console.log(game);
+              console.log(game, "CHRIS");
               return (
                 <div key={i}>{game.gameTime} <br/>
                     {game.teams}
@@ -69,7 +91,8 @@ class App extends React.Component {
               )
             })
           }
-        </Nav>
+        </Sidebar>
+        
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Dashboard
           gameTime={this.state.gameTime}

@@ -46,9 +46,9 @@ class Games extends React.Component {
         <div className="container">
         <div className="row">
           <div className="card-deck">
-              <div className="col-md-8 scorecard">
-                <div className="card text-center boardcard">
-                  <div className="card-header boardheader">
+              <div className="col-md-8 gamecard">
+                <div className="card text-center scoretop">
+                  <div className="card-header scoreheader">
                    Todays Game between:
                   </div>
                   <div className="card-block">
@@ -69,9 +69,9 @@ class Games extends React.Component {
                 </div>
               </div>
 
-              <div className="col-md-4 scorecard">
-                <div className="card text-center boardcard">
-                  <div className="card-header boardheader">
+              <div className="col-md-4 gamecard">
+                <div className="card text-center scoretop">
+                  <div className="card-header scoreheader">
                    Today's game Chat
                   </div>
                   <div className="card-block">
