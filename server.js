@@ -9,16 +9,16 @@ app.use(express.static('public'))
 
 // current date
 const rightNow = new Date();
-const res = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Boxscore, DailySchedule - Mike
 const MyMethods = require('./api/boxscore.js');
 const incomingBoxscore = MyMethods.boxscore('20170716-TOR-DET', true);
-const incomingDailySchedule = MyMethods.dailySchedule(res, true);
+const incomingDailySchedule = MyMethods.dailySchedule(now, true);
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule('20170714', true);
+const incomingSchedule = schedule(now, true);
 
 
 
