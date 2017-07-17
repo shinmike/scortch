@@ -13,7 +13,8 @@ class App extends React.Component {
       homeTeam: undefined,
       awayScore: undefined,
       homeScore: undefined,
-      isActive: false
+      isActive: false,
+      isActive2: false
     };
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   registerModal () {
     this.setState({
-      isActive: !this.state.isActive
+      isActive2: !this.state.isActive2
     })
   }
 
@@ -63,6 +64,7 @@ class App extends React.Component {
           loginModal={this.loginModal}
           registerModal={this.registerModal}
           isActive={this.state.isActive}
+          isActive2={this.state.isActive2}
         />
         <Dashboard 
           gameTime={this.state.gameTime} 
