@@ -17,14 +17,15 @@ class Games extends React.Component {
                    Todays Game between:
                   </div>
                   <div className="card-block">
-                    <h3 className="card-title">NYY</h3>
-                    <h3 className="card-title">BOS</h3>
-                    <h2 className="card-title"></h2>
+                    <h3 className="card-title">Logo              Logo</h3>
+                    <h3 className="card-title">Mud Hens              Mets</h3>
+                    <h1 className="card-title">Score: 5  -  2</h1>
+                    <h2 className="card-title">Inning: Top of 3rd</h2>
                   </div>
 
                    <div className="card-block">
-                    <h3 className="card-title">NYY</h3>
-                    <h3 className="card-title">BOS</h3>
+                    <h3 className="card-title">Batting: Ramirez</h3>
+                    <h3 className="card-title">Pitching: Hunter</h3>
                     <h2 className="card-title"></h2>
                   </div>
                   
@@ -36,14 +37,12 @@ class Games extends React.Component {
               <div className="col-md-4 scorecard">
                 <div className="card text-center boardcard">
                   <div className="card-header boardheader">
-                   Today's game Trash Talk
+                   Today's game Chat
                   </div>
                   <div className="card-block">
-                    
                     <ul id="messages">
                       <li>Chats go here</li>
                     </ul>
-
                     <form action="<li>">
                     <input id="m" autocomplete="off" /><button>Send your Chat</button>
                     </form>
