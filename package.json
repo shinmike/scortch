@@ -1,7 +1,7 @@
 {
-  "name": "react-simple-boilerplate",
+  "name": "Scortch",
   "version": "1.0.0",
-  "description": "Simple and lightweight Boilerplate for ReactJS projects",
+  "description": "Scortch",
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
     "start": "node server.js",
@@ -46,6 +46,7 @@
     "webpack-dev-server": "2.5.1"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "express": "^4.15.3",
     "mysportsfeeds-node": "^0.2.2",
     "react": "15.6.1",
