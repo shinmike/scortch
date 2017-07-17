@@ -8,11 +8,8 @@ class Dashboard extends React.Component {
    
     return (
       <div>
-
-        <div className="container">
-          <div className="card-deck">
-            <div className="row">
-              <div className="col-sm-6 col-md-4 scorecard">
+        <div className="card-deck">
+              <div className="col-sm-9 col-md-offset-3 scorecard">
                 <div className="card text-center boardcard">
                   <div className="card-header boardheader">
                     <i className="fa fa-star" aria-hidden="true"></i>
@@ -28,7 +25,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
 
-              <div className="col-sm-6 col-md-4 scorecard">
+              <div className="col-sm-9 col-md-offset-3 scorecard">
                 <div className="card text-center boardcard">
                   <div className="card-header boardheader">
                     <i className="fa fa-star" aria-hidden="true"></i>
@@ -42,10 +39,8 @@ class Dashboard extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
-        </div>
 
       </div>
     );
