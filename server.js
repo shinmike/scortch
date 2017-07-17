@@ -21,9 +21,10 @@ incomingDailySchedule.then(function (data) {
     // const time = element.time;
     output.push (`${date}-${awayTeam}-${homeTeam}`);
   })
-  console.log(output)
   return output
 })
+
+
 
 var app = require('express')();
 var http = require('http').Server(app);
