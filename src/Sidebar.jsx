@@ -1,10 +1,15 @@
 import React from 'react';
-
+import GameInfo from './gameinfo.jsx'
 class Sidebar extends React.Component {
 
   render() {
-     console.log("rendering <sidebar>", this.props.children);
-    
+    //console.log("chris test", this.props.children)
+    const gamesList = this.props.children;
+    // gamesLists.map((item, index) => {
+    //   console.log(item.props.children[0],item.props.children[1], "chris test")
+    // })
+    // console.log(gamesLists)
+
     return (
       <div className="container-fluid sideMenuBar">
         <div className="row">
@@ -21,8 +26,8 @@ class Sidebar extends React.Component {
                   </div>
                   <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div className="card-block">
-                      {this.props.children}
-                      </div>
+                
+                    </div>
                   </div>
                 </div>
                 <div className="card">
@@ -35,8 +40,10 @@ class Sidebar extends React.Component {
                   </div>
                   <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div className="card-block">
-                      Pre Season Countdown! 12 Days to go!
-                      </div>
+                      {gamesList.map((item, index) => (
+                      <GameInfo key={ index } gameTime={item.props.children[0]} gameTeam={item.props.children[1]} />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -44,7 +51,7 @@ class Sidebar extends React.Component {
           </div>
         </div>
       </div>
- 
+
     );
   }
 }

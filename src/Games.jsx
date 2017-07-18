@@ -1,6 +1,4 @@
 import React from 'react';
-import Nav from './Nav.jsx';
-// import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
   constructor() {
@@ -85,7 +83,7 @@ class Games extends React.Component {
             </div>
           </div>
         </div>
-     </div>
+      </div>
     );
   }
 }
