@@ -1,5 +1,4 @@
 import React from 'react';
-import Time from 'react-time';
 import { Router, Route, hashHistory} from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'

@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './Nav.jsx';
-import Dashboard from './Dashboard.jsx';
+// import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
   constructor() {
@@ -29,9 +29,8 @@ class Games extends React.Component {
   }
     /* on click send message back to sever for game channel */
   onPost() {
-    this.socket.emit('game chat', this.props.params.id, this.state.inputMessage);
-    this.setState.message({inputMessage: ''});
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+    this.setState.message({inputMessage: ''});
   }
 
   render(){
@@ -86,7 +85,7 @@ class Games extends React.Component {
             </div>
           </div>
         </div>
-    // </div>
+     </div>
     );
   }
 }
