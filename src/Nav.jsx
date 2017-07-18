@@ -23,7 +23,7 @@ class Nav extends React.Component {
                 </span>
               </button>
               <a href="" className="navbar-brand navTitle">Scortch</a>
-               
+
             </div>
 
             <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
@@ -38,7 +38,7 @@ class Nav extends React.Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <label htmlFor="e-mail" className="labelstyle">e-mail</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" /> 
+                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
                       <label htmlFor="password" className="labelstyle">password</label>
@@ -61,11 +61,11 @@ class Nav extends React.Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <label htmlFor="name" className="labelstyle">Name</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user name" /> 
+                      <input className="form-control" type="text" placeholder="Please enter your user name" />
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <label htmlFor="e-mail" className="labelstyle">e-mail</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" /> 
+                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
                       <label htmlFor="password" className="labelstyle">password</label>
@@ -80,7 +80,7 @@ class Nav extends React.Component {
              </div>
            </div>
          </nav>
-   
+
      </div>
     );
   }
