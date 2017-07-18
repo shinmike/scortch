@@ -1,4 +1,6 @@
 import React from 'react';
+import Time from 'react-time';
+
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
 
@@ -56,15 +58,22 @@ class App extends React.Component {
   }
 
   render() {
+    let now = new Date()
+
     return (
       <div>
         <Nav>
           {
             this.state.games.filter(x=>x).map((game,i) =>{
               console.log(game);
+
               return (
+
                 <div key={i}>{game.gameTime} <br/>
                     {game.teams}
+
+                  <p> Time now is <Time value={now} format="HH:mm"/> </p>
+
                 </div>
               )
             })
