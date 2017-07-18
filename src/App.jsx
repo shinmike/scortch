@@ -1,24 +1,36 @@
 import React from 'react';
-import Nav from './Nav.jsx';
-import Dashboard from './Dashboard.jsx';
+import Time from 'react-time';
+import { Router, Route, hashHistory} from 'react-router'
+import Nav from './Nav.jsx'
+import Dashboard from './Dashboard.jsx'
 import Sidebar from './sidebar.jsx'
+import Games from './Games.jsx'
+import io from 'socket.io-client';
+
+
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.getApi = this.getApi.bind(this);
     this.state = {
-      gameTime: undefined,
-      awayTeam: undefined,
-      homeTeam: undefined,
-      awayScore: undefined,
-      homeScore: undefined,
       isActive: false,
       isActive2: false,
-      games: []
+      games: [],
+      cards: []
     };
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
+
+    this.socket = io();
+  }
+
+  componentDidMount () {
+    console.log('api componentDidMount');
+    this.getApi();
+    this.socket.on('schedule update', data => {
+      console.log('schedule ' + data);
+    });
   }
 
   //login register popup
@@ -66,12 +78,10 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount () {
-    console.log('api componentDidMount');
-    this.getApi();
-  }
 
   render() {
+    let now = new Date()
+
     return (
       <div>
         <Nav
@@ -92,15 +102,11 @@ class App extends React.Component {
             })
           }
         </Sidebar>
-        
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
-        <Dashboard
-          gameTime={this.state.gameTime}
-          awayTeam={this.state.awayTeam}
-          homeTeam={this.state.homeTeam}
-          awayScore={this.state.awayScore}
-          homeScore={this.state.homeScore}
-        />
+        <Router history={hashHistory}>
+          <Route path="/" component={Dashboard} />
+          <Route path="/games/:id" component={(props) => <Games { ...props } socket={ this.socket } />} />
+        </Router>
       </div>
     );
   }
