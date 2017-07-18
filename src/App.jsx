@@ -14,8 +14,8 @@ class App extends React.Component {
     super(props);
     this.getApi = this.getApi.bind(this);
     this.state = {
-      isActive: false,
-      isActive2: false,
+      loginActive: false,
+      regActive2: false,
       games: [],
       cards: []
     };
@@ -36,13 +36,13 @@ class App extends React.Component {
   //login register popup
   loginModal () {
     this.setState({
-      isActive: !this.state.isActive
+      loginActive: !this.state.loginActive
     })
   }
 
   registerModal () {
     this.setState({
-      isActive2: !this.state.isActive2
+      regActive: !this.state.regActive
     })
   }
 
