@@ -83,10 +83,8 @@ class App extends React.Component {
         <Sidebar>
            {
             this.state.games.filter(x=>x).map((game,i) =>{
-              console.log(game, "CHRIS");
               return (
-                <div key={i}>{game.gameTime} <br/>
-                    {game.teams}
+                <div key={i}>{game.gameTime}{game.teams}
                 </div>
               )
             })
