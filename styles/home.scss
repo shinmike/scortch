@@ -26,7 +26,7 @@ h1 {
 }
 
 .sidebar {
-  width: 200px;
+  width: 150px;
   background-color: #337ab7;
   .navTitle {
     color: skyblue;
@@ -80,7 +80,7 @@ h1 {
   }
   .scoreheader {
     background: lightgray;
-    color: white;
+    color: black;
     padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -143,4 +143,16 @@ i {
 .submitButton:hover,.submitButton:focus{
     color: #fff;  
     outline: none;
+}
+
+.msgClass {
+    background-color: #f1f1f1;
+    border: 2px solid #337ab7;
+    padding: 3px 5px;
+    margin-right: 28px;
+    border-radius: 8px;
+    margin-top: 5px;
+    overflow-wrap: break-word;
+    padding-top: 5px;
+    
 }

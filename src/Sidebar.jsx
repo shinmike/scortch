@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
                   </div>
                   <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div className="card-block">
-                      hello React 3
+                      Pre Season Countdown! 12 Days to go!
                       </div>
                   </div>
                 </div>
