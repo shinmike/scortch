@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class Games extends React.Component {
   constructor() {
     super();
@@ -87,7 +86,7 @@ class Games extends React.Component {
             </div>
           </div>
         </div>
-     </div>
+      </div>
     );
   }
 }

@@ -19,7 +19,7 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(now, true);
+const incomingScoreboard = scoreboard(20170717, true);
 
 
 // DailySchedule - Kian
@@ -27,9 +27,9 @@ const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
 
 //Testing timer
-var requestLoop = setInterval(() => {
-  console.log("!......")
-}, 5000 );
+// var requestLoop = setInterval(() => {
+//   console.log("!......")
+// }, 5000 );
 
 
 
@@ -38,6 +38,7 @@ app.get('/testData', (req, res) => {
   let scoreboard = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
+      console.log("IN FIRST LOOP")
       scoreboard.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
@@ -45,7 +46,9 @@ app.get('/testData', (req, res) => {
         homeTeamAbbreviation: item.game.homeTeam.Abbreviation,
         awayScore: item.awayScore,
         homeScore: item.homeScore,
-        isInProgress: item.isInProgress
+        isInProgress: item.isInProgress,
+        isCompleted: item.isCompleted,
+        inning: item.inning
       })
     });
     res.send(JSON.stringify(scoreboard));
@@ -64,6 +67,26 @@ app.get('/testData2',(req,res) => {
       });
     })
   res.send(JSON.stringify(today));
+  });
+});
+
+app.get('/testData3', (req, res) => {
+  let boxscore = [];
+  incomingScoreboard.then((data) => {
+    data.scoreboard.gameScore.forEach(item => {
+      console.log("IN THE LOOP")
+      // console.log(item.inningSummary)
+      item.inningSummary.forEach(inning => {
+        console.log("IN THE INNER LOOP")
+        console.log(inning.awayScore)
+      })
+      // boxscore.push({
+      //   gameId: item.game.ID,
+      //   awayScore: item.awayScore,
+      //   homeScore: item.homeScore
+      // })
+    });
+    res.send(JSON.stringify(boxscore));
   });
 });
 

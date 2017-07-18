@@ -1,6 +1,6 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router'
 
+import { Router, Route, hashHistory} from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Sidebar from './sidebar.jsx'
@@ -117,11 +117,10 @@ class App extends React.Component {
           }
         </Dashboard>
         <Sidebar>
-          {
-            this.state.games.map((game, i) => {
+           {
+            this.state.games.filter(x=>x).map((game,i) =>{
               return (
-                <div key={i}>{game.gameTime} <br />
-                  {game.teams}
+                <div key={i}>{game.gameTime}{game.teams}
                 </div>
               )
             })
