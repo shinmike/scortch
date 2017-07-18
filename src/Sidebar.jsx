@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
                   <div className="card-header" role="tab" id="headingTwo">
                     <h5 className="mb-0">
                       <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        NFL
+                        MLB
                       </a>
                     </h5>
                   </div>
@@ -29,7 +29,7 @@ class Sidebar extends React.Component {
                   <div className="card-header" role="tab" id="headingThree">
                     <h5 className="mb-0">
                       <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        MLB
+                        NFL
                         </a>
                     </h5>
                   </div>
