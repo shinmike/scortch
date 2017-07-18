@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, Route, hashHistory} from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
-import Sidebar from './sidebar.jsx'
 import Games from './Games.jsx'
 import io from 'socket.io-client';
 
@@ -85,47 +84,10 @@ class App extends React.Component {
           isActive={this.state.isActive}
           isActive2={this.state.isActive2} >
         </Nav>
-        <Dashboard>
-          {
-            this.state.scoreboards.map((scoreboard, i) => {
-              return (
-                <div key={i}>
-
-                  <div className="col-sm-9 col-md-offset-3 scorecard">
-                    <div className="card text-center boardcard">
-                      <div className="card-header boardheader">
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        {scoreboard.gameTime}
-                      </div>
-                      <div className="card-block">
-                        <h3 className="card-title">{scoreboard.awayTeamAbbreviation} @ {scoreboard.homeTeamAbbreviation}</h3>
-                        <h2 className="card-title">{scoreboard.awayScore} - {scoreboard.homeScore}</h2>
-                        <div className="card-footer boardfooter">
-                          <i className="fa fa-commenting-o" aria-hidden="true"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              )
-            })
-          }
-        </Dashboard>
-        <Sidebar>
-           {
-            this.state.games.filter(x=>x).map((game,i) =>{
-              return (
-                <div key={i}>{game.gameTime}{game.teams}
-                </div>
-              )
-            })
-          }
-        </Sidebar>
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Router history={hashHistory}>
-          <Route path="/" component={Dashboard} />
-          <Route path="/games/:id" component={(props) => <Games { ...props } socket={this.socket} />} />
+          <Route exact path="/" component={ props => <Dashboard { ...props } games={ this.state.games } scoreboards={ this.state.scoreboards } /> } />
+          <Route path="/games/:id" component={(props) => <Games { ...props } socket={this.socket} /> } />
         </Router>
       </div>
     );

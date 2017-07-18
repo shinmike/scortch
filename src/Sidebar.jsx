@@ -3,17 +3,13 @@ import GameInfo from './gameinfo.jsx'
 class Sidebar extends React.Component {
 
   render() {
-    //console.log("chris test", this.props.children)
-    const gamesList = this.props.children;
-    // gamesLists.map((item, index) => {
-    //   console.log(item.props.children[0],item.props.children[1], "chris test")
-    // })
-    // console.log(gamesLists)
+    const games = this.props.games.map((game, index) => (
+      <GameInfo key={ index } gameTime={ game.gameTime } gameTeam={ game.teams } />
+    ));
 
     return (
-      <div className="container-fluid sideMenuBar">
-        <div className="row">
-          <div className="col-sm-3 bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
+      <div>
+          <div className="bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
             <ul className="nav nav-sidebar">
               <div id="accordion" role="tablist" aria-multiselectable="true">
                 <div className="card">
@@ -40,9 +36,7 @@ class Sidebar extends React.Component {
                   </div>
                   <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div className="card-block">
-                      {gamesList.map((item, index) => (
-                      <GameInfo key={ index } gameTime={item.props.children[0]} gameTeam={item.props.children[1]} />
-                      ))}
+                      { games }
                     </div>
                   </div>
                 </div>
@@ -50,7 +44,6 @@ class Sidebar extends React.Component {
             </ul>
           </div>
         </div>
-      </div>
 
     );
   }
