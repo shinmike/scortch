@@ -15,28 +15,20 @@ class App extends React.Component {
       homeTeam: undefined,
       awayScore: undefined,
       homeScore: undefined,
-<<<<<<< HEAD
-      games: []
-
-=======
       isActive: false,
       isActive2: false,
       games: []
->>>>>>> master
     };
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
   }
 
-<<<<<<< HEAD
-=======
   //login register popup
   loginModal () {
     this.setState({
       isActive: !this.state.isActive
     })
   }
->>>>>>> master
 
   registerModal () {
     this.setState({
