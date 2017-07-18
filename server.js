@@ -13,38 +13,48 @@ app.use(express.static('public'))
 
 // current date
 const rightNow = new Date();
-
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 
-// Boxscore, DailySchedule - Mike
-const MyMethods = require('./api/boxscore.js');
-const incomingBoxscore = MyMethods(20170717);
+
+// Scoreboard - Mike
+const scoreboard = require('./api/scoreboard.js');
+const incomingScoreboard = scoreboard(20170717, true);
 
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
 
-
-
 // Boxscore promise fulfilled - from Mike
 app.get('/testData', (req, res) => {
-  const scoreboard = [];
-  incomingBoxscore.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      console.log(gameEntry.time)
+  let scoreboard = [];
+  incomingScoreboard.then((data) => {
+    data.scoreboard.gameScore.forEach(item => {
+      scoreboard.push({
+        gameId: item.game.ID,
+        gameTime: item.game.time,
+        awayTeamAbbreviation: item.game.awayTeam.Abbreviation,
+        homeTeamAbbreviation: item.game.homeTeam.Abbreviation,
+        awayScore: item.awayScore,
+        homeScore: item.homeScore,
+        isInProgress: item.isInProgress
+      })
     });
-    res.send(JSON.stringify(resultData));
+    res.send(JSON.stringify(scoreboard));
   });
 });
 
-// DailySchedule promise fulfilled from Kian
+// DailySchedule promise fulfilled - from Kian
 app.get('/testData2',(req,res) => {
   const today = [];
   incomingSchedule.then((data) => {
-    data.gameboxscore.game.inningSummary.inning.forEach(gameEntry => {
-      console.log(gameEntry.homeScore)
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      today.push({
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+        gameId: gameEntry.id,
+      });
     })
   res.send(JSON.stringify(today));
   });

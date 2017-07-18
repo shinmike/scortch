@@ -10,7 +10,7 @@ module.exports = function(date, force) {
 		'daily_game_schedule', 
 		'json', 
 		{	fordate: date, 
-			force: force}
+			force: force }
 	);
 };
 

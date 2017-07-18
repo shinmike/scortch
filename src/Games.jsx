@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './Nav.jsx';
-import Dashboard from './Dashboard.jsx';
+// import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
   constructor() {
@@ -30,12 +30,12 @@ class Games extends React.Component {
     /* on click send message back to sever for game channel */
   onPost() {
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+    this.setState.message({inputMessage: ''});
   }
 
   render(){
-    console.log("rendering <Games template >");
     const messages = this.state.messages.map((message, index) => {
-      return (<li key={ index } >{ message.content }</li>);
+      return ( <p className="msgClass" key={ index }> { message.content }</p>);
     });
 
     return (
@@ -48,7 +48,7 @@ class Games extends React.Component {
                   <div className="card-header scoreheader">
                    Todays Game between:
                   </div>
-                  <div className="card-block">
+                  <div className="card-block"> 
                     <h3 className="card-title">Other logo             Logo</h3>
                     <h3 className="card-title">Mariners             Mets</h3>
                     <h1 className="card-title">Score: 5  -  2</h1>
@@ -60,7 +60,8 @@ class Games extends React.Component {
                     <h3 className="card-title">Pitching: Hunter</h3>
                     <h2 className="card-title"></h2>
                   </div>
-
+                  
+                  <div className="card-deck">Play by Play: Today's game is brought to you by the lawfirm of Kian, Lee and Shin.'
                   <div className="card-deck">TEST
                   </div>
                 </div>
@@ -69,14 +70,14 @@ class Games extends React.Component {
               <div className="col-md-4 gamecard">
                 <div className="card text-center scoretop">
                   <div className="card-header scoreheader">
-                   Today's game Chat
+                   Today's Game Chatter
                   </div>
                   <div className="card-block">
                     <ul id="messages">
                       { messages }
                     </ul>
                     <input value={ this.state.input } onChange={ (event) => this.setState({ inputMessage: event.target.value })} />
-                    <button onClick={ this.onPost }>Send your Chat</button>
+                    <button onClick={ this.onPost }>Send it!</button>
                   </div>
                 </div>
                </div>
@@ -84,7 +85,7 @@ class Games extends React.Component {
             </div>
           </div>
         </div>
-    // </div>
+     </div>
     );
   }
 }
