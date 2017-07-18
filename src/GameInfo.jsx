@@ -5,7 +5,7 @@ class GameInfo extends React.Component {
   render() {
     return (
      <div>
-       <a className="gameListColor"href="">{this.props.gameTime}  {this.props.gameTeam}</a>
+       <a className="gameListColor" href="">{this.props.gameTime}  {this.props.gameTeam}</a>
      </div>
     );
   }
