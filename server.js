@@ -18,7 +18,7 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(20170717, true);
+const incomingScoreboard = scoreboard(now, true);
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
