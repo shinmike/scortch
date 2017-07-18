@@ -19,8 +19,8 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Boxscore, DailySchedule - Mike
 const MyMethods = require('./api/boxscore.js');
-const incomingBoxscore = MyMethods.boxscore('20170716-TOR-DET', true);
-const incomingDailySchedule = MyMethods.dailySchedule(now, true);
+const incomingBoxscore = MyMethods(20170717);
+
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
@@ -28,39 +28,13 @@ const incomingSchedule = schedule(now, true);
 
 
 
-
-// could be used as gameIds in boxscore?
-incomingDailySchedule.then(function (data) {
-  let output = [];
-  data.dailygameschedule.gameentry.forEach(function(element, index, array){
-    const date = element.date.replace(/-/g, '');
-    const awayTeam = element.awayTeam.Abbreviation;
-    const homeTeam = element.homeTeam.Abbreviation;
-    // const time = element.time;
-    output.push (`${date}-${awayTeam}-${homeTeam}`);
-  })
-  console.log(output);
-  return output
-})
-
-
-
 // Boxscore promise fulfilled - from Mike
 app.get('/testData', (req, res) => {
-  incomingBoxscore.then(function (data) {
-    const gameTime = data.gameboxscore.game.time;
-    const awayTeamAbbreviation = data.gameboxscore.game.awayTeam.Abbreviation;
-    const homeTeamAbbreviation = data.gameboxscore.game.homeTeam.Abbreviation;
-    const awayScore = data.gameboxscore.inningSummary.inningTotals.awayScore;
-    const homeScore = data.gameboxscore.inningSummary.inningTotals.homeScore;
-
-    const resultData = {
-      gameTime: gameTime,
-      awayScore: awayScore,
-      awayTeamAbbreviation: awayTeamAbbreviation,
-      homeTeamAbbreviation: homeTeamAbbreviation,
-      homeScore: homeScore
-    };
+  const scoreboard = [];
+  incomingBoxscore.then((data) => {
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      console.log(gameEntry.time)
+    });
     res.send(JSON.stringify(resultData));
   });
 });
@@ -69,13 +43,8 @@ app.get('/testData', (req, res) => {
 app.get('/testData2',(req,res) => {
   const today = [];
   incomingSchedule.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      console.log(gameEntry.time)
-      today.push({
-        gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
-        gameId: gameEntry.id
-      });
+    data.gameboxscore.game.inningSummary.inning.forEach(gameEntry => {
+      console.log(gameEntry.homeScore)
     })
   res.send(JSON.stringify(today));
   });
