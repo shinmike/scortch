@@ -83,12 +83,13 @@ app.get('/testData2',(req,res) => {
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
-  socket.on('join game', game => {
+  socket.on('game join', game => {
     socket.join(`game${game}`);
   });
     /* broadcast out to users joined game by unique id */
   socket.on('game chat', function(id, msg){
     io.to(`game${id}`).emit('game chat', msg);
+    io.emit('schedule update', 'here is schedule data');
   });
 });
 

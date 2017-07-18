@@ -1,13 +1,11 @@
 import React from 'react';
-import io from 'socket.io-client';
-
 import Nav from './Nav.jsx';
 import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       inputMessage: '',
       messages: []
@@ -17,12 +15,11 @@ class Games extends React.Component {
   }
     /* setup socket and join game by unique id */
   componentDidMount() {
-    this.socket = io();
-    this.socket.on('connect', () => {
-      this.socket.emit('join game', this.props.params.id);
-    });
+    console.log(this.props);
+
+    this.props.socket.emit('game join', this.props.params.id);
     /* setup event handlers for messages from the server */
-    this.socket.on('game chat', msg => {
+    this.props.socket.on('game chat', msg => {
       this.setState({
         messages: this.state.messages.concat({
           content: msg
@@ -32,7 +29,7 @@ class Games extends React.Component {
   }
     /* on click send message back to sever for game channel */
   onPost() {
-    this.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+    this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
   }
 
   render(){
@@ -63,7 +60,7 @@ class Games extends React.Component {
                     <h3 className="card-title">Pitching: Hunter</h3>
                     <h2 className="card-title"></h2>
                   </div>
-                  
+
                   <div className="card-deck">TEST
                   </div>
                 </div>
