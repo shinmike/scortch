@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class Games extends React.Component {
   constructor() {
     super();
@@ -28,9 +27,8 @@ class Games extends React.Component {
   }
     /* on click send message back to sever for game channel */
   onPost() {
-    this.socket.emit('game chat', this.props.params.id, this.state.inputMessage);
-    this.setState.message({inputMessage: ''});
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+    this.setState.message({inputMessage: ''});
   }
 
   render(){

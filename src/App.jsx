@@ -11,20 +11,21 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.getApi = this.getApi.bind(this);
     this.state = {
       isActive: false,
       isActive2: false,
       games: [],
-      cards: []
+      scoreboards: []
     };
+
+    this.getApi = this.getApi.bind(this);
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
 
     this.socket = io();
   }
 
-  componentDidMount () {
+  componentDidMount() {
     console.log('api componentDidMount');
     this.getApi();
     this.socket.on('schedule update', data => {
@@ -33,33 +34,28 @@ class App extends React.Component {
   }
 
   //login register popup
-  loginModal () {
+  loginModal() {
     this.setState({
       isActive: !this.state.isActive
     })
   }
 
-  registerModal () {
+  registerModal() {
     this.setState({
       isActive2: !this.state.isActive2
     })
   }
 
 
-  getApi () {
+  getApi() {
     $.ajax({
       type: 'GET',
       url: '/testData',
       contentType: 'JSON',
-      success: function(data) {
-        let parsedData = JSON.parse(data);
-        this.setState({gameTime: parsedData.gameTime});
-        this.setState({awayTeam: parsedData.awayTeamAbbreviation});
-        this.setState({homeTeam: parsedData.homeTeamAbbreviation});
-        this.setState({awayScore: parsedData.awayScore});
-        this.setState({homeScore: parsedData.homeScore});
-      }.bind(this),
-      error: function(error) {
+      success: (data) => {
+        this.setState({ scoreboards: JSON.parse(data) });
+      },
+      error: function (error) {
         console.log(error);
       }.bind(this),
     });
@@ -69,9 +65,9 @@ class App extends React.Component {
       url: '/testData2',
       contentType: 'JSON',
       success: (data) => {
-        this.setState({games: JSON.parse(data)});
+        this.setState({ games: JSON.parse(data) });
       },
-      error: function(error) {
+      error: function (error) {
         console.log(error);
       }.bind(this),
     });
@@ -89,6 +85,33 @@ class App extends React.Component {
           isActive={this.state.isActive}
           isActive2={this.state.isActive2} >
         </Nav>
+        <Dashboard>
+          {
+            this.state.scoreboards.map((scoreboard, i) => {
+              return (
+                <div key={i}>
+
+                  <div className="col-sm-9 col-md-offset-3 scorecard">
+                    <div className="card text-center boardcard">
+                      <div className="card-header boardheader">
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        {scoreboard.gameTime}
+                      </div>
+                      <div className="card-block">
+                        <h3 className="card-title">{scoreboard.awayTeamAbbreviation} @ {scoreboard.homeTeamAbbreviation}</h3>
+                        <h2 className="card-title">{scoreboard.awayScore} - {scoreboard.homeScore}</h2>
+                        <div className="card-footer boardfooter">
+                          <i className="fa fa-commenting-o" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              )
+            })
+          }
+        </Dashboard>
         <Sidebar>
            {
             this.state.games.filter(x=>x).map((game,i) =>{
@@ -102,7 +125,7 @@ class App extends React.Component {
         <button type="button" className="btn" onClick={this.getApi}>Score!</button>
         <Router history={hashHistory}>
           <Route path="/" component={Dashboard} />
-          <Route path="/games/:id" component={(props) => <Games { ...props } socket={ this.socket } />} />
+          <Route path="/games/:id" component={(props) => <Games { ...props } socket={this.socket} />} />
         </Router>
       </div>
     );
