@@ -9,12 +9,10 @@ h1 {
 }
 .navbarTop {
   background-color: #337ab7;
-
   .navSidebar {
     float: left;
     background-color: black;
   }
-
   .navTitle {
     color: skyblue;
   }
@@ -42,6 +40,19 @@ h1 {
 }
 .login-signup {
   float: right;
+  .popupHeader {
+    margin-top: 10px;
+    padding: 40px 40px 10px 40px;
+  }
+  .popupInput {
+    border-radius: 0px;
+    margin: 12px 3px;
+    border: none;
+    border-bottom: 1px solid black;
+    box-shadow: none;
+    height: 40px;
+    font-size: 20px;
+  }
 }
 
 
@@ -85,7 +96,7 @@ h1 {
   }
   .scoreheader {
     background: lightgray;
-    color: white;
+    color: black;
     padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -104,7 +115,7 @@ i {
 .labelstyle {
   margin-top: 20px;
   font-size: 20px;
-  color: #0088D8;
+  color: black;
 }
 
 .grayBody{
@@ -120,32 +131,48 @@ i {
   opacity: 0.5;
 }
 .loginbox{
-    width : 600px;
-    margin-top: 20%;
-    border-top: 6px solid #0088D8;
-    background-color:#fff;
-    padding: 20px;
-    box-shadow: 0 10px 10px -2px rgba(0,0,0,0.12),0 -2px 10px -2px rgba(0,0,0,0.12);    
+  width : 600px;
+  margin-top: 20%;
+  background-color:#fff;
+  box-shadow: 0 10px 10px -2px rgba(0,0,0,0.12),0 -2px 10px -2px rgba(0,0,0,0.12);
+  
 }
-.singtext{    
-    font-size: 28px;  
-    color: #0088D8;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-.submitButton{
+ .popupSubmit {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: white;
+  .submitButton{
     background-color: #0088D8;
     color: #fff;
     margin-top: 12px;
-    margin-bottom: 10px;
     padding: 10px 0px;
     width: 100%;
     margin-left: 2px;
     font-size: 16px;
     border-radius: 0px;
     outline: none;
+  }
 }
+.singtext{    
+    font-size: 28px;  
+    color: black;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
 .submitButton:hover,.submitButton:focus{
     color: #fff;  
     outline: none;
+}
+
+.msgClass {
+    background-color: #f1f1f1;
+    border: 2px solid #337ab7;
+    padding: 3px 5px;
+    margin-right: 28px;
+    border-radius: 8px;
+    margin-top: 5px;
+    overflow-wrap: break-word;
+    padding-top: 5px;
+    
 }

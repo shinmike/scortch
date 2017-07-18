@@ -23,32 +23,33 @@ class Nav extends React.Component {
                 </span>
               </button>
               <a href="" className="navbar-brand navTitle">Scortch</a>
-               
+
             </div>
 
             <div className="collapse navbar-collapse login-signup" id="navbar-collapse">
               {/*sign in  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.loginModal}>Login</button>
               <Modal isOpen={this.props.isActive} onRequestClose={this.loginModal}>
-               <div className="col-lg-4 col-md-6 col-sm-8">
+              
                   <div className="row loginbox">
-                    <div className="col-lg-12">
+                    <div className="col-lg-12 popupHeader">
                       <ModalClose className="Modalclose" onClick={this.props.loginModal}/>
                       <span className="singtext" >Sign in </span>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
-                      <label htmlFor="e-mail" className="labelstyle">e-mail</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" /> 
+                      <input className="form-control popupInput" type="text" placeholder="E-mail" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
-                      <label htmlFor="password" className="labelstyle">password</label>
-                      <input className="form-control" type="password" placeholder="Please enter password" />
-                    </div>
-                    <div className="col-lg-12  col-md-12 col-sm-12">
-                      <a href="#" className="btn  submitButton">Submit </a>
+                      <input className="form-control popupInput" type="password" placeholder="Password" />
                     </div>
                   </div>
-               </div>
+                  <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
+                      <a href="#" className="btn  submitButton">Sign in </a>
+                    </div>
+                    <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
+                      <a href="#" className="btn  submitButton">Sign in </a>
+                    </div>
+           
               </Modal>
               {/* register  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.registerModal}>Registration</button>
@@ -61,18 +62,18 @@ class Nav extends React.Component {
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <label htmlFor="name" className="labelstyle">Name</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user name" /> 
+                      <input className="form-control popupInput" type="text" placeholder="Please enter your user name" />
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <label htmlFor="e-mail" className="labelstyle">e-mail</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" /> 
+                      <input className="form-control popupInput" type="text" placeholder="Please enter your user e-mail" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
                       <label htmlFor="password" className="labelstyle">password</label>
-                      <input className="form-control" type="password" placeholder="Please enter password" />
+                      <input className="form-control popupInput" type="password" placeholder="Please enter password" />
                     </div>
-                    <div className="col-lg-12  col-md-12 col-sm-12">
-                      <a href="#" className="btn  submitButton">Submit </a>
+                    <div className="col-lg-6 col-md-6 col-sm-6">
+                      <a href="#" className="btn  submitButton">Register </a>
                     </div>
                   </div>
                </div>
@@ -80,7 +81,7 @@ class Nav extends React.Component {
              </div>
            </div>
          </nav>
-   
+
      </div>
     );
   }
