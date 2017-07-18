@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './Nav.jsx';
+
 // import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
@@ -48,7 +48,7 @@ class Games extends React.Component {
                   <div className="card-header scoreheader">
                    Todays Game between:
                   </div>
-                  <div className="card-block"> 
+                  <div className="card-block">
                     <h3 className="card-title">Other logo             Logo</h3>
                     <h3 className="card-title">Mariners             Mets</h3>
                     <h1 className="card-title">Score: 5  -  2</h1>
@@ -60,7 +60,7 @@ class Games extends React.Component {
                     <h3 className="card-title">Pitching: Hunter</h3>
                     <h2 className="card-title"></h2>
                   </div>
-                  
+
                   <div className="card-deck">Play by Play: Today's game is brought to you by the lawfirm of Kian, Lee and Shin.'
                   <div className="card-deck">TEST
                   </div>
