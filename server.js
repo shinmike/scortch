@@ -13,7 +13,9 @@ app.use(express.static('public'))
 
 // current date
 const rightNow = new Date();
+
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+
 
 // Boxscore, DailySchedule - Mike
 const MyMethods = require('./api/boxscore.js');
@@ -23,6 +25,7 @@ const incomingDailySchedule = MyMethods.dailySchedule(now, true);
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
+
 
 
 
@@ -78,11 +81,14 @@ app.get('/testData2',(req,res) => {
   });
 });
 
-
-
+  /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+  socket.on('join game', game => {
+    socket.join(`game${game}`);
+  });
+    /* broadcast out to users joined game by unique id */
+  socket.on('game chat', function(id, msg){
+    io.to(`game${id}`).emit('game chat', msg);
   });
 });
 
