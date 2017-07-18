@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import Dashboard from './Dashboard.jsx';
 
 class Games extends React.Component {
   constructor() {
@@ -30,7 +29,9 @@ class Games extends React.Component {
     /* on click send message back to sever for game channel */
   onPost() {
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+
     this.setState.message({inputMessage: ''});
+
   }
 
   render(){
@@ -62,6 +63,7 @@ class Games extends React.Component {
                   </div>
 
                   <div className="card-deck">Play by Play: Today's game is brought to you by the lawfirm of Kian, Lee and Shin.'
+
                   <div className="card-deck">TEST
                   </div>
                 </div>

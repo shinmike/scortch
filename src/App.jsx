@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, hashHistory } from 'react-router'
+
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Sidebar from './sidebar.jsx'
@@ -12,10 +13,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       loginActive: false,
-      regActive2: false,
+      regActive: false,
       games: [],
       scoreboards: []
+
     };
 
     this.getApi = this.getApi.bind(this);
@@ -25,7 +28,8 @@ class App extends React.Component {
     this.socket = io();
   }
 
-  componentDidMount() {
+
+  componentDidMount () {
     console.log('api componentDidMount');
     this.getApi();
     this.socket.on('schedule update', data => {
