@@ -6,15 +6,9 @@ var io = require('socket.io')(http);
 
 app.use(express.static('public'))
 
-
-
-// DailyGameSchedule
-
-
 // current date
 const rightNow = new Date();
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
-
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
@@ -25,7 +19,7 @@ const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
 
 // Boxscore promise fulfilled - from Mike
-app.get('/testData', (req, res) => {
+app.get('/scoreboard', (req, res) => {
   let scoreboard = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
@@ -44,17 +38,17 @@ app.get('/testData', (req, res) => {
 });
 
 // DailySchedule promise fulfilled - from Kian
-app.get('/testData2',(req,res) => {
-  const today = [];
+app.get('/dailyschedule',(req,res) => {
+  const dailySchedule = [];
   incomingSchedule.then((data) => {
     data.dailygameschedule.gameentry.forEach(gameEntry => {
-      today.push({
-        gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+      dailySchedule.push({
         gameId: gameEntry.id,
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + ' @ ' + gameEntry.homeTeam.Name
       });
     })
-  res.send(JSON.stringify(today));
+  res.send(JSON.stringify(dailySchedule));
   });
 });
 

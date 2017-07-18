@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Card from './components/Card.jsx';
-
 import Sidebar from './sidebar.jsx'
 
 class Dashboard extends React.Component {
