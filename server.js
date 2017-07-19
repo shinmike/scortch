@@ -7,8 +7,12 @@ var io = require('socket.io')(http);
 app.use(express.static('public'))
 
 // current date
-const rightNow = new Date();
+const rightNow = new Date().addHours(14);
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+const time = rightNow.toISOString().slice(0, 10)
+
+console.log(now);
+console.log(time);
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
