@@ -29,7 +29,6 @@ class Games extends React.Component {
   onPost() {
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
     this.setState({inputMessage: ''});
-
   }
 
   render(){

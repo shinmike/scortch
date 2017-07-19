@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Router, Route, hashHistory} from 'react-router'
+=======
+import { Router, Route, hashHistory } from 'react-router'
+>>>>>>> feature/innings-boxscore
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
@@ -13,8 +17,13 @@ class App extends React.Component {
       loginActive: false,
       regActive: false,
       games: [],
+<<<<<<< HEAD
       scoreboards: [],
       inning: []
+=======
+      scoreboards: []
+      scoreboards: [],
+>>>>>>> feature/innings-boxscore
     };
 
     this.getApi = this.getApi.bind(this);
@@ -46,7 +55,7 @@ class App extends React.Component {
   getApi() {
     $.ajax({
       type: 'GET',
-      url: '/testData',
+      url: '/scoreboard',
       contentType: 'JSON',
       success: (data) => {
         this.setState({ scoreboards: JSON.parse(data) });
@@ -58,7 +67,7 @@ class App extends React.Component {
 
     $.ajax({
       type: 'GET',
-      url: '/testData2',
+      url: '/dailyschedule',
       contentType: 'JSON',
       success: (data) => {
         this.setState({ games: JSON.parse(data) });
@@ -82,6 +91,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <Nav
@@ -90,15 +100,22 @@ class App extends React.Component {
           isActive={this.state.isActive}
           isActive2={this.state.isActive2} >
         </Nav>
-        <button type="button" className="btn" onClick={this.getApi}>Score!</button>
-        <Router history={hashHistory}>
-          <Route exact path="/" component={ props => <Dashboard { ...props } games={ this.state.games }
-                                                        scoreboards={ this.state.scoreboards } /> }
-                                                        innings={ this.state.inning } />
-          <Route path="/games/:id" component={(props) => <Games { ...props } socket={this.socket} /> } />
+        <button
+          type="button"
+          className="btn"
+          onClick={this.getApi}>Score!
+        </button>
+        <Router history={hashHistory} >
+          <Route
+            exact path="/"
+            component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} />} />
+          <Route
+            path="/games/:id"
+            component={(props) => <Games { ...props } socket={this.socket} />} />
         </Router>
       </div>
     );
+
   }
 }
 export default App;
