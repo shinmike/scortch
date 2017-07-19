@@ -12,13 +12,13 @@ class Sidebar extends React.Component {
           <div className="bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
             <ul className="nav nav-sidebar">
               <div id="accordion" role="tablist" aria-multiselectable="true">
-                <div className="card">
+                <div className="card leagues">
                   <div className="card-header" role="tab" id="headingTwo">
-                    <h5 className="mb-0">
+                    <h3 className="mb-0">
                       <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         MLB
                       </a>
-                    </h5>
+                    </h3>
                   </div>
                   <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div className="card-block">
@@ -28,11 +28,11 @@ class Sidebar extends React.Component {
                 </div>
                 <div className="card">
                   <div className="card-header" role="tab" id="headingThree">
-                    <h5 className="mb-0">
+                    <h3 className="mb-0">
                       <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         NFL
                         </a>
-                    </h5>
+                    </h3>
                   </div>
                   <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div className="card-block">

@@ -14,7 +14,10 @@ h1 {
     background-color: black;
   }
   .navTitle {
-    color: skyblue;
+    color:  black;
+    font-size: 45px; 
+    font-weight: bold;
+    text-shadow: 2px 2px 8px #FF0000;
   }
 }
 #navbarSidebar {
@@ -28,7 +31,10 @@ h1 {
   width: 230px;
   background-color: #337ab7;
   .navTitle {
-    color: skyblue;
+    color:  black;
+    font-size: 25px; 
+    font-weight: bold;
+    text-shadow: 2px 2px 10px #FF0000;
   }
   .gameListColor {
     color: white;
@@ -177,4 +183,7 @@ i {
     overflow-wrap: break-word;
     padding-top: 5px;
     
+}
+ .leagues { 
+    padding-top: 15px;
 }
