@@ -3,8 +3,14 @@ import GameInfo from './gameinfo.jsx'
 
 class Sidebar extends React.Component {
   render() {
-    const games = this.props.games.map((game, index) => (
-      <GameInfo toggleGameVisibility={this.props.toggleGameVisibility} gameId={game.gameId} key={ index } gameTime={ game.gameTime } gameTeam={ game.teams } />
+    const games = this.props.games.map((game) => (
+      <GameInfo 
+        toggleGameVisibility={ this.props.toggleGameVisibility } 
+        gameId={ game.gameId } 
+        key={ game.gameId } 
+        gameTime={ game.gameTime } 
+        gameTeam={ game.teams } 
+      />
     ));
 
     return (

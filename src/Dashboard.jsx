@@ -6,29 +6,72 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCards: {'38195': true, "38345": true},
+      selectedCards: []
       // selectedCards: {'38195': true, "38345": false},
       // selectedCards: {'38195': true, "38345": true, "76556": true},
-
     };
   }
 
   toggleGameVisibility = (gameId) => {
-    console.log("this.state.sC before:", this.state.selectedCards)
-    console.log("we toggled game", gameId);
-    if (this.state.selectedCards[gameId]){
-      this.setState({selectedCards: {[gameId]: false}})
-    } else {
-      this.setState({selectedCards: {[gameId]: true}})
+   
+    var selectedCards  = [];
+    if(this.state.selectedCards) {
+      this.state.selectedCards.forEach(function(element){
+        if(JSON.parse(Object.keys(element)) == gameId){
+          selectedCards = this.state.selectedCards.concat({[gameId]: false});
+          this.setState({selectedCards: selectedCards});
+        } 
+      })  
+      selectedCards = this.state.selectedCards.concat({[gameId]: true});
+      this.setState({selectedCards: selectedCards});
     }
-    console.log("this.state.sC after:", this.state.selectedCards)
+    
+    //console.log("rohit dhand selected card ",this.state.selectedCards);
+    // if (this.state.selectedCards[gameId]){
+    //   let scheduleId = this.state.selectedCards.concat({[gameId]: false})
+    //   this.setState({selectedCards: scheduleId})
+    // } else {
+    //   let scheduleId = this.state.selectedCards.concat({[gameId]: true})
+    //   this.setState({selectedCards: scheduleId})
+    // }
   }
 
   render(){
     console.log("rendering <Dashboard >");
-    const cards = this.props.scoreboards
-    .filter((scoreboard) => {return this.state.selectedCards[scoreboard.gameId];})
-    .map((scoreboard) => {
+    console.log("scoreboards ", this.props.scoreboards);
+
+     var filteredGames = [];
+    
+    this.props.scoreboards
+    .filter((scoreboard,index) => {
+      this.state.selectedCards.forEach(function(e){
+       
+        if(JSON.parse(Object.keys(e)) == scoreboard.gameId){
+         filteredGames.push(scoreboard);
+        }
+      })
+    });
+      //return this.state.selectedCards[0];
+      //return this.state.selectedCards[index];
+    // })
+    // .map((scoreboard) => {
+    //   return <Card key={ scoreboard.gameId } { ...scoreboard } />
+    // });
+
+    // var filteredGames = [];
+    // tempList.forEach(function(scoreboard){
+    //   for(var x = 0; x < this.state.selectedCards.length; x++){
+
+    //   }
+    //   //   this.state.selectedCards.forEach(function(e){
+    //   //     if(JSON.parse(Object.keys(e)) == scoreboard.gameId){
+    //   //       filteredGames.push(scoreboard);
+    //   //     }
+       
+    //   // });
+      
+    // });
+    const cards = filteredGames.map((scoreboard) => {
       return <Card key={ scoreboard.gameId } { ...scoreboard } />
     });
 

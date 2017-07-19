@@ -10,7 +10,7 @@ class GameInfo extends React.Component {
   render() {
     return (
      <div onClick={this.clickMeBaby}>
-       <a className="gameListColor" href="">{this.props.gameTime}  {this.props.gameTeam}</a>
+       <a className="gameListColor" href="">{this.props.gameTime} {this.props.gameTeam}</a>
      </div>
     );
   }
