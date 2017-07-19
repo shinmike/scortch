@@ -31,7 +31,9 @@ app.get('/scoreboard', (req, res) => {
         homeTeamAbbreviation: item.game.homeTeam.Abbreviation,
         awayScore: item.awayScore,
         homeScore: item.homeScore,
-        isInProgress: item.isInProgress
+        isInProgress: item.isInProgress,
+        isCompleted: item.isCompleted,
+        innings: item.inningSummary && item.inningSummary.inning
       })
     });
     res.send(JSON.stringify(scoreboard));
