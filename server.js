@@ -19,12 +19,12 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(20170717, true);
+const incomingScoreboard = scoreboard(20170718, true);
 
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(now, true);
+const incomingSchedule = schedule(20170718, true);
 
 //Testing timer
 // var requestLoop = setInterval(() => {
@@ -32,6 +32,21 @@ const incomingSchedule = schedule(now, true);
 // }, 5000 );
 
 
+
+// DailySchedule promise fulfilled - from Kian
+app.get('/testData2',(req,res) => {
+  const today = [];
+  incomingSchedule.then((data) => {
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      today.push({
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+        gameId: gameEntry.id,
+      });
+    })
+  res.send(JSON.stringify(today));
+  });
+});
 
 // Boxscore promise fulfilled - from Mike
 app.get('/testData', (req, res) => {
@@ -55,40 +70,56 @@ app.get('/testData', (req, res) => {
   });
 });
 
-// DailySchedule promise fulfilled - from Kian
-app.get('/testData2',(req,res) => {
-  const today = [];
-  incomingSchedule.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      today.push({
-        gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
-        gameId: gameEntry.id,
-      });
-    })
-  res.send(JSON.stringify(today));
-  });
-});
 
 app.get('/testData3', (req, res) => {
-  let boxscore = [];
   incomingScoreboard.then((data) => {
-    data.scoreboard.gameScore.forEach(item => {
-      console.log("IN THE LOOP")
-      // console.log(item.inningSummary)
-      item.inningSummary.forEach(inning => {
-        console.log("IN THE INNER LOOP")
-        console.log(inning.awayScore)
-      })
-      // boxscore.push({
-      //   gameId: item.game.ID,
-      //   awayScore: item.awayScore,
-      //   homeScore: item.homeScore
-      // })
+    let boxscore = [];
+    // console.log("----");
+    // console.log(data.scoreboard.gameScore);
+    // console.log("----------");
+    // var wtf = data.scoreboard.gameScore.length;
+    // var wtf2 = 0;
+    data.scoreboard.gameScore.slice().forEach(item => {
+      // console.log(item.game.awayTeam, item.game.homeTeam, item.isInProgress)
+
+      if(item.isInProgress === 'true'){
+        item.inningSummary.inning.forEach(inning => {
+          // console.log("IN INNER LOOP")
+          boxscore.push({
+            inning: inning['@number'],
+            inningAwayScore: inning.awayScore,
+            inningHomeScore: inning.homeScore
+          })
+        })
+      }
     });
     res.send(JSON.stringify(boxscore));
   });
 });
+
+
+app.get('/testData4', (req, res) => {
+  const incomingScoreboard = scoreboard(20170718, true);
+  incomingScoreboard.then((data) => {
+    let boxscore = [];
+    data.scoreboard.gameScore.forEach(item => {
+      console.log("phear my inner loop");
+      console.log(item.game.awayTeam, item.game.homeTeam, item.isInProgress);
+    });
+
+
+
+    res.send(JSON.stringify(boxscore));
+  })
+})
+
+// app.get('/testData3',(req,res) => {
+//   const boxscore = [];
+//   incomingScoreboard.then((data) => {
+//     console.log(data.scoreboard.gameScore)
+//   res.send(JSON.stringify(today));
+//   });
+// });
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
