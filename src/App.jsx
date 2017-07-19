@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Router, Route, hashHistory} from 'react-router'
-=======
+
 import { Router, Route, hashHistory } from 'react-router'
->>>>>>> feature/innings-boxscore
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
@@ -17,13 +14,7 @@ class App extends React.Component {
       loginActive: false,
       regActive: false,
       games: [],
-<<<<<<< HEAD
       scoreboards: [],
-      inning: []
-=======
-      scoreboards: []
-      scoreboards: [],
->>>>>>> feature/innings-boxscore
     };
 
     this.getApi = this.getApi.bind(this);

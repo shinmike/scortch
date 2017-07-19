@@ -47,9 +47,11 @@ app.get('/testData2',(req,res) => {
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
   let scoreboard = [];
+  let inningSummary = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
       console.log("IN FIRST LOOP")
+      // console.log(item.inningSummary.inning.slice(-1)[0]['@number'])
       scoreboard.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
@@ -59,7 +61,7 @@ app.get('/scoreboard', (req, res) => {
         homeScore: item.homeScore,
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
-        inning: item.inning
+        inning: item.inningSummary.inning
       })
     });
     res.send(JSON.stringify(scoreboard));
@@ -83,55 +85,7 @@ app.get('/dailyschedule',(req,res) => {
 });
 
 
-app.get('/testData3', (req, res) => {
-  incomingScoreboard.then((data) => {
-    let boxscore = [];
-    // console.log("----");
-    // console.log(data.scoreboard.gameScore);
-    // console.log("----------");
-    // var wtf = data.scoreboard.gameScore.length;
-    // var wtf2 = 0;
-    data.scoreboard.gameScore.slice().forEach(item => {
-      // console.log(item.game.awayTeam, item.game.homeTeam, item.isInProgress)
 
-      if(item.isInProgress === 'true'){
-        item.inningSummary.inning.forEach(inning => {
-          // console.log("IN INNER LOOP")
-          boxscore.push({
-            inning: inning['@number'],
-            inningAwayScore: inning.awayScore,
-            inningHomeScore: inning.homeScore
-          })
-        })
-      }
-    });
-    res.send(JSON.stringify(boxscore));
-  });
-});
-
-
-app.get('/testData4', (req, res) => {
-  const incomingScoreboard = scoreboard(20170718, true);
-  incomingScoreboard.then((data) => {
-    let boxscore = [];
-    data.scoreboard.gameScore.forEach(item => {
-      console.log("phear my inner loop");
-      console.log(item.game.awayTeam, item.game.homeTeam, item.isInProgress);
-    });
-
-
-
-    res.send(JSON.stringify(boxscore));
-  })
-})
-
-// app.get('/testData3',(req,res) => {
-//   const boxscore = [];
-//   incomingScoreboard.then((data) => {
-//     console.log(data.scoreboard.gameScore)
-//   res.send(JSON.stringify(today));
-//   });
-// });
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
