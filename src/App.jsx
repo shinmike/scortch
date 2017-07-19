@@ -14,7 +14,7 @@ class App extends React.Component {
       isActive: false,
       isActive2: false,
       games: [],
-      scoreboards: []
+      scoreboards: [],
     };
 
     this.getApi = this.getApi.bind(this);
