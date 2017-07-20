@@ -1,6 +1,8 @@
+require('dotenv').config()
+
 var MySportsFeeds = require("mysportsfeeds-node");
 var msf = new MySportsFeeds("1.0", true, null);
-msf.authenticate("kian", "fransen34");
+msf.authenticate(process.env.MSF_USERNAME, process.env.MSF_PASSWORD);
 
 // Scoreboard
 module.exports = function(date){
