@@ -12,11 +12,11 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(now, true);
+const incomingScoreboard = scoreboard(20170719, true);
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(now, true);
+const incomingSchedule = schedule(20170719, true);
 
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {

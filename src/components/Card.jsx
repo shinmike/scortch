@@ -36,7 +36,7 @@ function Card({
     <div className="scorecard">
       <div className="card text-center boardcard">
         <div className="card-header boardheader">
-          <i className="fa fa-star" aria-hidden="true"></i>
+          <i className="fa fa-close" aria-hidden="true"></i>
           <p>{ eventInfo }</p>
         </div>
         <div className="card-block">
