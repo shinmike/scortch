@@ -9,16 +9,46 @@ let converter = require('./plays')
 app.use(express.static('public'))
 
 // current date
-const rightNow = new Date();
+const rightNow = new Date().addHours(14);
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+const time = rightNow.toISOString().slice(0, 10)
+
+console.log(now);
+console.log(time);
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(now, true);
+
+const incomingScoreboard = scoreboard(20170718, true);
+
+
+
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(now, true);
+const incomingSchedule = schedule(20170718, true);
+
+//Testing timer
+// var requestLoop = setInterval(() => {
+//   console.log("!......")
+// }, 5000 );
+
+
+
+// DailySchedule promise fulfilled - from Kian
+app.get('/testData2',(req,res) => {
+  const today = [];
+  incomingSchedule.then((data) => {
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      today.push({
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+        gameId: gameEntry.id,
+      });
+    })
+  res.send(JSON.stringify(today));
+  });
+});
 
 //PlayByPlay
 const pbp = require('./api/playByPlay.js');
@@ -29,8 +59,11 @@ const playByPlay = pbp();
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
   let scoreboard = [];
+  let inningSummary = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
+      console.log("IN FIRST LOOP")
+      // console.log(item.inningSummary.inning.slice(-1)[0]['@number'])
       scoreboard.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
@@ -40,12 +73,17 @@ app.get('/scoreboard', (req, res) => {
         homeScore: item.homeScore,
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
+<<<<<<< HEAD
         innings: item.inningSummary && item.inningSummary.inning,
+=======
+        inning: item.inningSummary.inning
+>>>>>>> e9795d92ed256a818f7501359c24525ed48de86a
       })
     });
     res.send(JSON.stringify(scoreboard));
   });
 });
+
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
@@ -62,6 +100,7 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
+<<<<<<< HEAD
 app.get('/playbyplay', (req,res) => {
   const plays = [];
   playByPlay.then((data) => {
@@ -81,6 +120,10 @@ app.get('/playbyplay', (req,res) => {
     res.send(JSON.stringify(plays));
   })
 })
+=======
+
+
+>>>>>>> e9795d92ed256a818f7501359c24525ed48de86a
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){

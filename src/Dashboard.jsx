@@ -80,9 +80,9 @@ class Dashboard extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-              <Sidebar 
+              <Sidebar
                 games={ this.props.games }
-                toggleGameVisibility={this.toggleGameVisibility} 
+                toggleGameVisibility={this.toggleGameVisibility}
               />
             </div>
             <div className="col-sm-9">

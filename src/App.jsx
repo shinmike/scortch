@@ -1,18 +1,18 @@
 import React from 'react';
+
 import { Router, Route, hashHistory } from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
 import io from 'socket.io-client';
 
-
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false,
-      isActive2: false,
+      loginActive: false,
+      regActive: false,
       games: [],
       scoreboards: [],
     };
@@ -20,31 +20,28 @@ class App extends React.Component {
     this.getApi = this.getApi.bind(this);
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
-
     this.socket = io();
   }
 
-  componentDidMount() {
+  componentDidMount () {
     console.log('api componentDidMount');
     this.getApi();
     this.socket.on('schedule update', data => {
       console.log('schedule ' + data);
     });
   }
-
   //login register popup
   loginModal() {
     this.setState({
-      isActive: !this.state.isActive
+      loginActive: !this.state.loginActive
     })
   }
 
   registerModal() {
     this.setState({
-      isActive2: !this.state.isActive2
+      regActive: !this.state.regActive
     })
   }
-
 
   getApi() {
     $.ajax({
@@ -70,8 +67,19 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
-  }
 
+    $.ajax({
+      type: 'GET',
+      url: '/testData3',
+      contentType: 'JSON',
+      success: (data) => {
+        this.setState({ inning: JSON.parse(data) });
+      },
+      error: function (error) {
+        console.log(error);
+      }.bind(this),
+    });
+  }
 
   render() {
 
@@ -98,7 +106,7 @@ class App extends React.Component {
         </Router>
       </div>
     );
-    
+
   }
 }
 export default App;
