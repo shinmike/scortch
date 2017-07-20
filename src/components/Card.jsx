@@ -12,7 +12,6 @@ function Card({
   currentInning,
   currentInningHalf
 }) {
-
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
     switch (currentInning % 10) {
@@ -31,6 +30,27 @@ function Card({
 
   const awayTeamImage = `/img/mlb/teams/${awayTeamAbbreviation}.png`
   const homeTeamImage = `/img/mlb/teams/${homeTeamAbbreviation}.png`
+
+  //create td tag for scoreboard away team
+  var awayTd = [];
+  var homeTd = [];
+  if(innings != null) {
+    for(let index = 0; index < 9; index++) {
+      if(innings[index]) {
+        awayTd.push(<td key={index}>{innings[index].awayScore}</td>)
+        homeTd.push(<td key={index}>{innings[index].awayScore}</td>)
+      } else {
+        awayTd.push(<td key={index}></td>)
+        homeTd.push(<td key={index}></td>)
+      }
+    }
+  } 
+  if(innings == null) {
+    for(let index = 0; index < 9; index++) {
+        awayTd.push(<td key={index}></td>)
+        homeTd.push(<td key={index}></td>)
+      }
+  }
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
@@ -68,49 +88,22 @@ function Card({
             </thead>
             <tbody>
               <tr>
-                <td>BOS</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>1</td>
-                <td>5</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>6</td>
+                <td>{awayTeamAbbreviation}</td>
+                {awayTd}
+                <td>{awayScore}</td>
                 <td></td>
                 <td></td>
-
               </tr>
               <tr>
-                <td>SEA</td>
-                <td>1</td>
-                <td>0</td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>3</td>
+                <td>{homeTeamAbbreviation}</td>
+                {homeTd}
+                <td>{homeScore}</td>
                 <td></td>
                 <td></td>
               </tr>
             </tbody>
           </table>
           </div>
-
-          {(() => {
-            switch (innings) {
-              case null: return;
-              default: return innings.map((inning, index) => {
-                return <p key={index}> {inning['@number']}: {inning.awayScore}-{inning.homeScore}</p>
-              });
-            }
-          })()}
-
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
           </div>

@@ -60,7 +60,7 @@ var requestLoop = setInterval(() => {
 
     }
   });
-}, 20000 );
+}, 2000000 );
 
 
 
