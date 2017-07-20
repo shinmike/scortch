@@ -10,7 +10,8 @@ function Card({
   isInProgress,
   isCompleted,
   currentInning,
-  currentInningHalf
+  currentInningHalf,
+  playStatus
 }) {
 
   var eventInfo = null;
@@ -22,7 +23,7 @@ function Card({
         default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
-  if (isInProgress === 'false' && isCompleted === 'true') {
+  if (isInProgress === 'false' && isCompleted === 'true'){
     eventInfo = 'Final';
   }
   if (isInProgress === 'false' && isCompleted === 'false'){
@@ -31,6 +32,11 @@ function Card({
 
   const awayTeamImage = `/img/mlb/teams/${awayTeamAbbreviation}.png`
   const homeTeamImage = `/img/mlb/teams/${homeTeamAbbreviation}.png`
+
+  // const ballCount = playStatus.map((play, index) => {
+  //   return <p key={index}>ballCount! {play.ballCount}</p>
+  // });
+  
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
@@ -47,6 +53,7 @@ function Card({
           </h3>
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
+          <div>{playStatus}</div>
 
           {(() => {
             switch (innings) {

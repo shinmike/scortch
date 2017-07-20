@@ -2,7 +2,6 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
 let converter = require('./plays')
 
 
@@ -33,6 +32,7 @@ var requestLoop = setInterval(() => {
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
+      console.log("PLAYSTATUS", item.playStatus);
       temp.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
@@ -55,22 +55,17 @@ var requestLoop = setInterval(() => {
 
     }
   });
-}, 5000 );
+}, 20000 );
 
 
 
 // DailySchedule promise fulfilled - from Kian
-app.get('/testData2',(req,res) => {
-  const today = [];
+app.get('/gameIDs',(req,res) => {
   incomingSchedule.then((data) => {
     data.dailygameschedule.gameentry.forEach(gameEntry => {
-      today.push({
-        gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
-        gameId: gameEntry.id,
-      });
+      gameIds.push(gameEntry.id);
     })
-  res.send(JSON.stringify(today));
+  res.send(JSON.stringify(gameIds));
   });
 });
 
