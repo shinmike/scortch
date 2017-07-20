@@ -60,23 +60,15 @@ var requestLoop = setInterval(() => {
 
     }
   });
-}, 20000 );
+}, 200000 );
 
 
 
 // DailySchedule promise fulfilled - from Kian
-app.get('/gameIDs',(req,res) => {
-  incomingSchedule.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      gameIds.push(gameEntry.id);
-    })
-  res.send(JSON.stringify(gameIds));
-  });
-});
 
 //PlayByPlay
 const pbp = require('./api/playByPlay.js');
-const playByPlay = pbp();
+// const playByPlay = pbp(38347);
 
 
 
@@ -101,26 +93,48 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
-app.get('/playbyplay', (req,res) => {
-  const plays = [];
-  playByPlay.then((data) => {
+app.get('/gameIDs',(req,res) => {
+  incomingSchedule.then((data) => {
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      gameIds.push(gameEntry.id);
+    })
+  res.send(JSON.stringify(gameIds));
+  });
 
-    data.gameplaybyplay.atBats.atBat.forEach(atBat => {
-      let x = atBat.atBatPlay[0].batterUp.result;
-      console.log(x);
-      console.log(converter);
-      console.log(converter[x])
-      if(converter[x]) {
-        // console.log("ATBAT PLAY", atBatPlay);
-        plays.push(converter[x](atBat.atBatPlay));
-        console.log('DFASDFA');
+});
+
+const getGameIds = ({ dailygameschedule }) => {
+  const { gameentry } = dailygameschedule;
+  return gameentry.map(entry => entry.id);
+}
+
+const getPlayByPlay = (gameIds) => {
+  const playByPlays = gameIds.map(gId => pbp(gId))
+  return Promise.all(playByPlays);
+}
+
+const convertStuff = playByPlayDatas => {
+  const plays = [];
+  const playByPlay = {};
+  // console.log('playByPlayDatas', playByPlayDatas);
+  playByPlayDatas.forEach(pbpd => {
+
+    // console.log("GAME", pbpd.gameplaybyplay.atBats)
+    pbpd.gameplaybyplay.atBats.atBat.forEach(ab => {
+      const result = ab.atBatPlay[0].batterUp.result
+      if(converter[result]) {
+        plays.push(converter[result](ab.atBatPlay))
       }
     })
-    console.log("HEARAF")
-    res.send(JSON.stringify(plays));
   })
-})
+}
 
+app.get('/playbyplay', (req,res) => {
+  incomingSchedule
+    .then(getGameIds)
+    .then(getPlayByPlay)
+    .then(data => res.send(JSON.stringify(data)))
+})
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
