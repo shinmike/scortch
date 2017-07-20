@@ -25,7 +25,6 @@ class Dashboard extends React.Component {
 
   render() {
     console.log("rendering <Dashboard >");
-
     const filteredScoreboards = this.props.scoreboards.filter((scoreboard) => {
       return this.state.selectedGameIds.includes(scoreboard.gameId);
     })
