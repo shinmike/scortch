@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, hashHistory} from 'react-router'
+import { Router, Route, hashHistory } from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
@@ -14,7 +14,7 @@ class App extends React.Component {
       isActive: false,
       isActive2: false,
       games: [],
-      scoreboards: []
+      scoreboards: [],
     };
 
     this.getApi = this.getApi.bind(this);
@@ -49,7 +49,7 @@ class App extends React.Component {
   getApi() {
     $.ajax({
       type: 'GET',
-      url: '/testData',
+      url: '/scoreboard',
       contentType: 'JSON',
       success: (data) => {
         this.setState({ scoreboards: JSON.parse(data) });
@@ -61,7 +61,7 @@ class App extends React.Component {
 
     $.ajax({
       type: 'GET',
-      url: '/testData2',
+      url: '/dailyschedule',
       contentType: 'JSON',
       success: (data) => {
         this.setState({ games: JSON.parse(data) });
@@ -74,7 +74,6 @@ class App extends React.Component {
 
 
   render() {
-    let now = new Date()
 
     return (
       <div>
@@ -84,13 +83,22 @@ class App extends React.Component {
           isActive={this.state.isActive}
           isActive2={this.state.isActive2} >
         </Nav>
-        <button type="button" className="btn" onClick={this.getApi}>Score!</button>
-        <Router history={hashHistory}>
-          <Route exact path="/" component={ props => <Dashboard { ...props } games={ this.state.games } scoreboards={ this.state.scoreboards } /> } />
-          <Route path="/games/:id" component={(props) => <Games { ...props } socket={this.socket} /> } />
+        <button
+          type="button"
+          className="btn"
+          onClick={this.getApi}>Score!
+        </button>
+        <Router history={hashHistory} >
+          <Route
+            exact path="/"
+            component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} />} />
+          <Route
+            path="/games/:id"
+            component={(props) => <Games { ...props } socket={this.socket} />} />
         </Router>
       </div>
     );
+    
   }
 }
 export default App;
