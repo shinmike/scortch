@@ -58,18 +58,10 @@ var requestLoop = setInterval(() => {
 
 
 // DailySchedule promise fulfilled - from Kian
-app.get('/gameIDs',(req,res) => {
-  incomingSchedule.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      gameIds.push(gameEntry.id);
-    })
-  res.send(JSON.stringify(gameIds));
-  });
-});
 
 //PlayByPlay
 const pbp = require('./api/playByPlay.js');
-const playByPlay = pbp();
+// const playByPlay = pbp(38347);
 
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
@@ -84,14 +76,14 @@ app.get('/dailyschedule',(req,res) => {
       dailySchedule.push({
         gameId: gameEntry.id,
         gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + ' @ ' + gameEntry.homeTeam.Name
+        teams: gameEntry.awayTeam.Abbreviation + ' @ ' + gameEntry.homeTeam.Abbreviation
       });
     })
   res.send(JSON.stringify(dailySchedule));
   });
 });
 
-app.get('/playbyplay', (req,res) => {
+app.get('/playByplay', (req,res) => {
   const plays = [];
   playByPlay.then((data) => {
     data.gameplaybyplay.atBats.atBat.forEach(atBat => {
@@ -105,10 +97,39 @@ app.get('/playbyplay', (req,res) => {
         console.log('DFASDFA');
       }
     })
-    console.log("HEARAF")
-    res.send(JSON.stringify(plays));
-  })
+  res.send(JSON.stringify(gameIds));
+  });
+
+});
+
+const getGameIds = ({ dailygameschedule }) => {
+  const { gameentry } = dailygameschedule;
+  return gameentry.map(entry => entry.id);
+}
+
+const getPlayByPlay = (gameIds) => {
+  const playByPlays = gameIds.map(gId => pbp(gId))
+  return Promise.all(playByPlays);
+}
+
+// const convertStuff = playByPlayDatas => {
+//   const plays = [];
+//   const playByPlay = {};
+//   playByPlayDatas.forEach(pbpd => {
+//     pbpd.gameplaybyplay.atBats.atBat.forEach(ab => {
+//       const result = ab.atBatPlay[0].batterUp.result
+app.get('/playbyplay', (req,res) => {
+  incomingSchedule
+    .then(getGameIds)
+    .then(getPlayByPlay)
+    .then(data => res.send(JSON.stringify(data)))
 })
+//       if(converter[result]) {
+//         plays.push(converter[result](ab.atBatPlay))
+//       }
+//     })
+//   })
+// }
 
 
   /* setup socket and connect user game chat by unique id */

@@ -44,7 +44,7 @@ function Card({
     for(let index = 0; index < 9; index++) {
       if(innings[index]) {
         awayTd.push(<td key={index}>{innings[index].awayScore}</td>)
-        homeTd.push(<td key={index}>{innings[index].awayScore}</td>)
+        homeTd.push(<td key={index}>{innings[index].homeScore}</td>)
       } else {
         awayTd.push(<td key={index}></td>)
         homeTd.push(<td key={index}></td>)

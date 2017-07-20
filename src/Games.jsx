@@ -26,7 +26,7 @@ class Games extends React.Component {
   }
 
   render() {
-    //this code is for 
+  
     const index = this.props.scoreboards.length;
     if (index > 1) {
       var scoreboards = this.props.scoreboards.filter((scoreboard) => {
@@ -35,12 +35,10 @@ class Games extends React.Component {
       console.log(scoreboards[0], "Bill")
     }
 
-
     const messages = this.state.messages.map((message, index) => {
       console.log(message);
       return (<p className="msgClass" key={index}> {message.content}</p>);
     });
-
 
     if (index > 1) {
       const awayTeamImage = `/img/mlb/teams/${scoreboards[0].awayTeamAbbreviation}.png`
@@ -57,13 +55,14 @@ class Games extends React.Component {
         for (let index = 0; index < 9; index++) {
           if (scoreboards[0].innings[index]) {
             awayTd.push(<td key={index}>{scoreboards[0].innings[index].awayScore}</td>)
-            homeTd.push(<td key={index}>{scoreboards[0].innings[index].awayScore}</td>)
+            homeTd.push(<td key={index}>{scoreboards[0].innings[index].homeScore}</td>)
           } else {
             awayTd.push(<td key={index}></td>)
             homeTd.push(<td key={index}></td>)
           }
         }
       }
+      console.log(this.props.playbyplay, "chris4040")
       return (
         <div className="container">
           <div className="row">
