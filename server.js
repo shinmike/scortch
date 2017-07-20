@@ -3,27 +3,37 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+let converter = require('./plays')
+
 
 app.use(express.static('public'))
 
 // current date
-const rightNow = new Date();
+const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
+
+const feed = require('./api/feed.js');
+const updated = feed();
+
+
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-const incomingScoreboard = scoreboard(20170719, true);
+
+let scoreboards = [];
+let gameIds = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170719, true);
+const incomingSchedule = schedule(now, true);
 
-// Boxscore promise fulfilled - from Mike
-app.get('/scoreboard', (req, res) => {
-  let scoreboard = [];
+var requestLoop = setInterval(() => {
+  const incomingScoreboard = scoreboard(now, true);
+  console.log("!......")
+  let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
-      scoreboard.push({
+      temp.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
         awayTeamAbbreviation: item.game.awayTeam.Abbreviation,
@@ -36,10 +46,45 @@ app.get('/scoreboard', (req, res) => {
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
       })
+      io.emit('scoreboard update', JSON.stringify(scoreboards));
     });
-    res.send(JSON.stringify(scoreboard));
+    if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
+      scoreboards = JSON.parse(JSON.stringify(temp));
+
+      temp = [];
+
+    }
+  });
+}, 5000 );
+
+
+
+// DailySchedule promise fulfilled - from Kian
+app.get('/testData2',(req,res) => {
+  const today = [];
+  incomingSchedule.then((data) => {
+    data.dailygameschedule.gameentry.forEach(gameEntry => {
+      today.push({
+        gameTime: gameEntry.time,
+        teams: gameEntry.awayTeam.Name + " @ " + gameEntry.homeTeam.Name,
+        gameId: gameEntry.id,
+      });
+    })
+  res.send(JSON.stringify(today));
   });
 });
+
+//PlayByPlay
+const pbp = require('./api/playByPlay.js');
+const playByPlay = pbp();
+
+
+
+// Boxscore promise fulfilled - from Mike
+app.get('/scoreboard', (req, res) => {
+    res.send(JSON.stringify(scoreboards));
+});
+
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
@@ -55,6 +100,27 @@ app.get('/dailyschedule',(req,res) => {
   res.send(JSON.stringify(dailySchedule));
   });
 });
+
+app.get('/playbyplay', (req,res) => {
+  const plays = [];
+  playByPlay.then((data) => {
+
+    data.gameplaybyplay.atBats.atBat.forEach(atBat => {
+      let x = atBat.atBatPlay[0].batterUp.result;
+      console.log(x);
+      console.log(converter);
+      console.log(converter[x])
+      if(converter[x]) {
+        // console.log("ATBAT PLAY", atBatPlay);
+        plays.push(converter[x](atBat.atBatPlay));
+        console.log('DFASDFA');
+      }
+    })
+    console.log("HEARAF")
+    res.send(JSON.stringify(plays));
+  })
+})
+
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){

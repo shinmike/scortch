@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "mysportsfeeds-node": "^0.2.2",
     "react": "15.6.1",
@@ -54,6 +55,7 @@
     "react-modal": "^2.2.2",
     "react-modal-bootstrap": "^1.1.1",
     "react-router": "^3.0.0",
+    "react-timekeeper": "^1.0.4",
     "socket.io": "^2.0.3"
   }
 }

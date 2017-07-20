@@ -21,17 +21,16 @@ function Card({
         case 3:  eventInfo = `${currentInningHalf} of ${currentInning}rd`;
         default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
-  } 
+  }
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
-  } 
+  }
   if (isInProgress === 'false' && isCompleted === 'false'){
     eventInfo = gameTime;
   }
 
   const awayTeamImage = `/img/mlb/teams/${awayTeamAbbreviation}.png`
   const homeTeamImage = `/img/mlb/teams/${homeTeamAbbreviation}.png`
-
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
@@ -40,14 +39,14 @@ function Card({
           <p>{ eventInfo }</p>
         </div>
         <div className="card-block">
-          <h3 className="card-title"> 
-            <img src={awayTeamImage} />
-            {awayTeamAbbreviation} 
-            @ 
-            {homeTeamAbbreviation} 
-            <img src={homeTeamImage} />
+          <h3 className="card-title">
+            <img className='team-logo' src={awayTeamImage} />
+            {awayTeamAbbreviation}&nbsp;@&nbsp;
+            {homeTeamAbbreviation}
+            <img className='team-logo' src={homeTeamImage} />
           </h3>
-          <h2 className="card-title">{awayScore} - {homeScore}</h2>
+          <h2 className="card-score">{awayScore}&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
 
           {(() => {
             switch (innings) {
