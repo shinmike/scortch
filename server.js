@@ -12,25 +12,50 @@ app.use(express.static('public'))
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
+const feed = require('./api/feed.js');
+const updated = feed();
 
 
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
 
-const incomingScoreboard = scoreboard(20170718, true);
 
+// JSON.stringify(objA) === JSON.stringify(objB)
 
+let scoreboards = [];
 
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170718, true);
+const incomingSchedule = schedule(20170719, true);
 
-//Testing timer
-// var requestLoop = setInterval(() => {
-//   console.log("!......")
-// }, 5000 );
+var requestLoop = setInterval(() => {
+  const incomingScoreboard = scoreboard(20170719, true);
+  console.log("!......")
+  let temp = []
+  incomingScoreboard.then((data) => {
+    data.scoreboard.gameScore.forEach(item => {
+      temp.push({
+        gameId: item.game.ID,
+        gameTime: item.game.time,
+        awayTeamAbbreviation: item.game.awayTeam.Abbreviation,
+        homeTeamAbbreviation: item.game.homeTeam.Abbreviation,
+        awayScore: item.awayScore,
+        homeScore: item.homeScore,
+        isInProgress: item.isInProgress,
+        isCompleted: item.isCompleted,
+        innings: item.inningSummary && item.inningSummary.inning,
+      })
+    });
+    io.emit('scoreboard update', JSON.stringify(temp));
+
+    if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
+      scoreboards = JSON.parse(JSON.stringify(temp));
+      temp = [];
+    }
+  });
+}, 5000 );
 
 
 
@@ -57,26 +82,8 @@ const playByPlay = pbp();
 
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
-  let scoreboard = [];
-  let inningSummary = [];
-  incomingScoreboard.then((data) => {
-    data.scoreboard.gameScore.forEach(item => {
-      scoreboard.push({
-        gameId: item.game.ID,
-        gameTime: item.game.time,
-        awayTeamAbbreviation: item.game.awayTeam.Abbreviation,
-        homeTeamAbbreviation: item.game.homeTeam.Abbreviation,
-        awayScore: item.awayScore,
-        homeScore: item.homeScore,
-        isInProgress: item.isInProgress,
-        isCompleted: item.isCompleted,
 
-        innings: item.inningSummary && item.inningSummary.inning,
-
-      })
-    });
-    res.send(JSON.stringify(scoreboard));
-  });
+    res.send(JSON.stringify(scoreboards));
 });
 
 

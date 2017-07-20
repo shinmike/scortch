@@ -26,7 +26,7 @@ class App extends React.Component {
   componentDidMount () {
     console.log('api componentDidMount');
     this.getApi();
-    this.socket.on('schedule update', data => {
+    this.socket.on('scoreboard update', data => {
       console.log('schedule ' + data);
     });
   }
