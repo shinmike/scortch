@@ -80,6 +80,9 @@ function Card({
                 <td>0</td>
                 <td>0</td>
                 <td>6</td>
+                <td></td>
+                <td></td>
+
               </tr>
               <tr>
                 <td>SEA</td>
@@ -93,6 +96,8 @@ function Card({
                 <td>0</td>
                 <td>0</td>
                 <td>3</td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
