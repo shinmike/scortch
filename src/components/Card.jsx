@@ -11,14 +11,16 @@ function Card({
   isCompleted,
   currentInning,
   currentInningHalf,
-  ballCount
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
     switch (currentInning % 10) {
       case 1: eventInfo = `${currentInningHalf} of ${currentInning}st`;
+        break;
       case 2: eventInfo = `${currentInningHalf} of ${currentInning}nd`;
+        break;
       case 3: eventInfo = `${currentInningHalf} of ${currentInning}rd`;
+        break;
       default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
@@ -69,7 +71,6 @@ function Card({
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
 
-          <div>{ballCount}</div>
 
           <div><table className="box-score">
             <thead>

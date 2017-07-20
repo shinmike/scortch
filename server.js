@@ -44,7 +44,6 @@ var requestLoop = setInterval(() => {
         innings: item.inningSummary && item.inningSummary.inning,
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
-        ballCount: item.playStatus.ballCount,
       })
       io.emit('scoreboard update', JSON.stringify(scoreboards));
     });
