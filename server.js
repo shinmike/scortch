@@ -55,12 +55,10 @@ var requestLoop = setInterval(() => {
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
-
       temp = [];
-
     }
   });
-}, 2000000 );
+}, 5000 );
 
 
 
@@ -87,7 +85,7 @@ app.get('/dailyschedule',(req,res) => {
       dailySchedule.push({
         gameId: gameEntry.id,
         gameTime: gameEntry.time,
-        teams: gameEntry.awayTeam.Name + ' @ ' + gameEntry.homeTeam.Name
+        teams: gameEntry.awayTeam.Abbreviation + ' @ ' + gameEntry.homeTeam.Abbreviation
       });
     })
   res.send(JSON.stringify(dailySchedule));
@@ -114,28 +112,25 @@ const getPlayByPlay = (gameIds) => {
   return Promise.all(playByPlays);
 }
 
-const convertStuff = playByPlayDatas => {
-  const plays = [];
-  const playByPlay = {};
-  // console.log('playByPlayDatas', playByPlayDatas);
-  playByPlayDatas.forEach(pbpd => {
-
-    // console.log("GAME", pbpd.gameplaybyplay.atBats)
-    pbpd.gameplaybyplay.atBats.atBat.forEach(ab => {
-      const result = ab.atBatPlay[0].batterUp.result
-      if(converter[result]) {
-        plays.push(converter[result](ab.atBatPlay))
-      }
-    })
-  })
-}
-
+// const convertStuff = playByPlayDatas => {
+//   const plays = [];
+//   const playByPlay = {};
+//   playByPlayDatas.forEach(pbpd => {
+//     pbpd.gameplaybyplay.atBats.atBat.forEach(ab => {
+//       const result = ab.atBatPlay[0].batterUp.result
 app.get('/playbyplay', (req,res) => {
   incomingSchedule
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => res.send(JSON.stringify(data)))
 })
+//       if(converter[result]) {
+//         plays.push(converter[result](ab.atBatPlay))
+//       }
+//     })
+//   })
+// }
+
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
