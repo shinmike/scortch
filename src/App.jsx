@@ -5,6 +5,7 @@ import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
 import io from 'socket.io-client';
+let converter = require('../plays')
 
 class App extends React.Component {
 
@@ -15,7 +16,9 @@ class App extends React.Component {
       isActive2: false,
       games: [],
       scoreboards: [],
-    };  
+      playbyplay: []
+    };
+
     this.getApi = this.getApi.bind(this);
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
@@ -69,10 +72,33 @@ class App extends React.Component {
 
     $.ajax({
       type: 'GET',
-      url: '/testData3',
+      url: '/playbyplay',
       contentType: 'JSON',
       success: (data) => {
-        this.setState({ inning: JSON.parse(data) });
+        let pbp = {}
+        let plays = JSON.parse(data)
+        console.log(plays)
+        plays.forEach(ab => {
+          const gameID = ab.gameplaybyplay.game.id;
+          if(!pbp[gameID]){
+            pbp[gameID] = [];
+          }
+          if(ab.gameplaybyplay.atBats){
+            ab.gameplaybyplay.atBats.atBat.forEach(plays => {
+              const result = plays.atBatPlay[0].batterUp.result
+              if(converter[result]){
+                pbp[gameID].push(converter[result](plays.atBatPlay))
+              }
+            })
+          }
+          console.log("PBP", pbp)
+
+        })
+
+        // // plays.gameplaybyplay.forEach(ab => {
+        // //   console.log(ab)
+        // })
+        this.setState({ playbyplay: JSON.parse(data) });
       },
       error: function (error) {
         console.log(error);
@@ -98,7 +124,7 @@ class App extends React.Component {
         <Router history={hashHistory} >
           <Route
             exact path="/"
-            component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} />} />
+            component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
           <Route
             path="/games/:id"
             component={(props) => <Games { ...props } socket={this.socket} scoreboards={this.state.scoreboards} />} />
