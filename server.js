@@ -32,7 +32,9 @@ app.get('/scoreboard', (req, res) => {
         homeScore: item.homeScore,
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
-        innings: item.inningSummary && item.inningSummary.inning
+        innings: item.inningSummary && item.inningSummary.inning,
+        currentInning: item.currentInning,
+        currentInningHalf: item.currentInningHalf,
       })
     });
     res.send(JSON.stringify(scoreboard));
