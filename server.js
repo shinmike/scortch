@@ -3,6 +3,8 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+let converter = require('./plays')
+
 
 app.use(express.static('public'))
 
@@ -18,6 +20,12 @@ const incomingScoreboard = scoreboard(now, true);
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
 
+//PlayByPlay
+const pbp = require('./api/playByPlay.js');
+const playByPlay = pbp();
+
+
+
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
   let scoreboard = [];
@@ -32,7 +40,7 @@ app.get('/scoreboard', (req, res) => {
         homeScore: item.homeScore,
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
-        innings: item.inningSummary && item.inningSummary.inning
+        innings: item.inningSummary && item.inningSummary.inning,
       })
     });
     res.send(JSON.stringify(scoreboard));
@@ -53,6 +61,26 @@ app.get('/dailyschedule',(req,res) => {
   res.send(JSON.stringify(dailySchedule));
   });
 });
+
+app.get('/playbyplay', (req,res) => {
+  const plays = [];
+  playByPlay.then((data) => {
+
+    data.gameplaybyplay.atBats.atBat.forEach(atBat => {
+      let x = atBat.atBatPlay[0].batterUp.result;
+      console.log(x);
+      console.log(converter);
+      console.log(converter[x])
+      if(converter[x]) {
+        // console.log("ATBAT PLAY", atBatPlay);
+        plays.push(converter[x](atBat.atBatPlay));
+        console.log('DFASDFA');
+      }
+    })
+    console.log("HEARAF")
+    res.send(JSON.stringify(plays));
+  })
+})
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
