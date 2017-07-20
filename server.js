@@ -9,12 +9,11 @@ let converter = require('./plays')
 app.use(express.static('public'))
 
 // current date
-const rightNow = new Date().addHours(14);
+const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
-const time = rightNow.toISOString().slice(0, 10)
 
-console.log(now);
-console.log(time);
+
+
 
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
@@ -73,11 +72,9 @@ app.get('/scoreboard', (req, res) => {
         homeScore: item.homeScore,
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
-<<<<<<< HEAD
+
         innings: item.inningSummary && item.inningSummary.inning,
-=======
-        inning: item.inningSummary.inning
->>>>>>> e9795d92ed256a818f7501359c24525ed48de86a
+
       })
     });
     res.send(JSON.stringify(scoreboard));
@@ -100,7 +97,6 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
-<<<<<<< HEAD
 app.get('/playbyplay', (req,res) => {
   const plays = [];
   playByPlay.then((data) => {
@@ -120,10 +116,7 @@ app.get('/playbyplay', (req,res) => {
     res.send(JSON.stringify(plays));
   })
 })
-=======
 
-
->>>>>>> e9795d92ed256a818f7501359c24525ed48de86a
 
   /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
