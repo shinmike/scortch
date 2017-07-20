@@ -35,7 +35,7 @@ function Card({
     <div className="scorecard">
       <div className="card text-center boardcard">
         <div className="card-header boardheader">
-          <i className="fa fa-star" aria-hidden="true"></i>
+          <i className="fa fa-star" aria-hidden="true"></i>   
           <p>{ eventInfo }</p>
         </div>
         <div className="card-block">
@@ -47,6 +47,60 @@ function Card({
           </h3>
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
+
+           <div><table className="box-score">
+            <thead>
+              <tr>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>Runs</th>
+                <th>Hits</th>
+                <th>Errors</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BOS</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>6</td>
+                <td></td>
+                <td></td>
+
+              </tr>
+              <tr>
+                <td>SEA</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
 
           {(() => {
             switch (innings) {
