@@ -34,7 +34,13 @@ function Card({
   //create td tag for scoreboard away team
   var awayTd = [];
   var homeTd = [];
-  if(innings != null) {
+
+  if (innings == null) {
+    for(let index = 0; index < 9; index++) {
+        awayTd.push(<td key={index}></td>)
+        homeTd.push(<td key={index}></td>)
+      }
+  } else {
     for(let index = 0; index < 9; index++) {
       if(innings[index]) {
         awayTd.push(<td key={index}>{innings[index].awayScore}</td>)
@@ -44,12 +50,6 @@ function Card({
         homeTd.push(<td key={index}></td>)
       }
     }
-  } 
-  if(innings == null) {
-    for(let index = 0; index < 9; index++) {
-        awayTd.push(<td key={index}></td>)
-        homeTd.push(<td key={index}></td>)
-      }
   }
   return (
     <div className="scorecard">

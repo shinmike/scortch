@@ -15,18 +15,13 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 const feed = require('./api/feed.js');
 const updated = feed();
 
-
-
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-
 
 // JSON.stringify(objA) === JSON.stringify(objB)
 
 let scoreboards = [];
 let gameIds = [];
-
-
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
@@ -55,12 +50,10 @@ var requestLoop = setInterval(() => {
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
-
       temp = [];
-
     }
   });
-}, 2000000 );
+}, 10000 );
 
 
 
@@ -78,13 +71,10 @@ app.get('/gameIDs',(req,res) => {
 const pbp = require('./api/playByPlay.js');
 const playByPlay = pbp();
 
-
-
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
     res.send(JSON.stringify(scoreboards));
 });
-
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
@@ -104,7 +94,6 @@ app.get('/dailyschedule',(req,res) => {
 app.get('/playbyplay', (req,res) => {
   const plays = [];
   playByPlay.then((data) => {
-
     data.gameplaybyplay.atBats.atBat.forEach(atBat => {
       let x = atBat.atBatPlay[0].batterUp.result;
       console.log(x);

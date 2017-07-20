@@ -66,18 +66,6 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
-
-    $.ajax({
-      type: 'GET',
-      url: '/testData3',
-      contentType: 'JSON',
-      success: (data) => {
-        this.setState({ inning: JSON.parse(data) });
-      },
-      error: function (error) {
-        console.log(error);
-      }.bind(this),
-    });
   }
 
   render() {
