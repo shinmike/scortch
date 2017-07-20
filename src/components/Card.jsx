@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Card({ gameTime, homeTeamAbbreviation, awayTeamAbbreviation, homeScore, awayScore, innings, isInProgress }) {
-
+function Card({ gameId, gameTime, homeTeamAbbreviation, awayTeamAbbreviation, homeScore, awayScore, innings }) {
+  
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
         <div className="card-header boardheader">
-          <i className="fa fa-star" aria-hidden="true"></i>
-            { gameTime }
-          </div>
+          <a href={'/#/games/' + gameId}><i className="fa fa-star" aria-hidden="true"></i></a>
+            { gameTime } 
+        </div>
           <div className="card-block">
           <h3 className="card-title">{ awayTeamAbbreviation } @ { homeTeamAbbreviation }</h3>
           <h2 className="card-title">{ awayScore } - { homeScore }</h2>

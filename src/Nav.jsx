@@ -49,7 +49,6 @@ class Nav extends React.Component {
                 <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
                   <a href="#" className="btn  submitButton">Sign in </a>
                 </div>
-
               </Modal>
               {/* register  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.registerModal}>Registration</button>

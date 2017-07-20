@@ -15,12 +15,10 @@ class App extends React.Component {
       isActive2: false,
       games: [],
       scoreboards: [],
-    };
-
+    };  
     this.getApi = this.getApi.bind(this);
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
-
     this.socket = io();
   }
 
@@ -44,7 +42,6 @@ class App extends React.Component {
       isActive2: !this.state.isActive2
     })
   }
-
 
   getApi() {
     $.ajax({
@@ -94,7 +91,7 @@ class App extends React.Component {
             component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } socket={this.socket} />} />
+            component={(props) => <Games { ...props } socket={this.socket} scoreboards={this.state.scoreboards} />} />
         </Router>
       </div>
     );
