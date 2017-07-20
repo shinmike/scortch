@@ -23,6 +23,7 @@ app.get('/scoreboard', (req, res) => {
   let scoreboard = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
+      console.log(item);
       scoreboard.push({
         gameId: item.game.ID,
         gameTime: item.game.time,

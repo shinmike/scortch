@@ -6,73 +6,32 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCards: []
-      // selectedCards: {'38195': true, "38345": false},
-      // selectedCards: {'38195': true, "38345": true, "76556": true},
+      selectedGameIds: []
     };
   }
 
   toggleGameVisibility = (gameId) => {
-   
-    var selectedCards  = [];
-    if(this.state.selectedCards) {
-      this.state.selectedCards.forEach(function(element){
-        if(JSON.parse(Object.keys(element)) == gameId){
-          selectedCards = this.state.selectedCards.concat({[gameId]: false});
-          this.setState({selectedCards: selectedCards});
-        } 
-      })  
-      selectedCards = this.state.selectedCards.concat({[gameId]: true});
-      this.setState({selectedCards: selectedCards});
+    let index = this.state.selectedGameIds.indexOf(gameId);
+    if (index === -1) {
+      this.setState({ selectedGameIds: this.state.selectedGameIds.concat([gameId]) });
+      console.log("SELECT CARDS", this.state.selectedGameIds);
+    } else {
+      var removeSelectedGameIds = this.state.selectedGameIds.slice(0, index);
+      var otherSelectedGameIds = this.state.selectedGameIds.slice(index + 1);
+      var newSelectedGameIds = removeSelectedGameIds.concat(otherSelectedGameIds);
+      this.setState({selectedGameIds: newSelectedGameIds});
     }
-    
-    //console.log("rohit dhand selected card ",this.state.selectedCards);
-    // if (this.state.selectedCards[gameId]){
-    //   let scheduleId = this.state.selectedCards.concat({[gameId]: false})
-    //   this.setState({selectedCards: scheduleId})
-    // } else {
-    //   let scheduleId = this.state.selectedCards.concat({[gameId]: true})
-    //   this.setState({selectedCards: scheduleId})
-    // }
   }
 
-  render(){
+  render() {
     console.log("rendering <Dashboard >");
-    console.log("scoreboards ", this.props.scoreboards);
 
-     var filteredGames = [];
-    
-    this.props.scoreboards
-    .filter((scoreboard,index) => {
-      this.state.selectedCards.forEach(function(e){
-       
-        if(JSON.parse(Object.keys(e)) == scoreboard.gameId){
-         filteredGames.push(scoreboard);
-        }
-      })
-    });
-      //return this.state.selectedCards[0];
-      //return this.state.selectedCards[index];
-    // })
-    // .map((scoreboard) => {
-    //   return <Card key={ scoreboard.gameId } { ...scoreboard } />
-    // });
+    const filteredScoreboards = this.props.scoreboards.filter((scoreboard) => {
+      return this.state.selectedGameIds.includes(scoreboard.gameId);
+    })
 
-    // var filteredGames = [];
-    // tempList.forEach(function(scoreboard){
-    //   for(var x = 0; x < this.state.selectedCards.length; x++){
-
-    //   }
-    //   //   this.state.selectedCards.forEach(function(e){
-    //   //     if(JSON.parse(Object.keys(e)) == scoreboard.gameId){
-    //   //       filteredGames.push(scoreboard);
-    //   //     }
-       
-    //   // });
-      
-    // });
-    const cards = filteredGames.map((scoreboard) => {
-      return <Card key={ scoreboard.gameId } { ...scoreboard } />
+    const cards = filteredScoreboards.map((scoreboard) => {
+      return <Card key={scoreboard.gameId} { ...scoreboard } />
     });
 
     return (
@@ -80,13 +39,13 @@ class Dashboard extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-              <Sidebar 
-                games={ this.props.games }
-                toggleGameVisibility={this.toggleGameVisibility} 
+              <Sidebar
+                games={this.props.games}
+                toggleGameVisibility={this.toggleGameVisibility}
               />
             </div>
             <div className="col-sm-9">
-              <div className="card-deck">{ cards }</div>
+              <div className="card-deck">{cards}</div>
             </div>
           </div>
         </div>
