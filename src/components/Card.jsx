@@ -29,6 +29,9 @@ function Card({
     eventInfo = gameTime;
   }
 
+  const awayTeamImage = `/img/mlb/teams/${awayTeamAbbreviation}.png`
+  const homeTeamImage = `/img/mlb/teams/${homeTeamAbbreviation}.png`
+
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
@@ -37,7 +40,13 @@ function Card({
           <p>{ eventInfo }</p>
         </div>
         <div className="card-block">
-          <h3 className="card-title">{awayTeamAbbreviation} @ {homeTeamAbbreviation}</h3>
+          <h3 className="card-title"> 
+            <img src={awayTeamImage} />
+            {awayTeamAbbreviation} 
+            @ 
+            {homeTeamAbbreviation} 
+            <img src={homeTeamImage} />
+          </h3>
           <h2 className="card-title">{awayScore} - {homeScore}</h2>
 
           {(() => {
