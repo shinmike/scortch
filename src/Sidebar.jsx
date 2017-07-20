@@ -4,12 +4,12 @@ import GameInfo from './gameinfo.jsx'
 class Sidebar extends React.Component {
   render() {
     const games = this.props.games.map((game) => (
-      <GameInfo 
-        toggleGameVisibility={ this.props.toggleGameVisibility } 
-        gameId={ game.gameId } 
-        key={ game.gameId } 
-        gameTime={ game.gameTime } 
-        gameTeam={ game.teams } 
+      <GameInfo
+        toggleGameVisibility={this.props.toggleGameVisibility}
+        gameId={game.gameId}
+        key={game.gameId}
+        gameTime={game.gameTime}
+        gameTeam={game.teams}
       />
     ));
 
@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
                 </div>
                 <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">
                   <div className="card-block">
-                    { games }
+                    {games}
                   </div>
                 </div>
               </div>

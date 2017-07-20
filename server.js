@@ -32,7 +32,6 @@ var requestLoop = setInterval(() => {
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
-      console.log("PLAYSTATUS", item.playStatus);
       temp.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
@@ -45,6 +44,7 @@ var requestLoop = setInterval(() => {
         innings: item.inningSummary && item.inningSummary.inning,
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
+        ballCount: item.playStatus.ballCount,
       })
       io.emit('scoreboard update', JSON.stringify(scoreboards));
     });

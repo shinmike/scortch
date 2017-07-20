@@ -11,12 +11,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginActive: false,
-      regActive: false,
+      isActive: false,
+      isActive2: false,
       games: [],
       scoreboards: [],
-    };
-
+    };  
     this.getApi = this.getApi.bind(this);
     this.loginModal = this.loginModal.bind(this);
     this.registerModal = this.registerModal.bind(this);
@@ -33,13 +32,13 @@ class App extends React.Component {
   //login register popup
   loginModal() {
     this.setState({
-      loginActive: !this.state.loginActive
+      isActive: !this.state.isActive
     })
   }
 
   registerModal() {
     this.setState({
-      regActive: !this.state.regActive
+      isActive2: !this.state.isActive2
     })
   }
 
@@ -102,7 +101,7 @@ class App extends React.Component {
             component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } socket={this.socket} />} />
+            component={(props) => <Games { ...props } socket={this.socket} scoreboards={this.state.scoreboards} />} />
         </Router>
       </div>
     );
