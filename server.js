@@ -28,10 +28,10 @@ let scoreboards = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170719, true);
+const incomingSchedule = schedule(20170720, true);
 
 var requestLoop = setInterval(() => {
-  const incomingScoreboard = scoreboard(20170719, true);
+  const incomingScoreboard = scoreboard(20170720, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
