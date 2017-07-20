@@ -30,34 +30,34 @@ class Nav extends React.Component {
               {/*sign in  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.loginModal}>Login</button>
               <Modal isOpen={this.props.isActive} onRequestClose={this.loginModal}>
-              
-                  <div className="row loginbox">
-                    <div className="col-lg-12 popupHeader">
-                      <ModalClose className="Modalclose" onClick={this.props.loginModal}/>
-                      <span className="singtext" >Sign in </span>
-                    </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12">
-                      <input className="form-control popupInput" type="text" placeholder="E-mail" />
-                    </div>
-                    <div className="col-lg-12  col-md-12 col-sm-12">
-                      <input className="form-control popupInput" type="password" placeholder="Password" />
-                    </div>
+
+                <div className="row loginbox">
+                  <div className="col-lg-12 popupHeader">
+                    <ModalClose className="Modalclose" onClick={this.props.loginModal} />
+                    <span className="singtext" >Sign in </span>
                   </div>
-                  <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
-                      <a href="#" className="btn  submitButton">Sign in </a>
-                    </div>
-                    <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
-                      <a href="#" className="btn  submitButton">Sign in </a>
-                    </div>
-           
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <input className="form-control popupInput" type="text" placeholder="E-mail" />
+                  </div>
+                  <div className="col-lg-12  col-md-12 col-sm-12">
+                    <input className="form-control popupInput" type="password" placeholder="Password" />
+                  </div>
+                </div>
+                <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
+                  <a href="#" className="btn  submitButton">Sign in </a>
+                </div>
+                <div className="col-lg-6  col-md-12 col-sm-12 popupSubmit">
+                  <a href="#" className="btn  submitButton">Sign in </a>
+                </div>
+
               </Modal>
               {/* register  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.registerModal}>Registration</button>
               <Modal isOpen={this.props.isActive2} onRequestClose={this.registerModal}>
-               <div className="col-lg-4 col-md-6 col-sm-8">
+                <div className="col-lg-4 col-md-6 col-sm-8">
                   <div className="row loginbox">
                     <div className="col-lg-12">
-                      <ModalClose className="Modalclose" onClick={this.props.registerModal}/>
+                      <ModalClose className="Modalclose" onClick={this.props.registerModal} />
                       <span className="singtext" >Register</span>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -76,13 +76,13 @@ class Nav extends React.Component {
                       <a href="#" className="btn  submitButton">Register </a>
                     </div>
                   </div>
-               </div>
-               </Modal>
-             </div>
-           </div>
-         </nav>
+                </div>
+              </Modal>
+            </div>
+          </div>
+        </nav>
 
-     </div>
+      </div>
     );
   }
 }

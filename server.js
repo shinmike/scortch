@@ -61,8 +61,6 @@ app.get('/scoreboard', (req, res) => {
   let inningSummary = [];
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
-      console.log("IN FIRST LOOP")
-      // console.log(item.inningSummary.inning.slice(-1)[0]['@number'])
       scoreboard.push({
         gameId: item.game.ID,
         gameTime: item.game.time,
