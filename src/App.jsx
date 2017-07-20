@@ -27,7 +27,7 @@ class App extends React.Component {
     console.log('api componentDidMount');
     this.getApi();
     this.socket.on('scoreboard update', data => {
-      console.log('schedule ' + data);
+      this.setState({ scoreboards:JSON.parse(data) });
     });
   }
   //login register popup
