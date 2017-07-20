@@ -30,7 +30,6 @@ class Nav extends React.Component {
               {/*sign in  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.loginModal}>Login</button>
               <Modal isOpen={this.props.isActive} onRequestClose={this.loginModal}>
-
                 <div className="row loginbox">
                   <div className="col-lg-12 popupHeader">
                     <ModalClose className="Modalclose" onClick={this.props.loginModal} />

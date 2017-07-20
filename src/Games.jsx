@@ -7,12 +7,10 @@ class Games extends React.Component {
       inputMessage: '',
       messages: []
     }
-    this.onPost = this.onPost.bind(this);
   }
-  /* setup socket and join game by unique id */
+
   componentDidMount() {
     this.props.socket.emit('game join', this.props.params.id);
-    /* setup event handlers for messages from the server */
     this.props.socket.on('game chat', msg => {
       this.setState({
         messages: this.state.messages.concat({
@@ -21,10 +19,10 @@ class Games extends React.Component {
       })
     });
   }
-  /* on click send message back to sever for game channel */
-  onPost() {
+
+  onPost = () => {
     this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
-    this.setState({inputMessage: ''});
+    this.setState({ inputMessage: '' });
   }
 
   render(){
@@ -39,7 +37,8 @@ class Games extends React.Component {
     
     
     const messages = this.state.messages.map((message, index) => {
-      return ( <p className="msgClass" key={ index }> { message.content }</p>);
+      console.log(message);
+      return (<p className="msgClass" key={index}> {message.content}</p>);
     });
     if( index > 1) {
     return (
@@ -79,11 +78,11 @@ class Games extends React.Component {
                     <input value={ this.state.inputMessage } onChange={ (event) => this.setState({ inputMessage: event.target.value })} />
                     <button onClick={ this.onPost }>Send it!</button>
                   </div>
-                </div>
-               </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
     );
     } else {
       return (

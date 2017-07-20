@@ -1,10 +1,10 @@
 import React from 'react';
+
 import { Router, Route, hashHistory } from 'react-router'
 import Nav from './Nav.jsx'
 import Dashboard from './Dashboard.jsx'
 import Games from './Games.jsx'
 import io from 'socket.io-client';
-
 
 class App extends React.Component {
 
@@ -22,14 +22,13 @@ class App extends React.Component {
     this.socket = io();
   }
 
-  componentDidMount() {
+  componentDidMount () {
     console.log('api componentDidMount');
     this.getApi();
-    this.socket.on('schedule update', data => {
-      console.log('schedule ' + data);
+    this.socket.on('scoreboard update', data => {
+      this.setState({ scoreboards:JSON.parse(data) });
     });
   }
-
   //login register popup
   loginModal() {
     this.setState({
@@ -67,8 +66,19 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
-  }
 
+    $.ajax({
+      type: 'GET',
+      url: '/testData3',
+      contentType: 'JSON',
+      success: (data) => {
+        this.setState({ inning: JSON.parse(data) });
+      },
+      error: function (error) {
+        console.log(error);
+      }.bind(this),
+    });
+  }
 
   render() {
 
@@ -95,7 +105,7 @@ class App extends React.Component {
         </Router>
       </div>
     );
-    
+
   }
 }
 export default App;
