@@ -46,13 +46,16 @@ var requestLoop = setInterval(() => {
         isInProgress: item.isInProgress,
         isCompleted: item.isCompleted,
         innings: item.inningSummary && item.inningSummary.inning,
+        currentInning: item.currentInning,
+        currentInningHalf: item.currentInningHalf,
       })
+      io.emit('scoreboard update', JSON.stringify(scoreboards));
     });
-    io.emit('scoreboard update', JSON.stringify(temp));
-
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
+
       temp = [];
+
     }
   });
 }, 5000 );
@@ -82,7 +85,6 @@ const playByPlay = pbp();
 
 // Boxscore promise fulfilled - from Mike
 app.get('/scoreboard', (req, res) => {
-
     res.send(JSON.stringify(scoreboards));
 });
 
