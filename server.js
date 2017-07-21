@@ -31,7 +31,6 @@ const incomingSchedule = schedule(20170720, true);
 // --------------------------------------------------------------- play-by-play required
 const pbp = require('./api/playByPlay.js');
 
-// --------------------------------------------------------------- 
 const getGameIds = ({ dailygameschedule }) => {
   const { gameentry } = dailygameschedule;
   return gameentry.map(entry => entry.id);
@@ -69,15 +68,14 @@ var requestLoop = setInterval(() => {
       temp = [];
     }
   });
-
-}, 20000 );
+}, 100000 );
 
 
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))));
-  
+
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {

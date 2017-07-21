@@ -57,7 +57,7 @@ function Card({
   }
 
   const eachPlay = [];
-  playByPlay.reverse().forEach((element)=>{
+  playByPlay.reverse().slice(1,3).forEach((element)=>{
     eachPlay.push(<ul>{element}</ul>)
   })
 
@@ -117,7 +117,7 @@ function Card({
         </div>
 
           <div>
-            {eachPlay}
+            {playByPlay}
           </div>
 
           <div className="card-footer boardfooter">
