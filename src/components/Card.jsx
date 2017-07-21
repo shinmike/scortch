@@ -10,11 +10,13 @@ function Card({
   isInProgress,
   isCompleted,
   currentInning,
-  currentInningHalf
+  currentInningHalf,
+  ballCount,
+  strikeCount,
+  outCount
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
-    console.log('michael', typeof parseInt(currentInning), parseInt(currentInning) % 10)
     switch (parseInt(currentInning) % 10) {
         case 1:   eventInfo = `${currentInningHalf} of ${currentInning}st`;
           break;
@@ -56,17 +58,19 @@ function Card({
     }
   }
   return (
+
     <div className="scorecard">
       <div className="card text-center boardcard">
         <div className="card-header boardheader">
-          <i className="fa fa-star" aria-hidden="true"></i>   
+          <i className="fa fa-star" aria-hidden="true"></i>
           <p>{ eventInfo }</p>
         </div>
         <div className="card-block">
           <h3 className="card-title">
             <img className='team-logo' src={awayTeamImage} />
-            {awayTeamAbbreviation}&nbsp;@&nbsp;
-            {homeTeamAbbreviation}
+
+
+
             <img className='team-logo' src={homeTeamImage} />
           </h3>
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
@@ -107,7 +111,11 @@ function Card({
               </tr>
             </tbody>
           </table>
-          </div>
+          <div>
+            Balls: &nbsp;&nbsp;{ballCount || ""}
+            Strikes: &nbsp;&nbsp;{strikeCount || ""}
+            Out: &nbsp;&nbsp;{outCount || ""}
+          </div></div>
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
           </div>

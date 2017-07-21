@@ -44,7 +44,7 @@ const getPlayByPlay = (gameIds) => {
 //     .then(getPlayByPlay)
 //     .then(data => res.send(JSON.stringify(data)))
 // }
-
+console.log("IN APP");
 var requestLoop = setInterval(() => {
   let scoreboards = [];
   const incomingScoreboard = scoreboard(20170720, true);
@@ -64,7 +64,12 @@ var requestLoop = setInterval(() => {
         innings: item.inningSummary && item.inningSummary.inning,
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
+        ballCount: item.playStatus && item.playStatus.ballCount,
+        strikeCount: item.playStatus && item.playStatus.strikeCount,
+        outCount: item.playStatus && item.playStatus.strikeCount
       })
+      // console.log(item.playStatus && item.playStatus.ballCount)
+
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
@@ -73,13 +78,17 @@ var requestLoop = setInterval(() => {
     }
   });
 
+
+
+
+
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
 
 
-}, 25000 );
+}, 7000);
 
 
 
