@@ -2,7 +2,6 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
 let converter = require('./plays')
 
 
@@ -80,15 +79,13 @@ var requestLoop = setInterval(() => {
 
 
 
-
-
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
-  .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-
+  .then(data => (io.emit('playbyplay update', JSON.stringify(data))));
 
 }, 7000);
+
 
 
 
