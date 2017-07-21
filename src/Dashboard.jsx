@@ -6,7 +6,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedGameIds: []
+      selectedGameIds: [],
     };
   }
 
@@ -25,13 +25,15 @@ class Dashboard extends React.Component {
 
   render() {
     console.log("rendering <Dashboard >");
+
     const filteredScoreboards = this.props.scoreboards.filter((scoreboard) => {
       return this.state.selectedGameIds.includes(scoreboard.gameId);
     })
 
     const cards = filteredScoreboards.map((scoreboard) => {
-      return <Card key={scoreboard.gameId} { ...scoreboard } />
+      return <Card key={scoreboard.gameId} playByPlay={this.props.playbyplay[scoreboard.gameId]} { ...scoreboard } />
     });
+
 
     return (
       <div>

@@ -7,15 +7,15 @@ module.exports = {
   },
   GROUNDOUT: data => {
     const batter = data[0].batterUp.battingPlayer
-    return(batter.FirstName + batter.LastName + ' grounded out');
+    return(batter.FirstName + ' ' + batter.LastName + ' grounded out');
   },
   WALK: data => {
     const batter = data[0].batterUp.battingPlayer
-    return(batter.FirstName + batter.LastName + ' walked');
+    return(batter.FirstName + ' ' + batter.LastName + ' walked');
   },
   FLYOUT: data => {
     const batter = data[0].batterUp.battingPlayer
-    return(batter.FirstName + batter.LastName + ' flied out');
+    return(batter.FirstName + ' ' + batter.LastName + ' flied out');
   },
   LINEOUT: data => {
     const batter = data[0].batterUp.battingPlayer

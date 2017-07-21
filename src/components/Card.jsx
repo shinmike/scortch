@@ -14,6 +14,7 @@ function Card({
   ballCount,
   strikeCount,
   outCount
+  playByPlay
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -68,10 +69,17 @@ function Card({
       }
     }
   }
+
+  const eachPlay = [];
+  playByPlay.reverse().slice(1,3).forEach((element)=>{
+    eachPlay.push(<ul>{element}</ul>)
+  })
+
+
   return (
 
     <div className="scorecard">
-      <div className="card text-center boardcard">
+      <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
           <i className="fa fa-close" aria-hidden="true"></i>
           <p>{eventInfo}</p>
@@ -125,6 +133,12 @@ function Card({
             Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
             Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
           </div></div>
+
+        </div>
+
+          <div>
+            {playByPlay}
+          </div>
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
           </div>
