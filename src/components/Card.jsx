@@ -11,7 +11,6 @@ function Card({
   isCompleted,
   currentInning,
   currentInningHalf,
-<<<<<<< HEAD
   ballCount,
   strikeCount,
   outCount
@@ -26,21 +25,19 @@ function Card({
         case 3:   eventInfo = `${currentInningHalf} of ${currentInning}rd `;
           break;
         default:  eventInfo = `${currentInningHalf} of ${currentInning}th`;
-=======
-}) {
-  var eventInfo = null;
-  if (isInProgress === 'true' && isCompleted === 'false') {
-    switch (currentInning % 10) {
-      case 1: eventInfo = `${currentInningHalf} of ${currentInning}st`;
-        break;
-      case 2: eventInfo = `${currentInningHalf} of ${currentInning}nd`;
-        break;
-      case 3: eventInfo = `${currentInningHalf} of ${currentInning}rd`;
-        break;
-      default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
->>>>>>> 1465b1c33e41429d33229f01772db1b1c41242f4
     }
   }
+  let balls = null;
+  switch(parseInt(ballCount) % 10) {
+    case 1:  balls = `<div>B</div>`;
+      break;
+    case 2:  balls = `<div><div>B</div><div>B</div></div>`;
+      break;
+    case 3:  balls = `<div><div>B</div><div>B</div><div>B</div></div>`;
+      break;
+    default: ""
+  }
+
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
   }
@@ -124,9 +121,9 @@ function Card({
             </tbody>
           </table>
           <div>
-            Balls: &nbsp;&nbsp;{ballCount || ""}
-            Strikes: &nbsp;&nbsp;{strikeCount || ""}
-            Out: &nbsp;&nbsp;{outCount || ""}
+            Balls: balls&nbsp;&nbsp;&nbsp;
+            Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
+            Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
           </div></div>
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
