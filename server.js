@@ -24,7 +24,7 @@ let gameIds = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170720, true);
+const incomingSchedule = schedule(20170721, true);
 
 
 
@@ -43,7 +43,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170720, true);
+  const incomingScoreboard = scoreboard(20170721, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
@@ -90,6 +90,18 @@ app.get('/dailyschedule',(req,res) => {
   res.send(JSON.stringify(dailySchedule));
   });
 });
+
+// // -------------------------------- Register
+// app.get("/register", (req, res) => {
+//     res.redirect("/urls");
+//   } else {
+//     res.render("register");
+//   }
+// });
+
+
+
+
 
 io.on('connection', function(socket){
   socket.on('game join', game => {
