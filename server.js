@@ -70,13 +70,14 @@ var requestLoop = setInterval(() => {
     }
   });
 
+}, 20000 );
+
+
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
-  .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-
-
-}, 10000 );
+  .then(data => (io.emit('playbyplay update', JSON.stringify(data))));
+  
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
