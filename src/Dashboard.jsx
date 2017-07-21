@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
       <div>
         
           <div className="row">
-            <div className="col-sm-3">
+            <div className="col-sm-2">
               <Sidebar
                 games={this.props.games}
                 toggleGameVisibility={this.toggleGameVisibility}
