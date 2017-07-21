@@ -14,11 +14,15 @@ function Card({
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
-    switch (currentInning % 10) {
-        case 1:  eventInfo = `${currentInningHalf} of ${currentInning}st`;
-        case 2:  eventInfo = `${currentInningHalf} of ${currentInning}nd`;
-        case 3:  eventInfo = `${currentInningHalf} of ${currentInning}rd`;
-        default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
+    console.log('michael', typeof parseInt(currentInning), parseInt(currentInning) % 10)
+    switch (parseInt(currentInning) % 10) {
+        case 1:   eventInfo = `${currentInningHalf} of ${currentInning}st`;
+          break;
+        case 2:   eventInfo = `${currentInningHalf} of ${currentInning}nd`;
+          break;
+        case 3:   eventInfo = `${currentInningHalf} of ${currentInning}rd `;
+          break;
+        default:  eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
   if (isInProgress === 'false' && isCompleted === 'true') {
