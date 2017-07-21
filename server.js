@@ -14,11 +14,8 @@ const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 const feed = require('./api/feed.js');
 const updated = feed();
 
-
-
 // Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-
 
 // JSON.stringify(objA) === JSON.stringify(objB)
 
@@ -91,13 +88,10 @@ var requestLoop = setInterval(() => {
 //PlayByPlay
 // const playByPlay = pbp(38347);
 
-
-
 // Boxscore promise fulfilled - from Mike
 // app.get('/scoreboard', (req, res) => {
 //     res.send(JSON.stringify(scoreboards));
 // });
-
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {

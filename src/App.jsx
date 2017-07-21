@@ -149,7 +149,7 @@ class App extends React.Component {
             component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } socket={this.socket} scoreboards={this.state.scoreboards} />} />
+            component={(props) => <Games { ...props } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
         </Router>
       </div>
     );
