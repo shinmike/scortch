@@ -76,7 +76,6 @@ var requestLoop = setInterval(() => {
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))));
 
-
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
   const dailySchedule = [];
