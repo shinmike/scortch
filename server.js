@@ -7,7 +7,7 @@ let converter = require('./plays')
 
 app.use(express.static('public'))
 
-// current date
+// --------------------------------------------------------------- current date
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
@@ -25,8 +25,13 @@ let gameIds = [];
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(20170720, true);
+
+
+
+// --------------------------------------------------------------- play-by-play required
 const pbp = require('./api/playByPlay.js');
 
+// --------------------------------------------------------------- 
 const getGameIds = ({ dailygameschedule }) => {
   const { gameentry } = dailygameschedule;
   return gameentry.map(entry => entry.id);
@@ -36,13 +41,6 @@ const getPlayByPlay = (gameIds) => {
   const playByPlays = gameIds.map(gId => pbp(gId))
   return Promise.all(playByPlays);
 }
-
-// const playbyplay = () => {
-//   incomingSchedule
-//     .then(getGameIds)
-//     .then(getPlayByPlay)
-//     .then(data => res.send(JSON.stringify(data)))
-// }
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
@@ -78,20 +76,7 @@ var requestLoop = setInterval(() => {
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
 
 
-}, 25000 );
-
-
-
-
-// DailySchedule promise fulfilled - from Kian
-
-//PlayByPlay
-// const playByPlay = pbp(38347);
-
-// Boxscore promise fulfilled - from Mike
-// app.get('/scoreboard', (req, res) => {
-//     res.send(JSON.stringify(scoreboards));
-// });
+}, 10000 );
 
 // DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
@@ -108,23 +93,10 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
-// app.get('/gameIDs',(req,res) => {
-//   incomingSchedule.then((data) => {
-//     data.dailygameschedule.gameentry.forEach(gameEntry => {
-//       gameIds.push(gameEntry.id);
-//     })
-//   res.send(JSON.stringify(gameIds));
-//   });
-
-// });
-
-
-  /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
   socket.on('game join', game => {
     socket.join(`game${game}`);
   });
-    /* broadcast out to users joined game by unique id */
   socket.on('game chat', function(id, msg){
     io.to(`game${id}`).emit('game chat', msg);
     io.emit('schedule update', 'here is schedule data');

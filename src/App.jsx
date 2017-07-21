@@ -50,7 +50,7 @@ class App extends React.Component {
           console.log("PBP", pbp)
 
         })
-      this.setState({ playbyplay:JSON.parse(data) });
+      this.setState({ playbyplay: pbp });
     });
 
   }
@@ -146,10 +146,10 @@ class App extends React.Component {
         <Router history={hashHistory} >
           <Route
             exact path="/"
-            component={props => <Dashboard { ...props } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
+            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
+            component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
         </Router>
       </div>
     );

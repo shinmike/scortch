@@ -11,6 +11,7 @@ function Card({
   isCompleted,
   currentInning,
   currentInningHalf,
+  playByPlay
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -54,6 +55,13 @@ function Card({
       }
     }
   }
+
+  const eachPlay = [];
+  playByPlay.reverse().forEach((element)=>{
+    eachPlay.push(<ul>{element}</ul>)
+  })
+
+
   return (
     <div className="scorecard">
       <div className="card text-center boardcard">
@@ -107,7 +115,12 @@ function Card({
               </tr>
             </tbody>
           </table>
+        </div>
+
+          <div>
+            {eachPlay}
           </div>
+
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
           </div>
