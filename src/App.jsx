@@ -31,53 +31,9 @@ class App extends React.Component {
     this.socket.on('scoreboard update', data => {
       this.setState({ scoreboards:JSON.parse(data) });
     });
-  }
-  //login register popup
-  loginModal() {
-    this.setState({
-      isActive: !this.state.isActive
-    })
-  }
-
-  registerModal() {
-    this.setState({
-      isActive2: !this.state.isActive2
-    })
-  }
-
-  getApi() {
-    $.ajax({
-      type: 'GET',
-      url: '/scoreboard',
-      contentType: 'JSON',
-      success: (data) => {
-        this.setState({ scoreboards: JSON.parse(data) });
-      },
-      error: function (error) {
-        console.log(error);
-      }.bind(this),
-    });
-
-    $.ajax({
-      type: 'GET',
-      url: '/dailyschedule',
-      contentType: 'JSON',
-      success: (data) => {
-        this.setState({ games: JSON.parse(data) });
-      },
-      error: function (error) {
-        console.log(error);
-      }.bind(this),
-    });
-
-    $.ajax({
-      type: 'GET',
-      url: '/playbyplay',
-      contentType: 'JSON',
-      success: (data) => {
-        let pbp = {}
+    this.socket.on('playbyplay update', data => {
+      let pbp = {}
         let plays = JSON.parse(data)
-        console.log(plays)
         plays.forEach(ab => {
           const gameID = ab.gameplaybyplay.game.id;
           if(!pbp[gameID]){
@@ -94,16 +50,82 @@ class App extends React.Component {
           console.log("PBP", pbp)
 
         })
+      this.setState({ playbyplay:JSON.parse(data) });
+    });
 
-        // // plays.gameplaybyplay.forEach(ab => {
-        // //   console.log(ab)
-        // })
-        this.setState({ playbyplay: JSON.parse(data) });
+  }
+  //login register popup
+  loginModal() {
+    this.setState({
+      isActive: !this.state.isActive
+    })
+  }
+
+  registerModal() {
+    this.setState({
+      isActive2: !this.state.isActive2
+    })
+  }
+
+  getApi() {
+    // $.ajax({
+    //   type: 'GET',
+    //   url: '/scoreboard',
+    //   contentType: 'JSON',
+    //   success: (data) => {
+    //     this.setState({ scoreboards: JSON.parse(data) });
+    //   },
+    //   error: function (error) {
+    //     console.log(error);
+    //   }.bind(this),
+    // });
+
+    $.ajax({
+      type: 'GET',
+      url: '/dailyschedule',
+      contentType: 'JSON',
+      success: (data) => {
+        this.setState({ games: JSON.parse(data) });
       },
       error: function (error) {
         console.log(error);
       }.bind(this),
     });
+
+    // $.ajax({
+    //   type: 'GET',
+    //   url: '/playbyplay',
+    //   contentType: 'JSON',
+    //   success: (data) => {
+    //     let pbp = {}
+    //     let plays = JSON.parse(data)
+    //     console.log(plays)
+    //     plays.forEach(ab => {
+    //       const gameID = ab.gameplaybyplay.game.id;
+    //       if(!pbp[gameID]){
+    //         pbp[gameID] = [];
+    //       }
+    //       if(ab.gameplaybyplay.atBats){
+    //         ab.gameplaybyplay.atBats.atBat.forEach(plays => {
+    //           const result = plays.atBatPlay[0].batterUp.result
+    //           if(converter[result]){
+    //             pbp[gameID].push(converter[result](plays.atBatPlay))
+    //           }
+    //         })
+    //       }
+    //       console.log("PBP", pbp)
+
+    //     })
+
+    //     // // plays.gameplaybyplay.forEach(ab => {
+    //     // //   console.log(ab)
+    //     // })
+    //     this.setState({ playbyplay: JSON.parse(data) });
+    //   },
+    //   error: function (error) {
+    //     console.log(error);
+    //   }.bind(this),
+    // });
   }
 
   render() {
