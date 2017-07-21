@@ -2,7 +2,6 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
 let converter = require('./plays')
 
 
@@ -72,6 +71,9 @@ var requestLoop = setInterval(() => {
       temp = [];
     }
   });
+
+}, 20000 );
+
 
   incomingSchedule
   .then(getGameIds)

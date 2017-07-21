@@ -10,25 +10,24 @@ function Card({
   isInProgress,
   isCompleted,
   currentInning,
-  currentInningHalf
+  currentInningHalf,
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
-    console.log('michael', typeof parseInt(currentInning), parseInt(currentInning) % 10)
-    switch (parseInt(currentInning) % 10) {
-        case 1:   eventInfo = `${currentInningHalf} of ${currentInning}st`;
-          break;
-        case 2:   eventInfo = `${currentInningHalf} of ${currentInning}nd`;
-          break;
-        case 3:   eventInfo = `${currentInningHalf} of ${currentInning}rd `;
-          break;
-        default:  eventInfo = `${currentInningHalf} of ${currentInning}th`;
+    switch (currentInning % 10) {
+      case 1: eventInfo = `${currentInningHalf} of ${currentInning}st`;
+        break;
+      case 2: eventInfo = `${currentInningHalf} of ${currentInning}nd`;
+        break;
+      case 3: eventInfo = `${currentInningHalf} of ${currentInning}rd`;
+        break;
+      default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
   }
-  if (isInProgress === 'false' && isCompleted === 'false'){
+  if (isInProgress === 'false' && isCompleted === 'false') {
     eventInfo = gameTime;
   }
 
@@ -59,20 +58,20 @@ function Card({
     <div className="scorecard">
       <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
-          <i className="fa fa-star" aria-hidden="true"></i>   
-          <p>{ eventInfo }</p>
+          <i className="fa fa-close" aria-hidden="true"></i>
+          <p>{eventInfo}</p>
         </div>
         <div className="card-block">
-          <h3 className="card-title">
-            <img className='team-logo' src={awayTeamImage} />
-            {awayTeamAbbreviation}&nbsp;@&nbsp;
-            {homeTeamAbbreviation}
-            <img className='team-logo' src={homeTeamImage} />
-          </h3>
-          <h2 className="card-score">{awayScore}&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
+            <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+            
+            <img className='team-logo' src={homeTeamImage} /></div>
 
-           <div><table className="box-score">
+          
+          <h2 className="card-score">{awayScore}&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
+
+
+          <div><table className="box-score">
             <thead>
               <tr>
                 <th></th>
