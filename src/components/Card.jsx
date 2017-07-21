@@ -19,22 +19,22 @@ function Card({
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
     switch (parseInt(currentInning) % 10) {
-        case 1:   eventInfo = `${currentInningHalf} of ${currentInning}st`;
-          break;
-        case 2:   eventInfo = `${currentInningHalf} of ${currentInning}nd`;
-          break;
-        case 3:   eventInfo = `${currentInningHalf} of ${currentInning}rd `;
-          break;
-        default:  eventInfo = `${currentInningHalf} of ${currentInning}th`;
+      case 1: eventInfo = `${currentInningHalf} of ${currentInning}st`;
+        break;
+      case 2: eventInfo = `${currentInningHalf} of ${currentInning}nd`;
+        break;
+      case 3: eventInfo = `${currentInningHalf} of ${currentInning}rd `;
+        break;
+      default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
   let balls = null;
-  switch(parseInt(ballCount) % 10) {
-    case 1:  balls = `<div>B</div>`;
+  switch (parseInt(ballCount) % 10) {
+    case 1: balls = `<div>B</div>`;
       break;
-    case 2:  balls = `<div><div>B</div><div>B</div></div>`;
+    case 2: balls = `<div><div>B</div><div>B</div></div>`;
       break;
-    case 3:  balls = `<div><div>B</div><div>B</div><div>B</div></div>`;
+    case 3: balls = `<div><div>B</div><div>B</div><div>B</div></div>`;
       break;
     default: ""
   }
@@ -54,13 +54,13 @@ function Card({
   var homeTd = [];
 
   if (innings == null) {
-    for(let index = 0; index < 9; index++) {
-        awayTd.push(<td key={index}></td>)
-        homeTd.push(<td key={index}></td>)
-      }
+    for (let index = 0; index < 9; index++) {
+      awayTd.push(<td key={index}></td>)
+      homeTd.push(<td key={index}></td>)
+    }
   } else {
-    for(let index = 0; index < 9; index++) {
-      if(innings[index]) {
+    for (let index = 0; index < 9; index++) {
+      if (innings[index]) {
         awayTd.push(<td key={index}>{innings[index].awayScore}</td>)
         homeTd.push(<td key={index}>{innings[index].homeScore}</td>)
       } else {
@@ -71,8 +71,13 @@ function Card({
   }
 
   const eachPlay = [];
-  playByPlay.reverse().slice(0,3).forEach((element)=>{
+  playByPlay.reverse().slice(0, 3).forEach((element) => {
     eachPlay.push(<ul>{element}</ul>)
+  })
+
+  const eachPlay2 = [];
+  playByPlay.reverse().forEach((element) => {
+    eachPlay2.push(<ul>{element}</ul>)
   })
 
 
@@ -85,7 +90,7 @@ function Card({
           <p>{eventInfo}</p>
         </div>
         <div className="card-block">
-            <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             <img className='team-logo' src={homeTeamImage} /></div>
 
@@ -128,22 +133,29 @@ function Card({
               </tr>
             </tbody>
           </table>
-          <div>
-            Balls: {ballCount || ""}&nbsp;&nbsp;&nbsp;
+            <div>
+              Balls: {ballCount || ""}&nbsp;&nbsp;&nbsp;
             Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
             Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
           </div></div>
 
         </div>
 
-          <div>
-            {eachPlay}
-          </div>
-          <div className="card-footer boardfooter">
-            <i className="fa fa-commenting-o" aria-hidden="true"></i>
-          </div>
+        {/*<div>
+          {eachPlay}
+        </div>*/}
+
+
+        <div className="play-by-play-overflow">
+          <p className="play-by-play-text">{eachPlay2}</p>
+        </div>
+
+
+        <div className="card-footer boardfooter">
+          <i className="fa fa-commenting-o" aria-hidden="true"></i>
         </div>
       </div>
+    </div>
   )
 }
 
