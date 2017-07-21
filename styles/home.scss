@@ -265,3 +265,18 @@ i {
   border-radius: 25px;
   background: yellow;
 }
+
+.play-by-play-overflow {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: auto;
+  height: 80px;
+  width: 90%;
+  border: 1px solid #ccc;
+}
+
+.play-by-play-text {
+  text-align: left;
+}
+
