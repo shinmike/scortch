@@ -60,11 +60,14 @@ function Card({
         </div>
         <div className="card-block">
           <h3 className="card-title">
-            <img className='team-logo' src={awayTeamImage} />
             {awayTeamAbbreviation}&nbsp;@&nbsp;
             {homeTeamAbbreviation}
-            <img className='team-logo' src={homeTeamImage} />
-          </h3>
+            </h3>
+            <div><img className='team-logo' src={awayTeamImage} />
+            
+            <img className='team-logo' src={homeTeamImage} /></div>
+
+          
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
 

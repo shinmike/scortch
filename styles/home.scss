@@ -68,11 +68,13 @@
 
 .scorecard {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
   display: inline-block;
   width: 220px;
+  
   .boardcard {
-
     background: white;
     border: 1px #aaa solid;
     border-radius: 10px;
@@ -194,16 +196,16 @@ i {
 }
 
 .team-logo {
-    width: 75px;
-    padding-right: .5em;
-    padding-left: .5em;
+    width: 80px;
+    padding-right: .2em;
+    padding-left: .2em;
 }
 
 .card-title {
     background-color: snow;
-    font-size: 100%;
-    padding-right: .5em;
-    padding-left: .5em;
+    font-size: 22px;
+    padding-right: 20px;
+    padding-left: 20px;
     margin-top: 2px;
     margin-bottom: 1px;
 }
