@@ -4,11 +4,12 @@ msf.authenticate("kian", "fransen34");
 
 // Scoreboard
 module.exports = function(forDate, force){
+  console.log("scoreboard called")
   return msf.getData(
     'mlb',
     'current',
-    'scoreboard', 
-    'json', 
+    'scoreboard',
+    'json',
     { fordate: forDate,
       force: force }
   );
