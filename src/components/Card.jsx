@@ -57,7 +57,7 @@ function Card({
   }
   return (
     <div className="scorecard">
-      <div className="card text-center boardcard">
+      <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
           <i className="fa fa-star" aria-hidden="true"></i>   
           <p>{ eventInfo }</p>
