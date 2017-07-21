@@ -13,7 +13,7 @@ function Card({
   currentInningHalf,
   ballCount,
   strikeCount,
-  outCount
+  outCount,
   playByPlay
 }) {
   var eventInfo = null;
@@ -129,7 +129,7 @@ function Card({
             </tbody>
           </table>
           <div>
-            Balls: balls&nbsp;&nbsp;&nbsp;
+            Balls: {ballCount || ""}&nbsp;&nbsp;&nbsp;
             Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
             Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
           </div></div>
@@ -144,7 +144,6 @@ function Card({
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

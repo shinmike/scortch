@@ -5,13 +5,14 @@ msf.authenticate(process.env.MSF_USERNAME, process.env.MSF_PASSWORD);
 
 // daily schedule
 module.exports = function(date, force) {
+  console.log("daily schedule called")
   return msf.getData(
-		'mlb',
-		'current',
-		'daily_game_schedule',
-		'json',
-		{	fordate: date,
-			force: force }
+    'mlb',
+    'current',
+    'daily_game_schedule',
+    'json',
+    { fordate: date,
+      force: force }
 	);
 };
 

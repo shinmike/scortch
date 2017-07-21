@@ -24,15 +24,8 @@ let gameIds = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-<<<<<<< HEAD
 const incomingSchedule = schedule(20170721, true);
-=======
-const incomingSchedule = schedule(20170720, true);
 
-
-
-// --------------------------------------------------------------- play-by-play required
->>>>>>> e05a12e5c5ada3ab957e5973937da92a0fbdde61
 const pbp = require('./api/playByPlay.js');
 
 const getGameIds = ({ dailygameschedule }) => {
@@ -45,16 +38,6 @@ const getPlayByPlay = (gameIds) => {
   return Promise.all(playByPlays);
 }
 
-<<<<<<< HEAD
-// const playbyplay = () => {
-//   incomingSchedule
-//     .then(getGameIds)
-//     .then(getPlayByPlay)
-//     .then(data => res.send(JSON.stringify(data)))
-// }
-console.log("IN APP");
-=======
->>>>>>> e05a12e5c5ada3ab957e5973937da92a0fbdde61
 var requestLoop = setInterval(() => {
   let scoreboards = [];
   const incomingScoreboard = scoreboard(20170721, true);
@@ -91,7 +74,10 @@ var requestLoop = setInterval(() => {
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
-  .then(data => (io.emit('playbyplay update', JSON.stringify(data))));
+  .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
+  // .catch(err => {
+  //   console.log('we got an error', err);
+  // });
 
 }, 7000);
 
