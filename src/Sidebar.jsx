@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
               <div className="card">
                 <div className="card-header" role="tab" id="headingOne">
                   <h5 className="mb-0">
-                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">MLB</a>
+                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">⚾️ MLB</a>
                   </h5>
                 </div>
                 <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">

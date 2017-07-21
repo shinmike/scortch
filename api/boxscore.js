@@ -12,5 +12,6 @@ module.exports = function(date){
    'scoreboard',
    'json',
    { date: date }
+
  );
 }

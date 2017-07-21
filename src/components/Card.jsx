@@ -11,19 +11,34 @@ function Card({
   isCompleted,
   currentInning,
   currentInningHalf,
+  ballCount,
+  strikeCount,
+  outCount,
+  playByPlay
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
-    switch (currentInning % 10) {
-      case 1: eventInfo = `${currentInningHalf} of ${currentInning}st`;
-        break;
-      case 2: eventInfo = `${currentInningHalf} of ${currentInning}nd`;
-        break;
-      case 3: eventInfo = `${currentInningHalf} of ${currentInning}rd`;
-        break;
-      default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
+    switch (parseInt(currentInning) % 10) {
+        case 1:   eventInfo = `${currentInningHalf} of ${currentInning}st`;
+          break;
+        case 2:   eventInfo = `${currentInningHalf} of ${currentInning}nd`;
+          break;
+        case 3:   eventInfo = `${currentInningHalf} of ${currentInning}rd `;
+          break;
+        default:  eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
+  let balls = null;
+  switch(parseInt(ballCount) % 10) {
+    case 1:  balls = `<div>B</div>`;
+      break;
+    case 2:  balls = `<div><div>B</div><div>B</div></div>`;
+      break;
+    case 3:  balls = `<div><div>B</div><div>B</div><div>B</div></div>`;
+      break;
+    default: ""
+  }
+
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
   }
@@ -54,7 +69,15 @@ function Card({
       }
     }
   }
+
+  const eachPlay = [];
+  playByPlay.reverse().slice(1,3).forEach((element)=>{
+    eachPlay.push(<ul>{element}</ul>)
+  })
+
+
   return (
+
     <div className="scorecard">
       <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
@@ -62,11 +85,10 @@ function Card({
           <p>{eventInfo}</p>
         </div>
         <div className="card-block">
-            <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-            
+            <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
             <img className='team-logo' src={homeTeamImage} /></div>
 
-          
           <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
 
@@ -106,13 +128,22 @@ function Card({
               </tr>
             </tbody>
           </table>
+          <div>
+            Balls: {ballCount || ""}&nbsp;&nbsp;&nbsp;
+            Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
+            Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
+          </div></div>
+
+        </div>
+
+          <div>
+            {playByPlay}
           </div>
           <div className="card-footer boardfooter">
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

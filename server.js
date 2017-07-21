@@ -7,7 +7,7 @@ let converter = require('./plays')
 
 app.use(express.static('public'))
 
-// current date
+// --------------------------------------------------------------- current date
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
@@ -24,7 +24,8 @@ let gameIds = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170720, true);
+const incomingSchedule = schedule(20170721, true);
+
 const pbp = require('./api/playByPlay.js');
 
 const getGameIds = ({ dailygameschedule }) => {
@@ -37,16 +38,9 @@ const getPlayByPlay = (gameIds) => {
   return Promise.all(playByPlays);
 }
 
-// const playbyplay = () => {
-//   incomingSchedule
-//     .then(getGameIds)
-//     .then(getPlayByPlay)
-//     .then(data => res.send(JSON.stringify(data)))
-// }
-
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170720, true);
+  const incomingScoreboard = scoreboard(20170721, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
@@ -63,7 +57,12 @@ var requestLoop = setInterval(() => {
         innings: item.inningSummary && item.inningSummary.inning,
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
+        ballCount: item.playStatus && item.playStatus.ballCount,
+        strikeCount: item.playStatus && item.playStatus.strikeCount,
+        outCount: item.playStatus && item.playStatus.strikeCount
       })
+      // console.log(item.playStatus && item.playStatus.ballCount)
+
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
@@ -72,28 +71,16 @@ var requestLoop = setInterval(() => {
     }
   });
 
-}, 20000 );
-
-
   incomingSchedule
   .then(getGameIds)
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
+  // .catch(err => {
+  //   console.log('we got an error', err);
+  // });
 
+}, 7000);
 
-
-
-// DailySchedule promise fulfilled - from Kian
-
-//PlayByPlay
-// const playByPlay = pbp(38347);
-
-// Boxscore promise fulfilled - from Mike
-// app.get('/scoreboard', (req, res) => {
-//     res.send(JSON.stringify(scoreboards));
-// });
-
-// DailySchedule promise fulfilled - from Kian
 app.get('/dailyschedule',(req,res) => {
   const dailySchedule = [];
   incomingSchedule.then((data) => {
@@ -108,23 +95,10 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
-// app.get('/gameIDs',(req,res) => {
-//   incomingSchedule.then((data) => {
-//     data.dailygameschedule.gameentry.forEach(gameEntry => {
-//       gameIds.push(gameEntry.id);
-//     })
-//   res.send(JSON.stringify(gameIds));
-//   });
-
-// });
-
-
-  /* setup socket and connect user game chat by unique id */
 io.on('connection', function(socket){
   socket.on('game join', game => {
     socket.join(`game${game}`);
   });
-    /* broadcast out to users joined game by unique id */
   socket.on('game chat', function(id, msg){
     io.to(`game${id}`).emit('game chat', msg);
     io.emit('schedule update', 'here is schedule data');

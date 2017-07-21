@@ -22,7 +22,7 @@ class Nav extends React.Component {
                   <i className="fa fa-user" aria-hidden="true"></i>
                 </span>
               </button>
-              <a href="" className="navbar-brand navTitle">Scortch</a>
+              <a href="" className="navbar-brand navTitle">🔥🔥🔥Scortch🔥🔥🔥</a>
 
             </div>
 
