@@ -196,7 +196,7 @@ i {
     overflow-wrap: break-word;
     padding-top: 5px;
 }
- .leagues { 
+ .leagues {
     padding-top: 15px;
 }
 
@@ -224,13 +224,13 @@ i {
   margin: 5px auto;
   font-size: 0.8rem;
   }
-  
+
   td {
     width: 24px;
     border: 1px black;
     text-align: center;
     border: 1px solid black;
-   
+
   }
   th {
     text-align: center;
@@ -242,11 +242,26 @@ i {
   }
 
 .col-sm-2{
-  margin-right: 18px; 
+  margin-right: 18px;
 }
-// .bulb {
-//   background-color: #111;
-//   border-radius: 50%;
-//   margin: 25px auto;
-//   transition: background 500ms;
-// }
+
+.balls {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background: green;
+}
+
+.strikes {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background: red;
+}
+
+.outs {
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  background: yellow;
+}
