@@ -23,7 +23,7 @@ const scoreboard = require('./api/scoreboard.js');
 
 // JSON.stringify(objA) === JSON.stringify(objB)
 
-let scoreboards = [];
+
 let gameIds = [];
 
 
@@ -31,8 +31,27 @@ let gameIds = [];
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(20170720, true);
+const pbp = require('./api/playByPlay.js');
+
+const getGameIds = ({ dailygameschedule }) => {
+  const { gameentry } = dailygameschedule;
+  return gameentry.map(entry => entry.id);
+}
+
+const getPlayByPlay = (gameIds) => {
+  const playByPlays = gameIds.map(gId => pbp(gId))
+  return Promise.all(playByPlays);
+}
+
+// const playbyplay = () => {
+//   incomingSchedule
+//     .then(getGameIds)
+//     .then(getPlayByPlay)
+//     .then(data => res.send(JSON.stringify(data)))
+// }
 
 var requestLoop = setInterval(() => {
+  let scoreboards = [];
   const incomingScoreboard = scoreboard(20170720, true);
   console.log("!......")
   let temp = []
@@ -51,14 +70,21 @@ var requestLoop = setInterval(() => {
         currentInning: item.currentInning,
         currentInningHalf: item.currentInningHalf,
       })
-      io.emit('scoreboard update', JSON.stringify(scoreboards));
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
       scoreboards = JSON.parse(JSON.stringify(temp));
+      io.emit('scoreboard update', JSON.stringify(scoreboards));
       temp = [];
     }
   });
-}, 5000 );
+
+  incomingSchedule
+  .then(getGameIds)
+  .then(getPlayByPlay)
+  .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
+
+
+}, 25000 );
 
 
 
@@ -66,15 +92,14 @@ var requestLoop = setInterval(() => {
 // DailySchedule promise fulfilled - from Kian
 
 //PlayByPlay
-const pbp = require('./api/playByPlay.js');
 // const playByPlay = pbp(38347);
 
 
 
 // Boxscore promise fulfilled - from Mike
-app.get('/scoreboard', (req, res) => {
-    res.send(JSON.stringify(scoreboards));
-});
+// app.get('/scoreboard', (req, res) => {
+//     res.send(JSON.stringify(scoreboards));
+// });
 
 
 // DailySchedule promise fulfilled - from Kian
@@ -92,44 +117,15 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
-app.get('/gameIDs',(req,res) => {
-  incomingSchedule.then((data) => {
-    data.dailygameschedule.gameentry.forEach(gameEntry => {
-      gameIds.push(gameEntry.id);
-    })
-  res.send(JSON.stringify(gameIds));
-  });
-
-});
-
-const getGameIds = ({ dailygameschedule }) => {
-  const { gameentry } = dailygameschedule;
-  return gameentry.map(entry => entry.id);
-}
-
-const getPlayByPlay = (gameIds) => {
-  const playByPlays = gameIds.map(gId => pbp(gId))
-  return Promise.all(playByPlays);
-}
-
-// const convertStuff = playByPlayDatas => {
-//   const plays = [];
-//   const playByPlay = {};
-//   playByPlayDatas.forEach(pbpd => {
-//     pbpd.gameplaybyplay.atBats.atBat.forEach(ab => {
-//       const result = ab.atBatPlay[0].batterUp.result
-app.get('/playbyplay', (req,res) => {
-  incomingSchedule
-    .then(getGameIds)
-    .then(getPlayByPlay)
-    .then(data => res.send(JSON.stringify(data)))
-})
-//       if(converter[result]) {
-//         plays.push(converter[result](ab.atBatPlay))
-//       }
+// app.get('/gameIDs',(req,res) => {
+//   incomingSchedule.then((data) => {
+//     data.dailygameschedule.gameentry.forEach(gameEntry => {
+//       gameIds.push(gameEntry.id);
 //     })
-//   })
-// }
+//   res.send(JSON.stringify(gameIds));
+//   });
+
+// });
 
 
   /* setup socket and connect user game chat by unique id */
