@@ -95,6 +95,18 @@ app.get('/dailyschedule',(req,res) => {
   });
 });
 
+// // -------------------------------- Register
+// app.get("/register", (req, res) => {
+//     res.redirect("/urls");
+//   } else {
+//     res.render("register");
+//   }
+// });
+
+
+
+
+
 io.on('connection', function(socket){
   socket.on('game join', game => {
     socket.join(`game${game}`);
