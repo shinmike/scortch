@@ -79,7 +79,6 @@ var requestLoop = setInterval(() => {
   .then(getGameIds)
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-}, 30000 );
 
 
 
