@@ -28,16 +28,18 @@ function Card({
       default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
-  let balls = null;
-  switch (parseInt(ballCount) % 10) {
-    case 1: balls = `<div>B</div>`;
-      break;
-    case 2: balls = `<div><div>B</div><div>B</div></div>`;
-      break;
-    case 3: balls = `<div><div>B</div><div>B</div><div>B</div></div>`;
-      break;
-    default: ""
-  }
+
+  const balls = new Array(Number(ballCount)).fill(null).map(count => {
+    return  <span className="balls"><div></div></span>
+  })
+
+  const strikes = new Array(Number(strikeCount)).fill(null).map(count => {
+    return <span className="strikes"><div></div></span>
+  })
+
+  const outs = new Array(Number(outCount)).fill(null).map(count => {
+    return <span className="outs"><div></div></span>
+  })
 
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
@@ -133,10 +135,11 @@ function Card({
               </tr>
             </tbody>
           </table>
-            <div>
-              Balls: {ballCount || ""}&nbsp;&nbsp;&nbsp;
-            Strikes: &nbsp;&nbsp;{strikeCount || ""}&nbsp;&nbsp;&nbsp;
-            Out: &nbsp;&nbsp;{outCount || ""}&nbsp;&nbsp;&nbsp;
+          <div>
+            Balls: { balls }
+            Strikes: { strikes }
+            Out: { outs }
+
           </div></div>
 
         </div>
