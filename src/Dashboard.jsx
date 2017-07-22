@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       selectedGameIds: [],
-      showReply: false
+      showPbp: false
     };
   }
 
@@ -24,9 +24,9 @@ class Dashboard extends React.Component {
     }
   }
 
-  onClick = (e) => {
+  togglePbp = (e) => {
     e.preventDefault();
-    this.setState({showReply: !this.state.showReply})
+    this.setState({showPbp: !this.state.showPbp})
   }
 
   render() {
@@ -41,6 +41,9 @@ class Dashboard extends React.Component {
                 key={scoreboard.gameId} 
                 playByPlay={this.props.playbyplay[scoreboard.gameId]} 
                 toggleGameVisibility={this.toggleGameVisibility}
+
+                showPbp={this.state.showPbp}
+                togglePbp={this.togglePbp}
                 { ...scoreboard } 
               />
     });

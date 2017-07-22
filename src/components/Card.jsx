@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Card({
+  gameId,
   gameTime,
   homeTeamAbbreviation,
   awayTeamAbbreviation,
@@ -15,7 +16,9 @@ function Card({
   strikeCount,
   outCount,
   playByPlay,
-  toggleGameVisibility
+  toggleGameVisibility,
+  showPbp,
+  togglePbp
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -83,7 +86,6 @@ function Card({
     toggleGameVisibility(gameId);
   }
 
-
   return (
 
     <div className="scorecard">
@@ -149,21 +151,26 @@ function Card({
 
         </div>
 
-        {/*<div>
-          {eachPlay}
-        </div>*/}
-
-
         <div className="play-by-play-overflow">
+          <i 
+            className="fa fa-bullhorn" 
+            aria-hidden="true"
+            onClick={togglePbp}
+          >
+          </i>
           <p className="play-by-play-text">{eachPlay2}</p>
         </div>
 
-
         <div className="card-footer boardfooter">
+
           <a href={'/#/games/' + gameId}>
-            <i className="fa fa-commenting-o" aria-hidden="true"></i>
-            <i className="fa fa-bullhorn" aria-hidden="true"></i>
+            <i 
+            className="fa fa-commenting-o" 
+            aria-hidden="true"
+            >
+            </i>
           </a>
+
         </div>
       </div>
     </div>
