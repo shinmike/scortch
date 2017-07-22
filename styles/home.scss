@@ -267,22 +267,39 @@ i {
 }
 
 .balls {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
   background: green;
+  color: green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .strikes {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
   background: red;
+  color: red;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .outs {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
-  background: yellow;
+  background: #f4d742;
+  color: #f4d742;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.balls-show {
+  float: left;
+}
+
+.outs-show {
+  float: right;
 }
