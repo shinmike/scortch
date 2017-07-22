@@ -40,7 +40,11 @@ class App extends React.Component {
             pbp[gameID] = [];
           }
           if(ab.gameplaybyplay.atBats){
-            ab.gameplaybyplay.atBats.atBat.forEach(plays => {
+            let atBat = ab.gameplaybyplay.atBats.atBat;
+            if (!Array.isArray(atBat)){
+              atBat = [atBat];
+            }
+            atBat.forEach(plays => {
               const result = plays.atBatPlay[0].batterUp.result
               if(converter[result]){
                 pbp[gameID].push(converter[result](plays.atBatPlay))
