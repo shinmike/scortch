@@ -17,11 +17,7 @@ const scoreboard = require('./api/scoreboard.js');
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
-<<<<<<< HEAD
 const incomingSchedule = schedule(now, true);
-=======
-const incomingSchedule = schedule(20170722, true);
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
 
 const pbp = require('./api/playByPlay.js');
 
@@ -37,11 +33,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-<<<<<<< HEAD
   const incomingScoreboard = scoreboard(now, true);
-=======
-  const incomingScoreboard = scoreboard(20170722, true);
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {

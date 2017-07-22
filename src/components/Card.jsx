@@ -14,7 +14,8 @@ function Card({
   ballCount,
   strikeCount,
   outCount,
-  playByPlay
+  playByPlay,
+  toggleGameVisibility
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -72,41 +73,27 @@ function Card({
     }
   }
 
-<<<<<<< HEAD
-=======
-  const eachPlay = [];
-  playByPlay.reverse().slice(0, 3).forEach((element) => {
-    eachPlay.push(<ul>{element}</ul>)
-  })
-
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
     eachPlay2.push(<ul>{element}</ul>)
   })
 
-<<<<<<< HEAD
   const handleExit = (e) => {
     e.preventDefault();
     toggleGameVisibility(gameId);
   }
-=======
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
+
 
   return (
 
     <div className="scorecard">
       <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
-<<<<<<< HEAD
           <i
             className="fa fa-close"
             aria-hidden="true"
             onClick={handleExit}
           ></i>
-=======
-          <i className="fa fa-close" aria-hidden="true"></i>
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
           <p>{eventInfo}</p>
         </div>
         <div className="card-block">
@@ -173,14 +160,10 @@ function Card({
 
 
         <div className="card-footer boardfooter">
-<<<<<<< HEAD
           <a href={'/#/games/' + gameId}>
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
             <i className="fa fa-bullhorn" aria-hidden="true"></i>
           </a>
-=======
-          <i className="fa fa-commenting-o" aria-hidden="true"></i>
->>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
         </div>
       </div>
     </div>

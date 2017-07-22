@@ -24,7 +24,10 @@ class Dashboard extends React.Component {
     }
   }
 
-  onClick = 
+  onClick = (e) => {
+    e.preventDefault();
+    this.setState({showReply: !this.state.showReply})
+  }
 
   render() {
     console.log("rendering <Dashboard >");
@@ -34,7 +37,12 @@ class Dashboard extends React.Component {
     })
 
     const cards = filteredScoreboards.map((scoreboard) => {
-      return <Card key={scoreboard.gameId} playByPlay={this.props.playbyplay[scoreboard.gameId]} { ...scoreboard } />
+      return <Card 
+                key={scoreboard.gameId} 
+                playByPlay={this.props.playbyplay[scoreboard.gameId]} 
+                toggleGameVisibility={this.toggleGameVisibility}
+                { ...scoreboard } 
+              />
     });
 
 
