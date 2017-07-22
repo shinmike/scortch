@@ -16,7 +16,7 @@ function Card({
   strikeCount,
   outCount,
   playByPlay,
-  toggleVisibility
+  toggleGameVisibility
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -74,21 +74,16 @@ function Card({
     }
   }
 
-  // const eachPlay = [];
-  // playByPlay.reverse().slice(0, 3).forEach((element) => {
-  //   eachPlay.push(<ul>{element}</ul>)
-  // })
-
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
     eachPlay2.push(<ul>{element}</ul>)
   })
 
-  handleExit = (e) => {
-    e.preventDefault();
-    console.log("YOU CLICKED ME!");
-    toggleVisibility(this.props.gameId);
-  }
+  // handleExit = (e) => {
+  //   e.preventDefault();
+  //   console.log("YOU CLICKED ME!");
+  //   toggleGameVisibility(gameId);
+  // }
 
   return (
 
@@ -98,7 +93,7 @@ function Card({
           <i
             className="fa fa-close"
             aria-hidden="true"
-            onClick={this.handleExit}
+            cursor="auto"
           ></i>
           <p>{eventInfo}</p>
         </div>
@@ -155,15 +150,9 @@ function Card({
 
         </div>
 
-        {/*<div>
-          {eachPlay}
-        </div>*/}
-
-
         <div className="play-by-play-overflow">
           <p className="play-by-play-text">{eachPlay2}</p>
         </div>
-
 
         <div className="card-footer boardfooter">
           <i className="fa fa-commenting-o" aria-hidden="true"></i>

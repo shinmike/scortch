@@ -3,7 +3,7 @@ node_modules
 npm-debug.log
 .DS_Store
 dist
-.results
+results
 
 
 ### PhpStorm ###
