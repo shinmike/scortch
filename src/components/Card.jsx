@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Card({
+  gameId,
   gameTime,
   homeTeamAbbreviation,
   awayTeamAbbreviation,
@@ -14,7 +15,8 @@ function Card({
   ballCount,
   strikeCount,
   outCount,
-  playByPlay
+  playByPlay,
+  toggleVisibility
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -70,23 +72,32 @@ function Card({
     }
   }
 
-  const eachPlay = [];
-  playByPlay.reverse().slice(0, 3).forEach((element) => {
-    eachPlay.push(<ul>{element}</ul>)
-  })
+  // const eachPlay = [];
+  // playByPlay.reverse().slice(0, 3).forEach((element) => {
+  //   eachPlay.push(<ul>{element}</ul>)
+  // })
 
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
     eachPlay2.push(<ul>{element}</ul>)
   })
 
+  handleExit = (e) => {
+    e.preventDefault();
+    console.log("YOU CLICKED ME!");
+    toggleVisibility(this.props.gameId);
+  }
 
   return (
 
     <div className="scorecard">
       <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
-          <i className="fa fa-close" aria-hidden="true"></i>
+          <i
+            className="fa fa-close"
+            aria-hidden="true"
+            onClick={this.handleExit}
+          ></i>
           <p>{eventInfo}</p>
         </div>
         <div className="card-block">

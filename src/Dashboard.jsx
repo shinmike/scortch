@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
     let index = this.state.selectedGameIds.indexOf(gameId);
     if (index === -1) {
       this.setState({ selectedGameIds: this.state.selectedGameIds.concat([gameId]) });
-      console.log("SELECT CARDS", this.state.selectedGameIds);
     } else {
       var removeSelectedGameIds = this.state.selectedGameIds.slice(0, index);
       var otherSelectedGameIds = this.state.selectedGameIds.slice(index + 1);
@@ -31,7 +30,7 @@ class Dashboard extends React.Component {
     })
 
     const cards = filteredScoreboards.map((scoreboard) => {
-      return <Card key={scoreboard.gameId} playByPlay={this.props.playbyplay[scoreboard.gameId]} { ...scoreboard } />
+      return <Card key={scoreboard.gameId} playByPlay={this.props.playbyplay[scoreboard.gameId]} toggleGameVisibility={this.toggleGameVisibility} { ...scoreboard } />
     });
 
 
