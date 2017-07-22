@@ -70,10 +70,10 @@ function Card({
     }
   }
 
-  const eachPlay = [];
-  playByPlay.reverse().slice(0, 3).forEach((element) => {
-    eachPlay.push(<ul>{element}</ul>)
-  })
+  // const eachPlay = [];
+  // playByPlay.reverse().slice(0, 3).forEach((element) => {
+  //   eachPlay.push(<ul>{element}</ul>)
+  // })
 
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
@@ -84,7 +84,7 @@ function Card({
   return (
 
     <div className="scorecard">
-      <div className="card text-center boardcard animated flipInX">
+      <div ref="card" className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
           <i className="fa fa-close" aria-hidden="true"></i>
           <p>{eventInfo}</p>
