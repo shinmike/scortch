@@ -49,7 +49,7 @@ class Nav extends React.Component {
                       <a href="#" className="btn loginPassword">Forgot your password? </a>
                     </div>
                     <div className="col-lg-6  col-md-6 col-sm-6 buttonTextAlign">
-                      <button onClick={(e) => this.handleClick(e)} href="#" className="btn submitButton">Submit </button>
+                      <a href="#" className="btn submitButton">Submit </a>
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ class Nav extends React.Component {
                       <input className="form-control" type="password" placeholder="Please enter password" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
-                      <button href="#" className="btn  submitButton">Submit </button>
+                      <a href="#" className="btn  submitButton">Submit </a>
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Card({
-  gameId,
   gameTime,
   homeTeamAbbreviation,
   awayTeamAbbreviation,
@@ -15,8 +14,7 @@ function Card({
   ballCount,
   strikeCount,
   outCount,
-  playByPlay,
-  toggleGameVisibility
+  playByPlay
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -32,15 +30,15 @@ function Card({
   }
 
   const balls = new Array(Number(ballCount)).fill(null).map(count => {
-    return  <span className="balls"><div></div></span>
+    return  <span className="balls">o</span>
   })
 
   const strikes = new Array(Number(strikeCount)).fill(null).map(count => {
-    return <span className="strikes"><div></div></span>
+    return <span className="strikes">o</span>
   })
 
   const outs = new Array(Number(outCount)).fill(null).map(count => {
-    return <span className="outs"><div></div></span>
+    return <span className="outs">o</span>
   })
 
   if (isInProgress === 'false' && isCompleted === 'true') {
@@ -74,26 +72,41 @@ function Card({
     }
   }
 
+<<<<<<< HEAD
+=======
+  const eachPlay = [];
+  playByPlay.reverse().slice(0, 3).forEach((element) => {
+    eachPlay.push(<ul>{element}</ul>)
+  })
+
+>>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
     eachPlay2.push(<ul>{element}</ul>)
   })
 
+<<<<<<< HEAD
   const handleExit = (e) => {
     e.preventDefault();
     toggleGameVisibility(gameId);
   }
+=======
+>>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
 
   return (
 
     <div className="scorecard">
-      <div ref="card" className="card text-center boardcard animated flipInX">
+      <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
+<<<<<<< HEAD
           <i
             className="fa fa-close"
             aria-hidden="true"
             onClick={handleExit}
           ></i>
+=======
+          <i className="fa fa-close" aria-hidden="true"></i>
+>>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
           <p>{eventInfo}</p>
         </div>
         <div className="card-block">
@@ -140,24 +153,34 @@ function Card({
               </tr>
             </tbody>
           </table>
-          <div>
-            Balls: { balls }
-            Strikes: { strikes }
-            Out: { outs }
+          <span>
+          <span className="balls-show">Balls: { balls }</span>
+          <span className="strikes-show">Strikes: { strikes }</span>
+          <span className="outs-show">Out: { outs }</span>
 
-          </div></div>
+          </span></div>
 
         </div>
+
+        {/*<div>
+          {eachPlay}
+        </div>*/}
+
 
         <div className="play-by-play-overflow">
           <p className="play-by-play-text">{eachPlay2}</p>
         </div>
 
+
         <div className="card-footer boardfooter">
+<<<<<<< HEAD
           <a href={'/#/games/' + gameId}>
             <i className="fa fa-commenting-o" aria-hidden="true"></i>
             <i className="fa fa-bullhorn" aria-hidden="true"></i>
           </a>
+=======
+          <i className="fa fa-commenting-o" aria-hidden="true"></i>
+>>>>>>> af329827dad0af0f1fe7658c066ca7700712d7df
         </div>
       </div>
     </div>

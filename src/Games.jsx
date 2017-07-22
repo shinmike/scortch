@@ -26,7 +26,7 @@ class Games extends React.Component {
   }
 
   render() {
-  
+
     const index = this.props.scoreboards.length;
     if (index > 1) {
       var scoreboards = this.props.scoreboards.filter((scoreboard) => {
