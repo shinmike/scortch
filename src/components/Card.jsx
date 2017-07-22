@@ -74,11 +74,6 @@ function Card({
     }
   }
 
-  // const eachPlay = [];
-  // playByPlay.reverse().slice(0, 3).forEach((element) => {
-  //   eachPlay.push(<ul>{element}</ul>)
-  // })
-
   const eachPlay2 = [];
   playByPlay.reverse().forEach((element) => {
     eachPlay2.push(<ul>{element}</ul>)
@@ -86,7 +81,6 @@ function Card({
 
   const handleExit = (e) => {
     e.preventDefault();
-    console.log("YOU CLICKED ME!");
     toggleGameVisibility(gameId);
   }
 
@@ -98,7 +92,6 @@ function Card({
           <i
             className="fa fa-close"
             aria-hidden="true"
-            cursor="auto"
             onClick={handleExit}
           ></i>
           <p>{eventInfo}</p>
@@ -161,7 +154,10 @@ function Card({
         </div>
 
         <div className="card-footer boardfooter">
-          <a href={'/#/games/' + gameId}><i className="fa fa-commenting-o" aria-hidden="true"></i></a>
+          <a href={'/#/games/' + gameId}>
+            <i className="fa fa-commenting-o" aria-hidden="true"></i>
+            <i className="fa fa-bullhorn" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>

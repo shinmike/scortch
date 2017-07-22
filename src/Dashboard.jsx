@@ -7,6 +7,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       selectedGameIds: [],
+      showReply: false
     };
   }
 
@@ -21,6 +22,8 @@ class Dashboard extends React.Component {
       this.setState({selectedGameIds: newSelectedGameIds});
     }
   }
+
+  onClick = 
 
   render() {
     console.log("rendering <Dashboard >");

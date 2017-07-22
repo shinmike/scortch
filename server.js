@@ -24,7 +24,7 @@ let gameIds = [];
 
 // DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170721, true);
+const incomingSchedule = schedule(now, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -40,7 +40,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170721, true);
+  const incomingScoreboard = scoreboard(now, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
