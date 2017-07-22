@@ -84,11 +84,11 @@ function Card({
     eachPlay2.push(<ul>{element}</ul>)
   })
 
-  // handleExit = (e) => {
-  //   e.preventDefault();
-  //   console.log("YOU CLICKED ME!");
-  //   toggleGameVisibility(gameId);
-  // }
+  const handleExit = (e) => {
+    e.preventDefault();
+    console.log("YOU CLICKED ME!");
+    toggleGameVisibility(gameId);
+  }
 
   return (
 
@@ -99,6 +99,7 @@ function Card({
             className="fa fa-close"
             aria-hidden="true"
             cursor="auto"
+            onClick={handleExit}
           ></i>
           <p>{eventInfo}</p>
         </div>
