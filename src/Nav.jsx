@@ -30,7 +30,7 @@ class Nav extends React.Component {
               {/*sign in  */}
               <button className="btn btn-primary navbar-right" onClick={this.props.loginModal}>Login</button>
               <Modal isOpen={this.props.isActive} onRequestClose={this.loginModal}>
-                <div className="col-lg-4 col-md-6 col-sm-8">
+                <div className="col-lg-4 col-md-6 col-sm-8 outlineNone">
                   <div className="row loginbox">
                     <div className="col-lg-12 loginHeader">
                       <ModalClose className="Modalclose" onClick={this.props.loginModal} />
@@ -44,12 +44,13 @@ class Nav extends React.Component {
                       <span className="fa fa-envelope-o emailIcon" aria-hidden="true"></span>
                       <input className="form-control" type="password" placeholder="Password" />
                     </div>
+                
                     <div className="col-lg-6  col-md-6 col-sm-6">
                       <span className="fa fa-lock passwordIcon" aria-hidden="true"></span>
                       <a href="#" className="btn loginPassword">Forgot your password? </a>
                     </div>
                     <div className="col-lg-6  col-md-6 col-sm-6 buttonTextAlign">
-                      <button onClick={(e) => this.handleClick(e)} href="#" className="btn submitButton">Submit </button>
+                      <button href="#" className="btn submitButton">Submit </button>
                     </div>
                   </div>
                 </div>
@@ -59,25 +60,27 @@ class Nav extends React.Component {
               <button className="btn btn-primary navbar-right" onClick={this.props.registerModal}>Registration</button>
               <Modal isOpen={this.props.isActive2} onRequestClose={this.registerModal}>
                 <div className="col-lg-4 col-md-6 col-sm-8">
-                  <div className="row loginbox">
+                  <div className="row registerbox">
                     <div className="col-lg-12">
                       <ModalClose className="Modalclose" onClick={this.props.registerModal} />
                       <span className="singtext" >Register</span>
                     </div>
+                    <div className="regSpaceDiv"></div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
-                      <label htmlFor="name" className="labelstyle">Name</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user name" />
+                      <span className="fa fa-users regiIcon" aria-hidden="true"></span>
+                      <input className="form-control" type="text" placeholder="Name" />
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
-                      <label htmlFor="e-mail" className="labelstyle">e-mail</label>
-                      <input className="form-control" type="text" placeholder="Please enter your user e-mail" />
+                      <span className="fa fa-envelope-o regiIcon" aria-hidden="true"></span>
+                      <input className="form-control" type="text" placeholder="E-mail" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
-                      <label htmlFor="password" className="labelstyle">password</label>
-                      <input className="form-control" type="password" placeholder="Please enter password" />
+                      <span className="fa fa-lock regiIcon" aria-hidden="true"></span>
+                      <input className="form-control" type="password" placeholder="Password" />
                     </div>
                     <div className="col-lg-12  col-md-12 col-sm-12">
-                      <button href="#" className="btn  submitButton">Submit </button>
+                      <a href="#" className="btn loginPassword">Forgot your password? </a>
+                      <button href="#" className="btn  submitButton">Submit</button>
                     </div>
                   </div>
                 </div>
