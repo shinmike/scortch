@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Card({
+  gameId,
   gameTime,
   homeTeamAbbreviation,
   awayTeamAbbreviation,
@@ -155,7 +156,7 @@ function Card({
 
 
         <div className="card-footer boardfooter">
-          <i className="fa fa-commenting-o" aria-hidden="true"></i>
+          <a href={'/#/games/' + gameId}><i className="fa fa-commenting-o" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
