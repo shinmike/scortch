@@ -93,9 +93,9 @@ function Card({
 
   const pbpClassNameToggle = () => {
     if (showPbp === false) {
-      'play-by-play-overflow'
-    } else {
       ''
+    } else {
+      'play-by-play-overflow'
     }
   }
 
@@ -172,7 +172,7 @@ return (
       </i>
 
       <div className={pbpClassNameToggle}>
-        <p className="play-by-play-text">{eachPlay}</p>
+        <p className="play-by-play-text">{showPbp ? eachPlay : ''}</p>
       </div>
 
       <div className="card-footer boardfooter">
