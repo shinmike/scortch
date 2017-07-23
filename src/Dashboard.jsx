@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       selectedGameIds: [],
-      showPbp: false
+      showPbp: false,
     };
   }
 
@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     let index = this.state.selectedGameIds.indexOf(gameId);
     if (index === -1) {
       this.setState({ selectedGameIds: this.state.selectedGameIds.concat([gameId]) });
-      console.log("SELECT CARDS", this.state.selectedGameIds);
     } else {
       var removeSelectedGameIds = this.state.selectedGameIds.slice(0, index);
       var otherSelectedGameIds = this.state.selectedGameIds.slice(index + 1);
@@ -24,9 +23,9 @@ class Dashboard extends React.Component {
     }
   }
 
-  togglePbp = (e) => {
-    e.preventDefault();
+  togglePbp = () => {
     this.setState({showPbp: !this.state.showPbp})
+    console.log(this.state.showPbp);
   }
 
   render() {
@@ -44,7 +43,7 @@ class Dashboard extends React.Component {
 
                 showPbp={this.state.showPbp}
                 togglePbp={this.togglePbp}
-                { ...scoreboard } 
+                { ...scoreboard }
               />
     });
 
