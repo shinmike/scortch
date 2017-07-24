@@ -70,7 +70,10 @@
 }
 
 .scorecard {
-  margin: 20px 10px 15px 10px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
   display: inline-block;
   width: 290px;
   height: 230px;
@@ -343,22 +346,47 @@ i {
 }
 
 .balls {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
   background: green;
+  color: green;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .strikes {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
   background: red;
+  color: red;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .outs {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 25px;
-  background: yellow;
+  background: #f4d742;
+  color: #f4d742;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.balls-show {
+  float: left;
+}
+
+.outs-show {
+  float: right;
+}
+
+.fa.fa-close {
+  cursor: pointer;
+}
+
+.fa.fa-bullhorn {
+  cursor: pointer;
 }

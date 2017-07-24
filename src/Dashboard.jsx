@@ -7,6 +7,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       selectedGameIds: [],
+      showPbp: false
     };
   }
 
@@ -23,6 +24,11 @@ class Dashboard extends React.Component {
     }
   }
 
+  togglePbp = (e) => {
+    e.preventDefault();
+    this.setState({showPbp: !this.state.showPbp})
+  }
+
   render() {
     console.log("rendering <Dashboard >");
 
@@ -31,7 +37,15 @@ class Dashboard extends React.Component {
     })
 
     const cards = filteredScoreboards.map((scoreboard) => {
-      return <Card key={scoreboard.gameId} playByPlay={this.props.playbyplay[scoreboard.gameId]} { ...scoreboard } />
+      return <Card 
+                key={scoreboard.gameId} 
+                playByPlay={this.props.playbyplay[scoreboard.gameId]} 
+                toggleGameVisibility={this.toggleGameVisibility}
+
+                showPbp={this.state.showPbp}
+                togglePbp={this.togglePbp}
+                { ...scoreboard } 
+              />
     });
 
 

@@ -4,27 +4,20 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 let converter = require('./plays')
 
-
 app.use(express.static('public'))
 
-// --------------------------------------------------------------- current date
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 const feed = require('./api/feed.js');
 const updated = feed();
 
-// Scoreboard - Mike
 const scoreboard = require('./api/scoreboard.js');
-
-// JSON.stringify(objA) === JSON.stringify(objB)
-
 
 let gameIds = [];
 
-// DailySchedule - Kian
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170721, true);
+const incomingSchedule = schedule(now, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -40,7 +33,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170721, true);
+  const incomingScoreboard = scoreboard(now, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
@@ -61,7 +54,6 @@ var requestLoop = setInterval(() => {
         strikeCount: item.playStatus && item.playStatus.strikeCount,
         outCount: item.playStatus && item.playStatus.strikeCount
       })
-      // console.log(item.playStatus && item.playStatus.ballCount)
 
     });
     if(JSON.stringify(temp) !== JSON.stringify(scoreboards)){
@@ -75,9 +67,7 @@ var requestLoop = setInterval(() => {
   .then(getGameIds)
   .then(getPlayByPlay)
   .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-  // .catch(err => {
-  //   console.log('we got an error', err);
-  // });
+
 
 }, 7000);
 
@@ -94,18 +84,6 @@ app.get('/dailyschedule',(req,res) => {
   res.send(JSON.stringify(dailySchedule));
   });
 });
-
-// // -------------------------------- Register
-// app.get("/register", (req, res) => {
-//     res.redirect("/urls");
-//   } else {
-//     res.render("register");
-//   }
-// });
-
-
-
-
 
 io.on('connection', function(socket){
   socket.on('game join', game => {
