@@ -1,5 +1,8 @@
 @import 
 url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+// body {
+//   background-color: #BBBEAD;
+// }
 
 h1 {
   color: black;
@@ -14,23 +17,40 @@ h1 {
 }
 
 .navbarTop {
-  background-color: #337ab7;
-  .navSidebar {
+  height: 120px;
+  background: #46626D;
+  .navBackground {
+ 
+  }
+  .logo {
     float: left;
-    background-color: black;
+    width: 18.7%;
+    height: 101%;
+    background: #ff5177;
   }
   .navTitle {
-    color: black;
-    font-size: 45px;
+    width: 200px;
+    height: 120px;
+    color: white;
+    font-size: 30px;
     font-weight: bold;
+    line-height: 80px;
+    text-align: center;
+    border: 5px solid white;
+    margin: 0px!important;
   }
 }
-
+.sidebarBorder {
+  border-right: 1px solid #46626D;
+}
 #navbarSidebar {
+  width: 18.7%;
   position: fixed;
   height: 100%!important;
   z-index: 10;
   overflow-y: auto;
+  margin-top: 70px;
+  padding: 0px;
 }
 
 .sidebar {
@@ -38,14 +58,18 @@ h1 {
   width: 230px;
   top: 50px;
   left: 0px;
-  background-color: #337ab7;
+  background-color: white;
   .navTitle {
-    color: black;
+    color: white;
     font-size: 25px;
     font-weight: bold;
+ 
+  }
+  .schedule {
+    border-bottom: 1px solid #46626D;
   }
   .gameListColor {
-    color: white;
+    color: red;
     line-height: 30px;
   }
 }
@@ -54,6 +78,13 @@ h1 {
   padding-top: 50px;
 }
 
+.sidebarHeader {
+  background: #46626D;
+  height: 70px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 500%;
+}
 .login-signup {
   float: right;
   .popupHeader {
@@ -68,6 +99,18 @@ h1 {
     box-shadow: none;
     height: 40px;
     font-size: 20px;
+  }
+  .navRegister {
+    height: 120px;
+    width: 200px;
+    background: none;
+    border: none; 
+  }
+  .navLogin {
+    height: 120px;
+    width: 200px;
+    background: none;
+    border: none;
   }
 }
 
@@ -391,4 +434,9 @@ i {
 
 .fa.fa-bullhorn {
   cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
 }
