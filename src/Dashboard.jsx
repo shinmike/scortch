@@ -23,10 +23,10 @@ class Dashboard extends React.Component {
     }
   }
 
-  togglePbp = () => {
-    this.setState({showPbp: !this.state.showPbp})
-    console.log(this.state.showPbp);
-  }
+  // togglePbp = () => {
+  //   this.setState({showPbp: !this.state.showPbp})
+  //   console.log(this.state.showPbp);
+  // }
 
   render() {
     console.log("rendering <Dashboard >");
@@ -40,9 +40,6 @@ class Dashboard extends React.Component {
                 key={scoreboard.gameId} 
                 playByPlay={this.props.playbyplay[scoreboard.gameId]} 
                 toggleGameVisibility={this.toggleGameVisibility}
-
-                showPbp={this.state.showPbp}
-                togglePbp={this.togglePbp}
                 { ...scoreboard }
               />
     });
