@@ -34,7 +34,7 @@ function Card({
   }
 
   const balls = new Array(Number(ballCount)).fill(null).map(count => {
-    return  <span className="balls">o</span>
+    return <span className="balls">o</span>
   })
 
   const strikes = new Array(Number(strikeCount)).fill(null).map(count => {
@@ -76,9 +76,9 @@ function Card({
     }
   }
 
-  const eachPlay2 = [];
+  const eachPlay = [];
   playByPlay.reverse().forEach((element) => {
-    eachPlay2.push(<ul>{element}</ul>)
+    eachPlay.push(<ul>{element}</ul>)
   })
 
   const handleExit = (e) => {
@@ -86,95 +86,109 @@ function Card({
     toggleGameVisibility(gameId);
   }
 
-  return (
+  const handlePbp = (e) => {
+    e.preventDefault();
+    togglePbp()
+  }
 
-    <div className="scorecard">
-      <div className="card text-center boardcard animated flipInX">
-        <div className="card-header boardheader">
-          <i
-            className="fa fa-close"
-            aria-hidden="true"
-            onClick={handleExit}
-          ></i>
-          <p>{eventInfo}</p>
-        </div>
-        <div className="card-block">
-          <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  const pbpClassNameToggle = () => {
+    if (showPbp === false) {
+      ''
+    } else {
+      'play-by-play-overflow'
+    }
+  }
+
+return (
+
+  <div className="scorecard">
+    <div className="card text-center boardcard animated flipInX">
+      <div className="card-header boardheader">
+        <i
+          className="fa fa-close"
+          aria-hidden="true"
+          onClick={handleExit}
+        ></i>
+        <p>{eventInfo}</p>
+      </div>
+      <div className="card-block">
+        <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
             <img className='team-logo' src={homeTeamImage} /></div>
 
-          <h2 className="card-score">{awayScore}&nbsp;&nbsp;
+        <h2 className="card-score">{awayScore}&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
 
 
-          <div><table className="box-score">
-            <thead>
-              <tr>
-                <th></th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>Runs</th>
-                <th>Hits</th>
-                <th>Errors</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{awayTeamAbbreviation}</td>
-                {awayTd}
-                <td>{awayScore}</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>{homeTeamAbbreviation}</td>
-                {homeTd}
-                <td>{homeScore}</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+        <div><table className="box-score">
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+              <th>Runs</th>
+              <th>Hits</th>
+              <th>Errors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{awayTeamAbbreviation}</td>
+              {awayTd}
+              <td>{awayScore}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{homeTeamAbbreviation}</td>
+              {homeTd}
+              <td>{homeScore}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
           <span>
-          <span className="balls-show">Balls: { balls }</span>
-          <span className="strikes-show">Strikes: { strikes }</span>
-          <span className="outs-show">Out: { outs }</span>
+            <span className="balls-show">Balls: {balls}</span>
+            <span className="strikes-show">Strikes: {strikes}</span>
+            <span className="outs-show">Out: {outs}</span>
 
           </span></div>
 
-        </div>
+      </div>
 
-        <div className="play-by-play-overflow">
-          <i 
-            className="fa fa-bullhorn" 
+      <i
+        className="fa fa-bullhorn"
+        aria-hidden="true"
+        onClick={handlePbp}
+      >
+      </i>
+
+      <div className={pbpClassNameToggle}>
+        <p className="play-by-play-text">{showPbp ? eachPlay : ''}</p>
+      </div>
+
+      <div className="card-footer boardfooter">
+
+        <a href={'/#/games/' + gameId}>
+          <i
+            className="fa fa-commenting-o"
             aria-hidden="true"
-            onClick={togglePbp}
           >
           </i>
-          <p className="play-by-play-text">{eachPlay2}</p>
-        </div>
+        </a>
 
-        <div className="card-footer boardfooter">
-
-          <a href={'/#/games/' + gameId}>
-            <i 
-            className="fa fa-commenting-o" 
-            aria-hidden="true"
-            >
-            </i>
-          </a>
-
-        </div>
       </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default Card;

@@ -1,5 +1,9 @@
-  h1 {
-  color: tomato;
+@import 
+url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+
+h1 {
+  color: black;
+  font-family: 'Dosis', sans-serif;
 }
 
 .user-border {
@@ -19,7 +23,6 @@
     color: black;
     font-size: 45px;
     font-weight: bold;
-    text-shadow: 2px 2px 8px #FF0000;
   }
 }
 
@@ -40,7 +43,6 @@
     color: black;
     font-size: 25px;
     font-weight: bold;
-    text-shadow: 2px 2px 10px #FF0000;
   }
   .gameListColor {
     color: white;
@@ -337,8 +339,8 @@ i {
   margin-bottom: 10px;
   overflow: auto;
   height: 80px;
-  width: 90%;
-  border: 1px solid #ccc;
+  width: 100%;
+  border-top: 1px solid #ccc;
 }
 
 .play-by-play-text {
