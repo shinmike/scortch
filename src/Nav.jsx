@@ -7,22 +7,15 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: {},
+      signIn: false
     }
   }
-  
+
   handleLogin(event) {
     event.preventDefault();
-    //console.log(React.findDOMNode(this.refs.theInput).value, "chris0909");
-    //console.log(this.state, "chris-0-0")
-    // axios.post('/user', {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // });
-    if(this.state.password === '' || this.state.email === '') {
-      console.log('error')
-      return '<h1>you did not put anything</h1>';
-    }
+    const self = this;
     axios({
       method: 'post',
       url: '/user',
@@ -31,31 +24,20 @@ class Nav extends React.Component {
         password: this.state.password
       }
     }).then(function (response) {
-      console.log(response.data)
-      // this.getUserData();
-      // const user = ....;
-      // this.setState({user})
-    })
-      .catch(function (error) {
-        console.log(error, "chris9090");
-      });
-    }
-
-  // getUserData() {
-  //   // axios.get('https://api.github.com/users/' + username)
-  //   //   .then(function (response) {
-  //   //     console.log(response.data); // ex.: { user: 'Your User'}
-  //   //     console.log(response.status); // ex.: 200
-  //   //   });
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://bit.ly/2mTM3nY',
-  //     responseType: 'stream'
-  //   })
-  //     .then(function (response) {
-  //       response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-  //     });
-  // }
+      console.log(response, "chris")
+      const userInfo = JSON.parse(response.config.data);
+      //console.log(userInfo.email, response.config.data, "chris with michael")
+      const user = {
+        email: userInfo.email,
+        password: userInfo.password
+      }
+      self.setState({ user: user });
+      self.props.loginModal();
+    }).catch(function (error) {
+      console.log(JSON.stringify(error))
+      console.log(error.response, "chris9090");
+    });
+  }
 
   email(event) {
     //console.log(event.target.value, "chris email")
@@ -74,7 +56,7 @@ class Nav extends React.Component {
       <div>
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
           <div className="logo">Scortch 🔥</div>
-         
+
           <div className="container navBackground">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">
@@ -125,6 +107,7 @@ class Nav extends React.Component {
 
               {/* register  */}
               <button className="btn btn-primary navbar-right navLogin" onClick={this.props.registerModal}>Register</button>
+
               <Modal isOpen={this.props.isActive2} onRequestClose={this.registerModal}>
                 <div className="col-lg-4 col-md-6 col-sm-8">
                   <div className="row registerbox">

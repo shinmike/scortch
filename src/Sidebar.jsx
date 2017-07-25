@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <div className="bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
+        <div className="bg-faded navbar-collapse collapse pt-0 sidebar pre-scrollable" id="navbarSidebar">
           <ul className="nav nav-sidebar">
             <div id="accordion" role="tablist" aria-multiselectable="true">
               <div className="card">
@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
                   </h5>
                 </div>
                 <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div className="card-block pre-scrollable">
+                  <div className="card-block">
                     {games}
                   </div>
                 </div>

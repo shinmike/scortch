@@ -2,12 +2,43 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-let converter = require('./plays')
-var axios = require('axios')
-var bodyParser = require('body-parser')
+
+var bodyParser = require("body-parser");
+let converter = require('./plays');
+
+var ENV         = process.env.ENV || "development";
+var knexConfig  = require("./knexfile");
+var knex        = require("knex")(knexConfig[ENV]);
 
 app.use(express.static('public'))
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+function getUserData(email, password) {
+  return knex.select('*')
+      .from('users')
+      .where('email', email).andWhere('password', password);
+}
+
+
+app.post(('/user'), (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  getUserData(email, password).then((user) =>{
+    console.log(user.length);
+    if(user.length == 0) {
+      console.log('error')
+      res.status(403).send('your email or password are not matched');
+    } else {
+      console.log("chris server side")
+      res.status(200).send();
+    }
+    //onsole.log(user, "chris is happy right now")
+  }).catch((err) => {
+    res.status(400).send("error")
+  })
+})
+
 
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
@@ -42,6 +73,7 @@ var requestLoop = setInterval(() => {
   let scoreboards = [];
   const incomingScoreboard = scoreboard(20170725, true);
   console.log("!......")
+
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
@@ -75,7 +107,9 @@ var requestLoop = setInterval(() => {
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
 
+
 }, 7000);
+
 
 app.get('/dailyschedule', (req, res) => {
   const dailySchedule = [];
