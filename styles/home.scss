@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-h1,h2,h3,h4,h5,a {
+h1,h2,h3,h4,h5,a{
   color: black;
   font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
 }
 
 .user-border {
@@ -15,13 +22,12 @@ h1,h2,h3,h4,h5,a {
 .navbarTop {
   height: 120px;
   background: #46626D;
-  .navBackground {
 
-  }
+
   .logo {
     float: left;
-    width: 18.7%;
-    height: 120px;
+    width: 250px;
+    height: 100%;
     color: white;
     font-size: 30px;
     font-weight: bold;
@@ -45,9 +51,10 @@ h1,h2,h3,h4,h5,a {
   border-right: 1px solid #46626D;
 }
 #navbarSidebar {
-  width: 18.7%;
+  width: 250px;
   position: fixed;
   height: 100%!important;
+  background: #46626D;
   z-index: 10;
   overflow-y: auto;
   margin-top: 70px;
@@ -128,7 +135,7 @@ h1,h2,h3,h4,h5,a {
   .boardcard {
     background: white;
     border: 1px #aaa solid;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 2px 2px 2px grey;
     width: 100%;
     margin: inherit;
@@ -336,6 +343,11 @@ i {
   margin-top: 100px;
 }
 
+.card-block {
+  background: white;
+  padding: 5px;
+}
+
 .card-title {
     background-color: snow;
     font-size: 22px;
@@ -351,8 +363,10 @@ i {
 
 .box-score {
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   margin: 5px auto;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   }
 
   td {
@@ -386,13 +400,15 @@ i {
   margin-top: 10px;
   margin-bottom: 10px;
   overflow: auto;
-  height: 80px;
+  height: 87px;
   width: 100%;
   border-top: 1px solid #ccc;
 }
 
 .play-by-play-text {
+  margin-top: 10px;
   text-align: left;
+  font-size: 14px;
 }
 
 .balls {
@@ -442,6 +458,8 @@ i {
 }
 
 table, th, td {
-    border: 1px solid white;
-    border-collapse: collapse;
+  border: 1px solid white;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
 }

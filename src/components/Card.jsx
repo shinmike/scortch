@@ -106,70 +106,79 @@ function Card({
     toggleGameVisibility(gameId);
   }
 
-return (
+  return (
 
-  <div className="scorecard">
-    <div className="card text-center boardcard animated flipInX">
-      <div className="card-header boardheader">
-        <i
-          className="fa fa-close"
-          aria-hidden="true"
-          onClick={handleExit}
-        ></i>
-        <p>{eventInfo}</p>
-      </div>
-      <div className="card-block">
-        <div><img className='team-logo' src={awayTeamImage} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div className="scorecard">
+      <div className="card text-center boardcard animated flipInX">
+        <div className="card-header boardheader">
+          <i
+            className="fa fa-close"
+            aria-hidden="true"
+            onClick={handleExit}
+          ></i>
+          <p>{eventInfo}</p>
+        </div>
+        <br/>
 
-            <img className='team-logo' src={homeTeamImage} /></div>
-
-        <h2 className="card-score">{awayScore}&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{homeScore}</h2>
-
-
-        <div><table className="box-score">
-          <thead>
+        <div className="card-block">
+          <table>
             <tr>
-              <th></th>
-              <th>1</th>
-              <th>2</th>
-              <th>3</th>
-              <th>4</th>
-              <th>5</th>
-              <th>6</th>
-              <th>7</th>
-              <th>8</th>
-              <th>9</th>
-              <th>Runs</th>
-              <th>Hits</th>
-              <th>Errors</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{awayTeamAbbreviation}</td>
-              {awayTd}
-              <td>{awayScore}</td>
+              <td><img className='team-logo' src={awayTeamImage} /></td>
               <td></td>
-              <td></td>
+              <td><img className='team-logo' src={homeTeamImage} /></td>
             </tr>
             <tr>
-              <td>{homeTeamAbbreviation}</td>
-              {homeTd}
-              <td>{homeScore}</td>
-
+              <td><h2 className="card-score">{awayScore}</h2></td>
+              <td></td>
+              <td><h2 className="card-score">{homeScore}</h2></td>
             </tr>
+          </table>
+          <br/>
 
-          </tbody>
-        </table>
-          <span>
-            <span className="balls-show">Balls: {balls}</span>
-            <span className="strikes-show">Strikes: {strikes}</span>
-            <span className="outs-show">Out: {outs}</span>
+          <table className="box-score">
+            <thead>
+              <tr>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>Runs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>{awayTeamAbbreviation}</b></td>
+                {awayTd}
+                <td>{awayScore}</td>
+              </tr>
+              <tr>
+                <td><b>{homeTeamAbbreviation}</b></td>
+                {homeTd}
+                <td>{homeScore}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br/>
 
-          </span></div>
+        <table>
+          <tr>
+            <th>Balls:</th>
+            <td>{balls}</td>
+            <th>Strikes:</th>
+            <td>{strikes}</td>
+            <th>Out:</th>
+            <td>{outs}</td>
+          </tr>
+          </table>
+          <br/>
+        </div>
 
-      </div>
 
       <div className='play-by-play-overflow'>
         <p className='play-by-play-text'>{eachPlay}</p>
@@ -186,11 +195,13 @@ return (
           >
           </i>
         </a>
+        <div class="progress">
+</div>
 
       </div>
     </div>
-  </div>
-)
+    </div >
+  )
 }
 
 export default Card;
