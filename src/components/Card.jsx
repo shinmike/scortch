@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 function Card({
   gameId,
@@ -18,7 +19,8 @@ function Card({
   playByPlay,
   toggleGameVisibility,
   showPbp,
-  togglePbp
+  togglePbp,
+  currentUser
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -33,23 +35,51 @@ function Card({
     }
   }
 
+  // console.log("TYPE OF GAMEID:",typeof({gameId}));
+
   const handlePickAwayTeam = () => {
-    alert("Away team picked");
-    $.ajax({
-    type: 'POST',
-    url: '/predictions',
-    contentType: 'JSON',
-    success: (data) => {
-      console.log("DATA", data)
-    },
-    error: function (error) {
-      console.log(error);
-    }.bind(this),
-  });
+    // alert("Away team picked");
+
+    var currentUser = 'kian';       // TODO: DIRTY HACK, DELETE THIS WHEN LOGIN WORKS
+
+    console.log("GAME", {gameId})
+    console.log("CURRENT USER", {currentUser})
+    axios({
+      method: 'post',
+      url: '/predictions',
+      data: {
+        game_id: {gameId},
+        team: {awayTeamAbbreviation},
+        homeTeamPicked: false
+
+      }
+    }).then(function (response) {
+      console.log("RESPONSE1123!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", response.data)
+    })
+      .catch(function (error) {
+        console.log(error, "ERRRRRORRRRRR!!@#");
+    });
   }
 
   const handlePickHomeTeam = () => {
     alert("Home team picked");
+    console.log("GAME", {gameId})
+    console.log("USER", {currentUser})
+
+    axios({
+      method: 'post',
+      url: '/predictions',
+      data: {
+        game_id: {gameId},
+        team: {homeTeamAbbreviation},
+        homeTeamPicked: true
+      }
+    }).then(function (response) {
+      console.log("RESPONSE1123!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", response.data)
+    })
+      .catch(function (error) {
+        console.log(error, "ERRRRRORRRRRR!!@#");
+    });
   }
 
 
@@ -186,8 +216,8 @@ function Card({
 
       <div className="card-footer boardfooter">
         <h4> Who will win? </h4>
-        <button class="pure-button" onClick = {handlePickAwayTeam}>{awayTeamAbbreviation}</button>
-        <button class="pure-button" onClick = {handlePickHomeTeam}>{homeTeamAbbreviation}</button>
+        <button className="pure-button" onClick = {handlePickAwayTeam}>{awayTeamAbbreviation}</button>
+        <button className="pure-button" onClick = {handlePickHomeTeam}>{homeTeamAbbreviation}</button>
         <a href={'/#/games/' + gameId}>
           <i
             className="fa fa-commenting-o"

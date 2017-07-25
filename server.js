@@ -3,18 +3,23 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 let converter = require('./plays')
+var axios = require('axios')
+var bodyParser = require('body-parser')
 
 app.use(express.static('public'))
+app.use(bodyParser.json());
 
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 const scoreboard = require('./api/scoreboard.js');
+// const lineup = require('./api/starters.js');
+
 
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170724, true);
+const incomingSchedule = schedule(20170725, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -28,9 +33,14 @@ const getPlayByPlay = (gameIds) => {
   return Promise.all(playByPlays);
 }
 
+// const getStarters = (gameIds) => {
+//   const startingPitchers = gameIds.map(gId => lineup(gId))
+//   return Promise.all(startingPitchers);
+// }
+
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170724, true);
+  const incomingScoreboard = scoreboard(20170725, true);
   console.log("!......")
   let temp = []
   incomingScoreboard.then((data) => {
@@ -64,6 +74,7 @@ var requestLoop = setInterval(() => {
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
+
 }, 7000);
 
 app.get('/dailyschedule', (req, res) => {
@@ -81,10 +92,28 @@ app.get('/dailyschedule', (req, res) => {
 });
 
 app.post('/predictions', (req, res) => {
-  console.log("received user predictions")
-  //req.params to get the data
-  console.log(req.params.game_id)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!received user predictions")
+  const results = {
+    userName: "kian",
+    gameId: req.body.game_id,
+    team: req.body.team,
+    homeTeamPicked: req.body.homeTeamPicked
+  }
+
+
+  res.send(results)
 })
+
+// axios.post('/predictions', {
+//   params: {
+//     game_id: res.params
+//   }
+// })
+// .then(function(response) {
+//   console.log(response);
+// })
+
+
 
 io.on('connection', function (socket) {
   socket.on('game join', game => {
