@@ -86,19 +86,6 @@ function Card({
     toggleGameVisibility(gameId);
   }
 
-  const handlePbp = (e) => {
-    e.preventDefault();
-    togglePbp()
-  }
-
-  const pbpClassNameToggle = () => {
-    if (showPbp === false) {
-      ''
-    } else {
-      'play-by-play-overflow'
-    }
-  }
-
 return (
 
   <div className="scorecard">
@@ -164,15 +151,8 @@ return (
 
       </div>
 
-      <i
-        className="fa fa-bullhorn"
-        aria-hidden="true"
-        onClick={handlePbp}
-      >
-      </i>
-
-      <div className={pbpClassNameToggle}>
-        <p className="play-by-play-text">{showPbp ? eachPlay : ''}</p>
+      <div className='play-by-play-overflow'>
+        <p className='play-by-play-text'>{eachPlay}</p>
       </div>
 
       <div className="card-footer boardfooter">

@@ -73,8 +73,8 @@ class Nav extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
-          <div className="logo">text</div>
-
+          <div className="logo">Scortch 🔥</div>
+         
           <div className="container navBackground">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">
