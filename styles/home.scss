@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-h1,h2,h3,h4,h5,a {
+h1,h2,h3,h4,h5,a{
   color: black;
   font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
 }
 
 .user-border {
@@ -21,7 +28,7 @@ h1,h2,h3,h4,h5,a {
   .logo {
     float: left;
     width: 18.7%;
-    height: 120px;
+    height: 100%;
     color: white;
     font-size: 30px;
     font-weight: bold;
@@ -48,6 +55,7 @@ h1,h2,h3,h4,h5,a {
   width: 18.7%;
   position: fixed;
   height: 100%!important;
+  background: #46626D;
   z-index: 10;
   overflow-y: auto;
   margin-top: 70px;
@@ -336,6 +344,11 @@ i {
   margin-top: 100px;
 }
 
+.card-block {
+  background: white;
+  padding: 5px;
+}
+
 .card-title {
     background-color: snow;
     font-size: 22px;
@@ -393,6 +406,7 @@ i {
 
 .play-by-play-text {
   text-align: left;
+  font-size: 12px;
 }
 
 .balls {
