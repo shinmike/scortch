@@ -33,6 +33,26 @@ function Card({
     }
   }
 
+  const handlePickAwayTeam = () => {
+    alert("Away team picked");
+    $.ajax({
+    type: 'POST',
+    url: '/predictions',
+    contentType: 'JSON',
+    success: (data) => {
+      console.log("DATA", data)
+    },
+    error: function (error) {
+      console.log(error);
+    }.bind(this),
+  });
+  }
+
+  const handlePickHomeTeam = () => {
+    alert("Home team picked");
+  }
+
+
   const balls = new Array(Number(ballCount)).fill(null).map(count => {
     return <span className="balls">o</span>
   })
@@ -137,9 +157,9 @@ return (
               <td>{homeTeamAbbreviation}</td>
               {homeTd}
               <td>{homeScore}</td>
-              <td></td>
-              <td></td>
+
             </tr>
+
           </tbody>
         </table>
           <span>
@@ -156,7 +176,9 @@ return (
       </div>
 
       <div className="card-footer boardfooter">
-
+        <h4> Who will win? </h4>
+        <button class="pure-button" onClick = {handlePickAwayTeam}>{awayTeamAbbreviation}</button>
+        <button class="pure-button" onClick = {handlePickHomeTeam}>{homeTeamAbbreviation}</button>
         <a href={'/#/games/' + gameId}>
           <i
             className="fa fa-commenting-o"

@@ -70,17 +70,7 @@ class App extends React.Component {
   }
 
   getApi() {
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/scoreboard',
-    //   contentType: 'JSON',
-    //   success: (data) => {
-    //     this.setState({ scoreboards: JSON.parse(data) });
-    //   },
-    //   error: function (error) {
-    //     console.log(error);
-    //   }.bind(this),
-    // });
+
 
     $.ajax({
       type: 'GET',
