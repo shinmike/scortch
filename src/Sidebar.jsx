@@ -18,8 +18,7 @@ class Sidebar extends React.Component {
         <div className="bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
           <ul className="nav nav-sidebar">
             <div id="accordion" role="tablist" aria-multiselectable="true">
-              <div className="card sidebarBorder">
-                
+              <div className="card sidebarBorder">        
                 <div className="card-header" role="tab" id="headingOne">
                   <h5 className="mb-0 sidebarHeader">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">⚾️ MLB</a>
@@ -30,7 +29,6 @@ class Sidebar extends React.Component {
                     {games}
                   </div>
                 </div>
-
                 <div className="card-header" role="tab" id="headingTwo">
                   <h5 className="mb-0">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">🏀 NBA</a>
@@ -41,7 +39,6 @@ class Sidebar extends React.Component {
                     <p>Coming Soon!</p>
                   </div>
                 </div>
-
                 <div className="card-header" role="tab" id="headingThree">
                   <h5 className="mb-0">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">🏒 NHL</a>
@@ -52,7 +49,6 @@ class Sidebar extends React.Component {
                     <p>Coming Soon!</p>
                   </div>
                 </div>
-
                 <div className="card-header" role="tab" id="headingFour">
                   <h5 className="mb-0">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">🏈 NFL</a>
@@ -63,7 +59,6 @@ class Sidebar extends React.Component {
                     <p>Coming Soon!</p>
                   </div>
                 </div>
-
               </div>
             </div>
           </ul>
