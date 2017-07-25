@@ -115,6 +115,12 @@ app.get('/dailyschedule', (req, res) => {
   });
 });
 
+app.post('/predictions', (req, res) => {
+  console.log("received user predictions")
+  //req.params to get the data
+  console.log(req.params.game_id)
+})
+
 io.on('connection', function (socket) {
   socket.on('game join', game => {
     socket.join(`game${game}`);

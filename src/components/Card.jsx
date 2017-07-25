@@ -33,6 +33,26 @@ function Card({
     }
   }
 
+  const handlePickAwayTeam = () => {
+    alert("Away team picked");
+    $.ajax({
+    type: 'POST',
+    url: '/predictions',
+    contentType: 'JSON',
+    success: (data) => {
+      console.log("DATA", data)
+    },
+    error: function (error) {
+      console.log(error);
+    }.bind(this),
+  });
+  }
+
+  const handlePickHomeTeam = () => {
+    alert("Home team picked");
+  }
+
+
   const balls = new Array(Number(ballCount)).fill(null).map(count => {
     return <span className="balls">o</span>
   })
@@ -146,25 +166,28 @@ function Card({
           </table>
           <br/>
 
-          <table>
-            <tr>
-              <th>Balls:</th>
-              <td>{balls}</td>
-              <th>Strikes:</th>
-              <td>{strikes}</td>
-              <th>Out:</th>
-              <td>{outs}</td>
-            </tr>
+        <table>
+          <tr>
+            <th>Balls:</th>
+            <td>{balls}</td>
+            <th>Strikes:</th>
+            <td>{strikes}</td>
+            <th>Out:</th>
+            <td>{outs}</td>
+          </tr>
           </table>
           <br/>
         </div>
+
 
       <div className='play-by-play-overflow'>
         <p className='play-by-play-text'>{eachPlay}</p>
       </div>
 
       <div className="card-footer boardfooter">
-
+        <h4> Who will win? </h4>
+        <button class="pure-button" onClick = {handlePickAwayTeam}>{awayTeamAbbreviation}</button>
+        <button class="pure-button" onClick = {handlePickHomeTeam}>{homeTeamAbbreviation}</button>
         <a href={'/#/games/' + gameId}>
           <i
             className="fa fa-commenting-o"
@@ -172,6 +195,8 @@ function Card({
           >
           </i>
         </a>
+        <div class="progress">
+</div>
 
       </div>
     </div>
