@@ -1,9 +1,8 @@
-@import 
-url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-h1 {
+h1,h2,h3,h4,h5,a {
   color: black;
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .user-border {
@@ -14,38 +13,64 @@ h1 {
 }
 
 .navbarTop {
-  background-color: #46626D;
-  .navSidebar {
+  height: 120px;
+  background: #46626D;
+  .navBackground {
+ 
+  }
+  .logo {
     float: left;
-    background-color: black;
+    width: 18.7%;
+    height: 120px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 80px;
+    text-align: center;
+    margin: 0px!important;
   }
   .navTitle {
-    color: black;
-    font-size: 45px;
+    width: 200px;
+    height: 120px;
+    color: white;
+    font-size: 30px;
     font-weight: bold;
+    line-height: 80px;
+    text-align: center;
+    border: 5px solid white;
+    margin: 0px!important;
   }
 }
-
+.sidebarBorder {
+  border-right: 1px solid #46626D;
+}
 #navbarSidebar {
+  width: 18.7%;
   position: fixed;
   height: 100%!important;
   z-index: 10;
   overflow-y: auto;
+  margin-top: 70px;
+  padding: 0px;
 }
 
 .sidebar {
-  position: relative;
-  width: 230px;
+  position: fixed;
+  width: 500px;
   top: 50px;
   left: 0px;
-  background-color: #46626D;
+  background-color: white;
   .navTitle {
-    color: #EB5240;
+    color: white;
     font-size: 25px;
     font-weight: bold;
+ 
+  }
+  .schedule {
+    border-bottom: 1px solid #46626D;
   }
   .gameListColor {
-    color: white;
+    color: red;
     line-height: 30px;
   }
 }
@@ -54,6 +79,13 @@ h1 {
   padding-top: 50px;
 }
 
+.sidebarHeader {
+  background: #46626D;
+  height: 70px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 500%;
+}
 .login-signup {
   float: right;
   .popupHeader {
@@ -68,6 +100,18 @@ h1 {
     box-shadow: none;
     height: 40px;
     font-size: 20px;
+  }
+  .navRegister {
+    height: 120px;
+    width: 200px;
+    background: none;
+    border: none; 
+  }
+  .navLogin {
+    height: 120px;
+    width: 200px;
+    background: none;
+    border: none;
   }
 }
 
@@ -129,9 +173,51 @@ i {
 }
 
 .form-control {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  box-shadow: none;
   border-radius: 0px;
   margin: 12px 3px;
   height: 40px;
+}
+.form-control:focus {
+  border: none;
+  border-bottom: 1px solid #ff5177;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.registerbox {
+  margin-left: 70px;
+  padding: 35px;
+  width: 420px;
+  height: 400px;
+  margin-top: 20%;
+  background-color: #fff;
+  box-shadow: 0 10px 10px -2px rgba(0, 0, 0, 0.12), 0 -2px 10px -2px rgba(0, 0, 0, 0.12);
+  .regSpaceDiv {
+    margin-top: 60px;
+  }
+  .regiIcon {
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    font-size: 15px;
+  }
+  .submitButton {
+    margin-top: 20px;
+    background-color: #ff5177;
+    color: white;
+    padding: 10px 0px;
+    width: 45%;
+    margin-left: 2px;
+    font-size: 16px;
+    border-radius: 0px;
+    outline: none;
+    border-radius: 10px;
+  }
+  .loginPassword {
+    margin-top: 10px;
+  }
 }
 
 .labelstyle {
@@ -154,32 +240,69 @@ i {
 }
 
 .loginbox {
-  width: 600px;
+  margin-left: 70px;
+  padding: 35px;
+  width: 420px;
+  height: 400px;
   margin-top: 20%;
   background-color:#fff;
   box-shadow: 0 10px 10px -2px rgba(0,0,0,0.12),0 -2px 10px -2px rgba(0,0,0,0.12);
-}
-
-.popupSubmit {
-  padding-left: 0;
-  padding-right: 0;
-  background-color: white;
+  .loginHeader {
+    margin-top: 20px;
+  }
+  .spaceDiv {
+    margin-top: 110px;
+  }
+  .spaceDiv2 {
+    margin-top: 200px;
+  }
+  .emailIcon {
+    font-size: 17px;
+    position: absolute;
+    right: 19px;
+    top: -40px;
+    color: lightgrey;
+  }
+  .passwordIcon {
+    font-size: 20px;
+    position: absolute;
+    left: 315px;
+    top: -40px;
+    color: lightgrey;
+  }
+  .loginPassword {
+    margin-top: 23px;
+    color: #337ab7;
+  }
+  .loginPassword:hover {
+    color: lightseagreen;
+  }
   .submitButton {
-    background-color: #F0EBBD;
-    color: #fff;
-    margin-top: 12px;
+    margin-top: 20px;
+    background-color: #ff5177;
+    color: white;
     padding: 10px 0px;
     width: 100%;
     margin-left: 2px;
     font-size: 16px;
     border-radius: 0px;
     outline: none;
+    border-radius: 10px;
   }
 }
-
+.modal-dialog {
+  outline: none;
+}
+.loginbox:focus {
+  outline: none;
+}
+.outlineNone:focus {
+  outline: none;
+}
 .singtext{
+    margin-left: 10px;
     font-size: 28px;
-    color: black;
+    color: #ff5177;
     font-weight: 500;
     letter-spacing: 1px;
 }
@@ -191,7 +314,7 @@ i {
 
 .msgClass {
     background-color: #f1f1f1;
-    border: 2px solid #F0EBBD;
+
     padding: 3px 5px;
     margin-right: 28px;
     border-radius: 8px;
@@ -207,6 +330,10 @@ i {
     width: 80px;
     padding-right: .2em;
     padding-left: .2em;
+}
+
+.card-deck {
+  margin-top: 100px;
 }
 
 .card-title {
@@ -312,4 +439,9 @@ i {
 
 .fa.fa-bullhorn {
   cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
 }

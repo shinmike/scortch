@@ -19,20 +19,21 @@ class Sidebar extends React.Component {
           <ul className="nav nav-sidebar">
             <div id="accordion" role="tablist" aria-multiselectable="true">
               <div className="card">
+              <div className="card sidebarBorder">
 
                 <div className="card-header" role="tab" id="headingOne">
-                  <h5 className="mb-0">
+                  <h5 className="mb-0 sidebarHeader">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">⚾️ MLB</a>
                   </h5>
                 </div>
                 <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div className="card-block">
+                  <div className="card-block pre-scrollable">
                     {games}
                   </div>
                 </div>
 
                 <div className="card-header" role="tab" id="headingTwo">
-                  <h5 className="mb-0">
+                  <h5 className="mb-0 sidebarHeader">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">🏀 NBA</a>
                   </h5>
                 </div>
@@ -43,7 +44,7 @@ class Sidebar extends React.Component {
                 </div>
 
                 <div className="card-header" role="tab" id="headingThree">
-                  <h5 className="mb-0">
+                  <h5 className="mb-0 sidebarHeader">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">🏒 NHL</a>
                   </h5>
                 </div>
@@ -54,7 +55,7 @@ class Sidebar extends React.Component {
                 </div>
 
                 <div className="card-header" role="tab" id="headingFour">
-                  <h5 className="mb-0">
+                  <h5 className="mb-0 sidebarHeader">
                     <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">🏈 NFL</a>
                   </h5>
                 </div>
@@ -63,7 +64,8 @@ class Sidebar extends React.Component {
                     <p>Coming Soon!</p>
                   </div>
                 </div>
-
+              
+                </div>
               </div>
             </div>
           </ul>

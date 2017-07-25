@@ -51,8 +51,6 @@ class App extends React.Component {
               }
             })
           }
-          console.log("PBP", pbp)
-
         })
       this.setState({ playbyplay: pbp });
     });
@@ -142,11 +140,11 @@ class App extends React.Component {
           isActive={this.state.isActive}
           isActive2={this.state.isActive2} >
         </Nav>
-        <button
+        {/* <button
           type="button"
           className="btn"
           onClick={this.getApi}>Score!
-        </button>
+        </button> */}
         <Router history={hashHistory} >
           <Route
             exact path="/"
