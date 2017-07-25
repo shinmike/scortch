@@ -26,7 +26,6 @@ return knex
       .into('games')
       .returning(['game_id'])
       .then( games =>{
-
         console.log("RES", JSON.stringify(res));
         return knex
         .insert([
@@ -40,14 +39,12 @@ return knex
           console.log(err);
           knex.destroy();
         });
-
       })
       .catch(err => {
         console.log(err);
         knex.destroy();
       });
   })
-
   .catch(err => {
     console.log(err);
     knex.destroy();

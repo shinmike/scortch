@@ -65,11 +65,13 @@ p {
   top: 50px;
   left: 0px;
   background-color: white;
+  .pre-scrollable {
+    max-height: 100%;
+  }
   .navTitle {
     color: white;
     font-size: 25px;
     font-weight: bold;
- 
   }
   .schedule {
     border-bottom: 1px solid #46626D;
