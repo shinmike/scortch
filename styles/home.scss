@@ -53,6 +53,7 @@ p {
 #navbarSidebar {
   width: 250px;
   position: fixed;
+  max-height: 100%;
   height: 100%!important;
   background: #46626D;
   z-index: 10;
@@ -71,6 +72,7 @@ p {
     max-height: 100%;
   }
   .navTitle {
+    float: left;
     color: white;
     font-size: 25px;
     font-weight: bold;
