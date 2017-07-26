@@ -28,11 +28,6 @@ class Dashboard extends React.Component {
     this.setState({ title: `${pickedTeam}` });
   };
 
-  // togglePbp = () => {
-  //   this.setState({showPbp: !this.state.showPbp})
-  //   console.log(this.state.showPbp);
-  // }
-
   render() {
     console.log("rendering <Dashboard >");
 
@@ -63,7 +58,44 @@ class Dashboard extends React.Component {
             />
           </div>
           <div className="col-sm-9">
-            <div className="card-deck">{cards}</div>
+            <div className="card-deck">
+
+              <div className="scorecard">
+                <div className="card text-center boardcard animated flipInX">
+                  <div className="card-header boardheader">
+                    <p>Games won leaderboard</p>
+                  </div>
+                  <br />
+                  <div className="card-block">
+                    <table>
+                      <tr>
+                        <td><h3>Bill</h3></td>
+                        <td></td>
+                        <td><p>25 🔥</p></td>
+                      </tr>
+                      <tr>
+                        <td><h3>Chris</h3></td>
+                        <td></td>
+                        <td><p>23 🔥</p></td>
+                      </tr>
+                      <tr>
+                        <td><h3>Mike</h3></td>
+                        <td></td>
+                        <td><p>18 🔥</p></td>
+                      </tr>
+                      <tr>
+                        <td><h3>Kian</h3></td>
+                        <td></td>
+                        <td><p>16 🔥</p></td>
+                      </tr>
+                    </table>
+                    <br />
+                  </div>
+                </div>
+              </div >
+
+              {cards}
+            </div>
           </div>
         </div>
 
