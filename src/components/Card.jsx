@@ -48,7 +48,7 @@ function Card({
       method: 'post',
       url: '/predictions',
       data: {
-        game_id: {gameId},
+        game_id: gameId,
         team: {awayTeamAbbreviation},
         homeTeamPicked: false
 
@@ -70,8 +70,8 @@ function Card({
       method: 'post',
       url: '/predictions',
       data: {
-        game_id: {gameId},
-        team: {homeTeamAbbreviation},
+        game_id: gameId,
+        team: homeTeamAbbreviation,
         homeTeamPicked: true
       }
     }).then(function (response) {

@@ -21,15 +21,16 @@ function getUserData(email, password) {
 }
 
 
+
 app.post(('/user'), (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   getUserData(email, password).then((user) =>{
-    console.log(user.length);
     if(user.length == 0) {
       console.log('error')
       res.status(403).send('your email or password are not matched');
     } else {
+      var user_id = user.id;
       console.log("chris server side")
       res.status(200).send();
     }
@@ -127,15 +128,19 @@ app.get('/dailyschedule', (req, res) => {
 
 app.post('/predictions', (req, res) => {
   console.log("!!!!!!!!!!!!!!!!!!!!!!!!received user predictions")
-  const results = {
-    userName: "kian",
-    gameId: req.body.game_id,
-    team: req.body.team,
-    homeTeamPicked: req.body.homeTeamPicked
-  }
+    let userName = "kian";
+    console.log("HOMETEAM PICKED?????", req.body.homeTeamPicked)
+    console.log("GAME ID", typeof(req.body.game_id))
+    // let gameId = req.body.game_id;
 
+  knex.select('id').from('users').where('name', 'Kian')
+    .then((result) => {
+      console.log("ADFASFASDFEWRTQWETGADGAFGADFG@#%@!%!#@%!", result[0].id)
+      return knex.insert({user_id: result[0].id, games_id: parseInt(req.body.game_id), predictHomeWins: req.body.homeTeamPicked}).into('predictions')
+    }).then((result) => {
+      console.log(result);
+    });
 
-  res.send(results)
 })
 
 // axios.post('/predictions', {
