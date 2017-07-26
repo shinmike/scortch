@@ -5,6 +5,10 @@ h1,h2,h3,h4,h5,a{
   font-family: 'Open Sans', sans-serif;
 }
 
+body {
+  background-color: #fafafa;
+}
+
 p {
   font-size: 15px;
   font-weight: bold;
@@ -19,12 +23,15 @@ p {
   }
 }
 
+
 .navbarTop {
   height: 120px;
-  background: #46626D;
-
-
+  background-image: url('/img/4.jpg');
+  background-size: 700px 350px;
+  background-position: center -100px;
+  position: fixed;
   .logo {
+    background-color: #ff5177;
     float: left;
     width: 250px;
     height: 100%;
@@ -36,6 +43,7 @@ p {
     margin: 0px!important;
   }
   .navTitle {
+    margin-left: 7%;
     width: 200px;
     height: 120px;
     color: white;
@@ -43,19 +51,27 @@ p {
     font-weight: bold;
     line-height: 80px;
     text-align: center;
-    border: 5px solid white;
+    //border: 5px solid white;
     margin: 0px!important;
+  }
+  .homeBorder {
+    border-bottom: 3px solid white;
+    width: 50%;
+    margin-left: 10%;
   }
 }
 .sidebarBorder {
   border-right: 1px solid #46626D;
+  .contactInfo {
+    color: white;
+  }
 }
 #navbarSidebar {
   width: 250px;
   position: fixed;
   max-height: 100%;
   height: 100%!important;
-  background: #46626D;
+  background: #2a2a2a;
   z-index: 10;
   overflow-y: auto;
   margin-top: 70px;
@@ -69,7 +85,11 @@ p {
   left: 0px;
   background-color: white;
   .pre-scrollable {
-    max-height: 100%;
+    max-height: 80%;
+    display: block;
+  }
+  .pre-scrollable::-webkit-scrollbar {
+    display: none;
   }
   .navTitle {
     float: left;
@@ -81,7 +101,7 @@ p {
     border-bottom: 1px solid #46626D;
   }
   .gameListColor {
-    color: red;
+    color: #333;
     line-height: 30px;
   }
 }
@@ -91,12 +111,25 @@ p {
 }
 
 .sidebarHeader {
-  background: #46626D;
-  height: 70px;
+  height: 100px;
   margin-top: 0px;
   margin-bottom: 0px;
   line-height: 500%;
 }
+.mlb {
+  background-image: url('/img/mlb.jpg');
+}
+
+.nba {
+  background-image: url('/img/nba.jpg');
+}
+.nhl {
+  background-image: url('/img/hockey.jpg');
+}
+.nfl {
+  background-image: url('/img/NFL.jpg');
+}
+
 .login-signup {
   float: right;
   .popupHeader {
@@ -117,21 +150,39 @@ p {
     width: 200px;
     background: none;
     border: none;
+    font-size: 28px;
+    font-weight: bold;
   }
   .navLogin {
     height: 120px;
     width: 200px;
     background: none;
     border: none;
+    font-size: 28px;
+    font-weight: bold;
   }
 }
 
-  .navLogout {
-    height: 120px;
-    width: 200px;
-    background: none;
-    border: none;
-  }
+.navLogout {
+  height: 120px;
+  width: 200px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  float: right;
+}
+
+.login-name {
+  margin-top: 44px;
+  margin-right: 35px;
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
 
 .scorecard {
   margin-top: 20px;
@@ -143,21 +194,20 @@ p {
   height: 230px;
   }
 
+.scorecard.navbar {
+  opacity: 0.8;
+}
+
   .boardcard {
     background: white;
-    border: 1px #aaa solid;
-    border-radius: 2px;
-    box-shadow: 2px 2px 2px grey;
     width: 100%;
     margin: inherit;
   }
   .boardheader {
-    background: lightgray;
-    color: black;
-    font: 14px bold;
+    background: #3f3f3f;
+    color: white;
+    font-size: 14px bold;
     padding: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     height: 35px;
   }
   .boardfooter {
@@ -350,6 +400,12 @@ i {
     padding-left: .2em;
 }
 
+.team-logo-lg {
+    width: 175px;
+    padding-right: .2em;
+    padding-left: .2em;
+}
+
 .card-deck {
   margin-top: 100px;
 }
@@ -360,7 +416,7 @@ i {
 }
 
 .card-title {
-    background-color: snow;
+    background-color: white;
     font-size: 22px;
     padding-right: 20px;
     padding-left: 20px;
@@ -474,3 +530,5 @@ table, th, td {
   margin-left: auto;
   margin-right: auto;
 }
+
+

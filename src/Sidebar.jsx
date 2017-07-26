@@ -19,49 +19,51 @@ class Sidebar extends React.Component {
           <ul className="nav nav-sidebar pre-scrollable">
             <div id="accordion" role="tablist" aria-multiselectable="true">
               <div className="card">
-              <div className="card sidebarBorder">
+                <div className="card sidebarBorder">
 
-                <div className="card-header" role="tab" id="headingOne">
-                  <h5 className="mb-0 sidebarHeader">
-                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">⚾️ MLB</a>
-                  </h5>
-                </div>
-                <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div className="card-block">
-                    {games}
+                  <div className="card-header" role="tab" id="headingOne">
+                    <h5 className="mb-0 sidebarHeader mlb">
+                      <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">⚾️ MLB</a>
+                    </h5>
                   </div>
-                </div>
-                <div className="card-header" role="tab" id="headingTwo">
-                  <h5 className="mb-0 sidebarHeader">
-                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">🏀 NBA</a>
-                  </h5>
-                </div>
-                <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                  <div className="card-block">
-                    <p>Off Season</p>
+                  <div id="collapseOne" className="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div className="card-block">
+                      {games}
+                    </div>
                   </div>
-                </div>
-                <div className="card-header" role="tab" id="headingThree">
-                  <h5 className="mb-0 sidebarHeader">
-                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">🏒 NHL</a>
-                  </h5>
-                </div>
-                <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div className="card-block">
-                    <p>Off Season</p>
+                  <div className="card-header" role="tab" id="headingTwo">
+                    <h5 className="mb-0 sidebarHeader nba">
+                      <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">🏀 NBA</a>
+                    </h5>
                   </div>
-                </div>
-                <div className="card-header" role="tab" id="headingFour">
-                  <h5 className="mb-0 sidebarHeader">
-                    <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">🏈 NFL</a>
-                  </h5>
-                </div>
-                <div id="collapseFour" className="collapse" role="tabpanel" aria-labelledby="headingFour">
-                  <div className="card-block">
-                    <p>Off Season</p>
+                  <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div className="card-block">
+                      <p>Coming Soon!</p>
+                    </div>
                   </div>
-                </div>
-              
+                  <div className="card-header" role="tab" id="headingThree">
+                    <h5 className="mb-0 sidebarHeader nhl">
+                      <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">🏒 NHL</a>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div className="card-block">
+                      <p>Coming Soon!</p>
+                    </div>
+                  </div>
+                  <div className="card-header" role="tab" id="headingFour">
+                    <h5 className="mb-0 sidebarHeader nfl">
+                      <a className="collapsed navTitle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">🏈 NFL</a>
+                    </h5>
+                  </div>
+                  <div id="collapseFour" className="collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div className="card-block">
+                      <p>Coming Soon!</p>
+                    </div>
+                  </div>
+                  <div className="contactInfo">
+                    contact Info
+                  </div>
                 </div>
               </div>
             </div>

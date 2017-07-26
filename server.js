@@ -2,6 +2,7 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
 var bodyParser = require("body-parser");
 let converter = require('./plays');
 
@@ -20,15 +21,17 @@ function getUserData(email, password) {
 }
 
 
+
 app.post(('/user'), (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   getUserData(email, password).then((user) =>{
-    console.log(user.length);
     if(user.length == 0) {
       console.log('error')
       res.status(403).send('your email or password are not matched');
     } else {
+      var user_id = user.id;
+      console.log("chris server side")
       res.status(200).send();
     }
   }).catch((err) => {
@@ -36,19 +39,18 @@ app.post(('/user'), (req, res) => {
   })
 })
 
-
-
-
-
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
 const scoreboard = require('./api/scoreboard.js');
+// const lineup = require('./api/starters.js');
+
 
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
+
 
 const pbp = require('./api/playByPlay.js');
 
@@ -62,9 +64,16 @@ const getPlayByPlay = (gameIds) => {
   return Promise.all(playByPlays);
 }
 
+// const getStarters = (gameIds) => {
+//   const startingPitchers = gameIds.map(gId => lineup(gId))
+//   return Promise.all(startingPitchers);
+// }
+
 var requestLoop = setInterval(() => {
   let scoreboards = [];
   const incomingScoreboard = scoreboard(now, true);
+  console.log("!......")
+
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
@@ -97,7 +106,7 @@ var requestLoop = setInterval(() => {
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-}, 30000);
+}, 15000);
 
 app.get('/dailyschedule', (req, res) => {
   const dailySchedule = [];
@@ -114,10 +123,32 @@ app.get('/dailyschedule', (req, res) => {
 });
 
 app.post('/predictions', (req, res) => {
-  console.log("received user predictions")
-  //req.params to get the data
-  console.log(req.params.game_id)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!received user predictions")
+    let userName = "kian";
+    console.log("HOMETEAM PICKED?????", req.body.homeTeamPicked)
+    console.log("GAME ID", typeof(req.body.game_id))
+    // let gameId = req.body.game_id;
+
+  knex.select('id').from('users').where('name', 'Kian')
+    .then((result) => {
+      console.log("ADFASFASDFEWRTQWETGADGAFGADFG@#%@!%!#@%!", result[0].id)
+      return knex.insert({user_id: result[0].id, games_id: parseInt(req.body.game_id), predictHomeWins: req.body.homeTeamPicked}).into('predictions')
+    }).then((result) => {
+      console.log(result);
+    });
+
 })
+
+// axios.post('/predictions', {
+//   params: {
+//     game_id: res.params
+//   }
+// })
+// .then(function(response) {
+//   console.log(response);
+// })
+
+
 
 io.on('connection', function (socket) {
   socket.on('game join', game => {

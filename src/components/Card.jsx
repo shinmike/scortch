@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 function Card({
   gameId,
@@ -21,6 +22,8 @@ function Card({
   togglePbp,
   changeTitle,
   title,
+  currentUser
+
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -34,6 +37,8 @@ function Card({
       default: eventInfo = `${currentInningHalf} of ${currentInning}th`;
     }
   }
+
+  // console.log("TYPE OF GAMEID:",typeof({gameId}));
 
   const handlePickAwayTeam = () => {
     alert("Away team picked");
@@ -49,25 +54,63 @@ function Card({
         console.log(error);
       }.bind(this),
     });
+    // alert("Away team picked");
+
+    var currentUser = 'kian';       // TODO: DIRTY HACK, DELETE THIS WHEN LOGIN WORKS
+
+    console.log("GAME", { gameId })
+    console.log("CURRENT USER", { currentUser })
+    axios({
+      method: 'post',
+      url: '/predictions',
+      data: {
+        game_id: gameId,
+        team: { awayTeamAbbreviation },
+        homeTeamPicked: false
+
+      }
+    }).then(function (response) {
+      console.log("RESPONSE1123!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", response.data)
+    })
+      .catch(function (error) {
+        console.log(error, "ERRRRRORRRRRR!!@#");
+      });
   }
 
   const handlePickHomeTeam = () => {
     alert("Home team picked");
     changeTitle("Home team picked");
+    console.log("GAME", { gameId })
+    console.log("USER", { currentUser })
+
+    axios({
+      method: 'post',
+      url: '/predictions',
+      data: {
+        game_id: gameId,
+        team: homeTeamAbbreviation,
+        homeTeamPicked: true
+      }
+    }).then(function (response) {
+      console.log("RESPONSE1123!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", response.data)
+    })
+      .catch(function (error) {
+        console.log(error, "ERRRRRORRRRRR!!@#");
+      });
   }
 
 
   const balls = new Array(Number(ballCount)).fill(null).map(count => {
     return <span className="balls">o</span>
-  })
+  });
 
   const strikes = new Array(Number(strikeCount)).fill(null).map(count => {
     return <span className="strikes">o</span>
-  })
+  });
 
   const outs = new Array(Number(outCount)).fill(null).map(count => {
     return <span className="outs">o</span>
-  })
+  });
 
   if (isInProgress === 'false' && isCompleted === 'true') {
     eventInfo = 'Final';
@@ -120,7 +163,7 @@ function Card({
             aria-hidden="true"
             onClick={handleExit}
           ></i>
-          <p>{eventInfo}</p>
+          <p>{awayTeamAbbreviation} vs {homeTeamAbbreviation}</p>
         </div>
         <br />
 
@@ -182,7 +225,6 @@ function Card({
           </table>
           <br />
         </div>
-
 
         <div className='play-by-play-overflow'>
           <p className='play-by-play-text'>{eachPlay}</p>

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Router, Route, hashHistory } from 'react-router'
 import Nav from './Nav.jsx'
@@ -16,7 +17,7 @@ class App extends React.Component {
       isActive2: false,
       games: [],
       scoreboards: [],
-      playbyplay: []
+      playbyplay: [],
     };
 
     this.getApi = this.getApi.bind(this);
@@ -54,7 +55,6 @@ class App extends React.Component {
         })
       this.setState({ playbyplay: pbp });
     });
-
   }
   //login register popup
   loginModal() {
@@ -67,7 +67,7 @@ class App extends React.Component {
     this.setState({
       isActive2: !this.state.isActive2
     })
-  }
+}
 
   getApi() {
 
@@ -83,45 +83,10 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
-
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/playbyplay',
-    //   contentType: 'JSON',
-    //   success: (data) => {
-    //     let pbp = {}
-    //     let plays = JSON.parse(data)
-    //     console.log(plays)
-    //     plays.forEach(ab => {
-    //       const gameID = ab.gameplaybyplay.game.id;
-    //       if(!pbp[gameID]){
-    //         pbp[gameID] = [];
-    //       }
-    //       if(ab.gameplaybyplay.atBats){
-    //         ab.gameplaybyplay.atBats.atBat.forEach(plays => {
-    //           const result = plays.atBatPlay[0].batterUp.result
-    //           if(converter[result]){
-    //             pbp[gameID].push(converter[result](plays.atBatPlay))
-    //           }
-    //         })
-    //       }
-    //       console.log("PBP", pbp)
-
-    //     })
-
-    //     // // plays.gameplaybyplay.forEach(ab => {
-    //     // //   console.log(ab)
-    //     // })
-    //     this.setState({ playbyplay: JSON.parse(data) });
-    //   },
-    //   error: function (error) {
-    //     console.log(error);
-    //   }.bind(this),
-    // });
   }
 
   render() {
-
+    console.log(this.state.games, "chris 00");
     return (
       <div>
         <Nav
@@ -138,7 +103,7 @@ class App extends React.Component {
         <Router history={hashHistory} >
           <Route
             exact path="/"
-            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
+            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} currentUser={this.state.currentUser}/>} />
           <Route
             path="/games/:id"
             component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
