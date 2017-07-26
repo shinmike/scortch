@@ -26,13 +26,11 @@ class Games extends React.Component {
   }
 
   render() {
-
     const index = this.props.scoreboards.length;
     if (index > 1) {
       var scoreboards = this.props.scoreboards.filter((scoreboard) => {
         return this.props.params.id.includes(scoreboard.gameId);
       })
-      console.log(scoreboards[0], "Bill")
     }
 
     const messages = this.state.messages.map((message, index) => {
@@ -41,10 +39,35 @@ class Games extends React.Component {
     });
 
     if (index > 1) {
+      const balls = new Array(Number(scoreboards[0].ballCount)).fill(null).map(count => {
+        return <span className="balls">o</span>
+      })
+      const strikes = new Array(Number(scoreboards[0].strikeCount)).fill(null).map(count => {
+        return <span className="strikes">o</span>
+      })
+      const outs = new Array(Number(scoreboards[0].outCount)).fill(null).map(count => {
+        return <span className="outs">o</span>
+      })
+
+      //for the image
       const awayTeamImage = `/img/mlb/teams/${scoreboards[0].awayTeamAbbreviation}.png`
       const homeTeamImage = `/img/mlb/teams/${scoreboards[0].homeTeamAbbreviation}.png`
-      var awayTd = [];
-      var homeTd = [];
+
+      const awayTd = [];
+      const homeTd = [];
+
+      //for the playbyplay 
+      const eachPlay = [];
+      if (this.props.playbyplay.length == undefined) {
+        for (var key in this.props.playbyplay) {
+          if (key === scoreboards[0].gameId) {
+            var playbyplay = this.props.playbyplay[key];
+            playbyplay.reverse().map((ele) => {
+              return eachPlay.push(<ul>{ele}</ul>);
+            })
+          }
+        }
+      }
 
       if (scoreboards[0].innings == null) {
         for (let index = 0; index < 9; index++) {
@@ -62,7 +85,6 @@ class Games extends React.Component {
           }
         }
       }
-      console.log(this.props.playbyplay, "chris4040")
       return (
         <div className="container">
           <div className="row">
@@ -74,14 +96,14 @@ class Games extends React.Component {
                   </div>
                   <div className="card-block">
                     <h3 className="card-title">
-                      <img className='team-logo' src={awayTeamImage} />
-                        {scoreboards[0].awayTeamAbbreviation}&nbsp;@&nbsp;
+                      <img className='team-logo-lg' src={awayTeamImage} />
+                      {scoreboards[0].awayTeamAbbreviation}&nbsp;&nbsp;@&nbsp;&nbsp;
                         {scoreboards[0].homeTeamAbbreviation}
-                      <img className='team-logo' src={homeTeamImage} />
+                      <img className='team-logo-lg' src={homeTeamImage} />
                     </h3>
-                    <h3 className="card-title">{scoreboards[0].awayTeamAbbreviation}</h3>
-                    <h1 className="card-title">{scoreboards[0].awayScore} - {scoreboards[0].homeScore}</h1>
-                    <h2 className="card-title">{scoreboards[0].homeTeamAbbreviation}</h2>
+                    {/* <h3 className="card-title">{scoreboards[0].awayTeamAbbreviation}</h3> */}
+                    <h1 className="card-title">{scoreboards[0].awayScore}&nbsp; - &nbsp;{scoreboards[0].homeScore}</h1>
+                    {/* <h2 className="card-title">{scoreboards[0].homeTeamAbbreviation}</h2> */}
                   </div>
 
                   <div><table className="box-score">
@@ -98,8 +120,6 @@ class Games extends React.Component {
                         <th>8</th>
                         <th>9</th>
                         <th>Runs</th>
-                        <th>Hits</th>
-                        <th>Errors</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -117,8 +137,21 @@ class Games extends React.Component {
                         <td></td>
                         <td></td>
                       </tr>
+                      <table>
+                        <tr>
+                          <th>Balls:</th>
+                          <td>{balls}</td>
+                          <th>Strikes:</th>
+                          <td>{strikes}</td>
+                          <th>Out:</th>
+                          <td>{outs}</td>
+                        </tr>
+                      </table>
                     </tbody>
                   </table>
+                  </div>
+                  <div className='play-by-play-overflow'>
+                    <p className='play-by-play-text'>{eachPlay}</p>
                   </div>
                 </div>
               </div>

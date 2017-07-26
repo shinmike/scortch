@@ -83,45 +83,10 @@ class App extends React.Component {
         console.log(error);
       }.bind(this),
     });
-
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/playbyplay',
-    //   contentType: 'JSON',
-    //   success: (data) => {
-    //     let pbp = {}
-    //     let plays = JSON.parse(data)
-    //     console.log(plays)
-    //     plays.forEach(ab => {
-    //       const gameID = ab.gameplaybyplay.game.id;
-    //       if(!pbp[gameID]){
-    //         pbp[gameID] = [];
-    //       }
-    //       if(ab.gameplaybyplay.atBats){
-    //         ab.gameplaybyplay.atBats.atBat.forEach(plays => {
-    //           const result = plays.atBatPlay[0].batterUp.result
-    //           if(converter[result]){
-    //             pbp[gameID].push(converter[result](plays.atBatPlay))
-    //           }
-    //         })
-    //       }
-    //       console.log("PBP", pbp)
-
-    //     })
-
-    //     // // plays.gameplaybyplay.forEach(ab => {
-    //     // //   console.log(ab)
-    //     // })
-    //     this.setState({ playbyplay: JSON.parse(data) });
-    //   },
-    //   error: function (error) {
-    //     console.log(error);
-    //   }.bind(this),
-    // });
   }
 
   render() {
-
+    console.log(this.state.games, "chris 00");
     return (
       <div>
         <Nav

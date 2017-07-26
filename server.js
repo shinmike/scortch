@@ -24,7 +24,7 @@ app.post(('/user'), (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   getUserData(email, password).then((user) =>{
-    console.log(user.length);
+    console.log(user.id);
     if(user.length == 0) {
       console.log('error')
       res.status(403).send('your email or password are not matched');
@@ -40,8 +40,6 @@ app.post(('/user'), (req, res) => {
 
 
 
-
-
 const rightNow = new Date()
 const now = rightNow.toISOString().slice(0, 10).replace(/-/g, "");
 
@@ -50,7 +48,7 @@ const scoreboard = require('./api/scoreboard.js');
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170724, true);
+const incomingSchedule = schedule(20170725, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -66,7 +64,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170724, true);
+  const incomingScoreboard = scoreboard(20170725, true);
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {
@@ -99,7 +97,7 @@ var requestLoop = setInterval(() => {
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-}, 30000);
+}, 15000);
 
 app.get('/dailyschedule', (req, res) => {
   const dailySchedule = [];
