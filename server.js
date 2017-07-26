@@ -29,10 +29,8 @@ app.post(('/user'), (req, res) => {
       console.log('error')
       res.status(403).send('your email or password are not matched');
     } else {
-      console.log("chris server side")
       res.status(200).send();
     }
-    //onsole.log(user, "chris is happy right now")
   }).catch((err) => {
     res.status(400).send("error")
   })
@@ -50,7 +48,7 @@ const scoreboard = require('./api/scoreboard.js');
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170724, true);
+const incomingSchedule = schedule(now, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -66,7 +64,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170724, true);
+  const incomingScoreboard = scoreboard(now, true);
   let temp = []
   incomingScoreboard.then((data) => {
     data.scoreboard.gameScore.forEach(item => {

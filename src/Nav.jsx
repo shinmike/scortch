@@ -51,6 +51,10 @@ class Nav extends React.Component {
     this.setState({user: {}});
   }
 
+  properName = () => {
+    let name = this.state.user.email.split("@")[0];
+    return name.charAt(0).toUpperCase() + name.slice(1)
+  }
 
 render() {
   console.log("rendering <Nav>");
@@ -80,8 +84,8 @@ render() {
           {this.state.user.email ?
 
             <div>
-              <h1>{this.state.user.email}</h1>
-              <button className="btn btn-primary navbar-right navRegister" onClick={this.handleLogout}>Logout</button>
+              <h2>Scortch away, {this.properName()}</h2>
+              <button className="btn btn-primary navbar-right navLogout" onClick={this.handleLogout}>Logout</button>
             </div>
 
             :

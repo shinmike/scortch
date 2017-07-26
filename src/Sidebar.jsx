@@ -16,7 +16,7 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className="bg-faded navbar-collapse collapse pt-0 sidebar pre-scrollable" id="navbarSidebar">
-          <ul className="nav nav-sidebar">
+          <ul className="nav nav-sidebar pre-scrollable">
             <div id="accordion" role="tablist" aria-multiselectable="true">
               <div className="card">
               <div className="card sidebarBorder">
@@ -38,7 +38,7 @@ class Sidebar extends React.Component {
                 </div>
                 <div id="collapseTwo" className="collapse" role="tabpanel" aria-labelledby="headingTwo">
                   <div className="card-block">
-                    <p>Coming Soon!</p>
+                    <p>Off Season</p>
                   </div>
                 </div>
                 <div className="card-header" role="tab" id="headingThree">
@@ -48,7 +48,7 @@ class Sidebar extends React.Component {
                 </div>
                 <div id="collapseThree" className="collapse" role="tabpanel" aria-labelledby="headingThree">
                   <div className="card-block">
-                    <p>Coming Soon!</p>
+                    <p>Off Season</p>
                   </div>
                 </div>
                 <div className="card-header" role="tab" id="headingFour">
@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
                 </div>
                 <div id="collapseFour" className="collapse" role="tabpanel" aria-labelledby="headingFour">
                   <div className="card-block">
-                    <p>Coming Soon!</p>
+                    <p>Off Season</p>
                   </div>
                 </div>
               
