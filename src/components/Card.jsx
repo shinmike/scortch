@@ -146,7 +146,7 @@ function Card({
             aria-hidden="true"
             onClick={handleExit}
           ></i>
-          <p>{eventInfo}</p>
+          <p>{awayTeamAbbreviation} vs {homeTeamAbbreviation}</p>
         </div>
         <br />
 
@@ -209,7 +209,6 @@ function Card({
           <br />
         </div>
 
-
         <div className='play-by-play-overflow'>
           <p className='play-by-play-text'>{eachPlay}</p>
         </div>
@@ -225,26 +224,12 @@ function Card({
             >
             </i>
           </a>
-          <div class="progress">
-          </div>
-
-          <div className="card-footer boardfooter">
-            <h4> Who will win? </h4>
-            <button class="pure-button" onClick={handlePickAwayTeam}>{awayTeamAbbreviation}</button>
-            <button class="pure-button" onClick={handlePickHomeTeam}>{homeTeamAbbreviation}</button>
-            <a href={'/#/games/' + gameId}>
-              <i
-                className="fa fa-commenting-o"
-                aria-hidden="true"
-              >
-              </i>
-            </a>
-            <div class="progress">
-            </div>
+          <div className="progress">
           </div>
         </div>
-      </div >
-      )
+      </div>
+    </div>
+  )
 }
 
 export default Card;

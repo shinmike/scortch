@@ -24,7 +24,6 @@ class Nav extends React.Component {
         password: this.state.password
       }
     }).then(function (response) {
-      console.log(response, "chris")
       const userInfo = JSON.parse(response.config.data);
       //console.log(userInfo.email, response.config.data, "chris with michael")
       const user = {
@@ -34,8 +33,7 @@ class Nav extends React.Component {
       self.setState({ user: user });
       self.props.loginModal();
     }).catch(function (error) {
-      console.log(JSON.stringify(error))
-      console.log(error.response, "chris9090");
+   
     });
   }
 
@@ -46,18 +44,16 @@ class Nav extends React.Component {
   }
 
   password(event) {
-    console.log(event.target.value, "chris password")
     this.setState({ password: event.target.value });
   }
   render() {
-    console.log("rendering <Nav>");
+    // const backgroundImg = '/img/3.jpg';
 
     return (
       <div>
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
-          <div className="logo">Scortch 🔥</div>
-
-          <div className="container navBackground">
+          <div className="logo"></div>
+          <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">
                 <span className="sr-only">Toggle navigation</span>
@@ -71,7 +67,8 @@ class Nav extends React.Component {
                 </span>
               </button>
 
-              <a href="" className="navbar-brand navTitle">Home</a>
+              <div className="navbar-brand navTitle"><div className="homeBorder">Home</div></div>
+              <div className="navbar-brand navTitle"><div className="homeChat">Chat</div></div>
             </div>
 
             <div className="collapse navbar-collapse login-signup" id="navbar-collapse">

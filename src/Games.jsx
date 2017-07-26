@@ -20,9 +20,11 @@ class Games extends React.Component {
     });
   }
 
-  onPost = () => {
-    this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
-    this.setState({ inputMessage: '' });
+  onPost = (event) => {
+    if (event.key === 'Enter') {
+      this.props.socket.emit('game chat', this.props.params.id, this.state.inputMessage)
+      this.setState({ inputMessage: '' });
+    }
   }
 
   render() {
@@ -164,8 +166,8 @@ class Games extends React.Component {
                     <ul id="messages">
                       {messages}
                     </ul>
-                    <input value={this.state.inputMessage} onChange={(event) => this.setState({ inputMessage: event.target.value })} />
-                    <button onClick={this.onPost}>Send it!</button>
+                    <input onKeyUp={this.onPost} value={this.state.inputMessage} onChange={(event) => this.setState({ inputMessage: event.target.value })} />
+                    {/* <button onClick={this.onPost}>Send it!</button> */}
                   </div>
                 </div>
               </div>

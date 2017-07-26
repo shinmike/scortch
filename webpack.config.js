@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -29,6 +28,16 @@ module.exports = {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       },
+       {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }]
+       }
     ],
     loaders: [
       {
