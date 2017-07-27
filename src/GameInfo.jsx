@@ -42,13 +42,6 @@ class GameInfo extends React.Component {
           </tr>
         </table>
 
-
-        {/* <div className="scheduleTime">{this.props.gameTime}</div>
-        <a className="gameListColor" href="">
-          <img className='team-logo' src={awayTeamImage} />
-          {this.props.gameTeam}
-          <img className='team-logo' src={homeTeamImage} />
-        </a> */}
       </div>
     );
   }

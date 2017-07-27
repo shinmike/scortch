@@ -22,7 +22,9 @@ function Card({
   togglePbp,
   currentUser,
   awayTeamName,
-  homeTeamName
+  homeTeamName,
+  changeTitle,
+  title
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -40,6 +42,19 @@ function Card({
   // console.log("TYPE OF GAMEID:",typeof({gameId}));
 
   const handlePickAwayTeam = () => {
+    alert("Away team picked");
+    changeTitle("Away team picked");
+    $.ajax({
+      type: 'POST',
+      url: '/predictions',
+      contentType: 'JSON',
+      success: (data) => {
+        console.log("DATA", data)
+      },
+      error: function (error) {
+        console.log(error);
+      }.bind(this),
+    });
     // alert("Away team picked");
 
     var currentUser = 'kian';       // TODO: DIRTY HACK, DELETE THIS WHEN LOGIN WORKS
@@ -65,6 +80,7 @@ function Card({
 
   const handlePickHomeTeam = () => {
     alert("Home team picked");
+    changeTitle("Home team picked");
     console.log("GAME", { gameId })
     console.log("USER", { currentUser })
 
@@ -221,9 +237,10 @@ function Card({
               </i>
             </a>
           </div>
+
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

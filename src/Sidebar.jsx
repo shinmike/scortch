@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <div className="bg-faded navbar-collapse collapse pt-0 sidebar" id="navbarSidebar">
+        <div className="bg-faded navbar-collapse collapse pt-0 sidebar pre-scrollable" id="navbarSidebar">
           <ul className="nav nav-sidebar pre-scrollable">
             <div id="accordion" role="tablist" aria-multiselectable="true">
               <div className="card">

@@ -18,6 +18,7 @@ class App extends React.Component {
       games: [],
       scoreboards: [],
       playbyplay: [],
+      currentUser: { name: 'Mike' },
     };
 
     this.getApi = this.getApi.bind(this);
@@ -68,6 +69,15 @@ class App extends React.Component {
     })
   }
 
+  getUser = (name) => {
+    this.setState({
+      currentUser: { name: name }
+    })
+  }
+  
+
+  
+
   getApi() {
     $.ajax({
       type: 'GET',
@@ -88,16 +98,19 @@ class App extends React.Component {
         <Nav
           loginModal={this.loginModal}
           registerModal={this.registerModal}
+          currentUser={this.state.currentUser}
+          getUser={this.getUser}
           isActive={this.state.isActive}
-          isActive2={this.state.isActive2} >
+          isActive2={this.state.isActive2}
+        >
         </Nav>
         <Router history={hashHistory} >
           <Route
             exact path="/"
-            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} currentUser={this.state.currentUser} />} />
+            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
+            component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} currentUser={this.state.currentUser.name} />} />
         </Router>
       </div>
     );

@@ -37,6 +37,8 @@ class Games extends React.Component {
 
     const messages = this.state.messages.map((message, index) => {
       return (<p className="msgClass" key={index}> {message.content}</p>);
+      console.log(message);
+      return (<p className="msgClass" key={index}><b>{this.props.currentUser}:</b> {message.content}</p>);
     });
 
     if (index > 1) {
@@ -170,8 +172,11 @@ class Games extends React.Component {
                     <ul id="messages">
                       {messages}
                     </ul>
-                    <input onKeyUp={this.onPost} value={this.state.inputMessage} onChange={(event) => this.setState({ inputMessage: event.target.value })} />
-                    {/* <button onClick={this.onPost}>Send it!</button> */}
+                    <input
+                      onKeyUp={this.onPost}
+                      value={this.state.inputMessage}
+                      onChange={(event) => this.setState({ inputMessage: event.target.value })}
+                    />
                   </div>
                 </div>
               </div>

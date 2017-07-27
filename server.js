@@ -32,7 +32,6 @@ app.post(('/user'), (req, res) => {
       console.log("chris server side")
       res.status(200).send();
     }
-    //onsole.log(user, "chris is happy right now")
   }).catch((err) => {
     res.status(400).send("error")
   })
@@ -49,6 +48,7 @@ let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
 const incomingSchedule = schedule(now, true);
+
 
 const pbp = require('./api/playByPlay.js');
 
