@@ -62,8 +62,40 @@ class Sidebar extends React.Component {
                     </div>
                   </div>
                   <div className="contactInfo">
-                    contact Info
+                    © 2017 Scortch
                   </div>
+{/* 
+                  <div className="scorecard navbar">
+                    <div className="card text-center boardcard">
+                      <div className="card-header boardheader">
+                        <p>Games won leaderboard</p>
+                      </div>
+                      <br />
+                      <div className="card-block">
+                        <table>
+                          <tr>
+                            <td><h3>Bill</h3></td>
+                            <td><p>25</p></td>
+                          </tr>
+                          <tr>
+                            <td><h3>Bill</h3></td>
+                            <td><p>25</p></td>
+                          </tr>
+                          <tr>
+                            <td><h3>Bill</h3></td>
+                            <td><p>25</p></td>
+                          </tr>
+                          <tr>
+                            <td><h3>Bill</h3></td>
+                            <td><p>25</p></td>
+                          </tr>
+                        </table>
+                        <br />
+                      </div>
+                    </div>
+                  </div > */}
+
+
                 </div>
               </div>
             </div>

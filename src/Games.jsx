@@ -74,17 +74,17 @@ class Games extends React.Component {
 
       if (scoreboards[0].innings == null) {
         for (let index = 0; index < 9; index++) {
-          awayTd.push(<td key={index}></td>)
-          homeTd.push(<td key={index}></td>)
+          awayTd.push(<td className="scheduleTable" key={index}></td>)
+          homeTd.push(<td className="scheduleTable" key={index}></td>)
         }
       } else {
         for (let index = 0; index < 9; index++) {
           if (scoreboards[0].innings[index]) {
-            awayTd.push(<td key={index}>{scoreboards[0].innings[index].awayScore}</td>)
-            homeTd.push(<td key={index}>{scoreboards[0].innings[index].homeScore}</td>)
+            awayTd.push(<td className="scheduleTable" key={index}>{scoreboards[0].innings[index].awayScore}</td>)
+            homeTd.push(<td className="scheduleTable" key={index}>{scoreboards[0].innings[index].homeScore}</td>)
           } else {
-            awayTd.push(<td key={index}></td>)
-            homeTd.push(<td key={index}></td>)
+            awayTd.push(<td className="scheduleTable" key={index}></td>)
+            homeTd.push(<td className="scheduleTable" key={index}></td>)
           }
         }
       }
@@ -96,12 +96,12 @@ class Games extends React.Component {
                 <div className="card text-center scoretop">
                   <div className="card-header scoreheader">
                     <div className="gamePageLogo">
-                      <img className='gameLoGo' src={mlbLogo} /> 
+                      <img className='gameLoGo' src={mlbLogo} />
                     </div>
                     <div className="todayGame">
                       Todays Game between:
                     </div>
-                  
+
                     <div className="todayTeam">
                       {scoreboards[0].awayTeamName} @ {scoreboards[0].homeTeamName}
                     </div>
@@ -113,52 +113,49 @@ class Games extends React.Component {
                         {scoreboards[0].homeTeamAbbreviation}
                       <img className='team-logo-lg' src={homeTeamImage} />
                     </h3>
-                    {/* <h3 className="card-title">{scoreboards[0].awayTeamAbbreviation}</h3> */}
-                    <h1 className="card-title">{scoreboards[0].awayScore}&nbsp; - &nbsp;{scoreboards[0].homeScore}</h1>
-                    {/* <h2 className="card-title">{scoreboards[0].homeTeamAbbreviation}</h2> */}
                   </div>
 
-                  <div><table className="box-score">
+                  <div className="gameScoreBoard"><table className="box-score">
                     <thead>
-                      <tr>
-                        <th></th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>8</th>
-                        <th>9</th>
-                        <th>R</th>
+                      <tr className="scoreboardHead">
+                        <th className="boardHeader scheduleTable"></th>
+                        <th className="scheduleTable">1</th>
+                        <th className="scheduleTable">2</th>
+                        <th className="scheduleTable">3</th>
+                        <th className="scheduleTable">4</th>
+                        <th className="scheduleTable">5</th>
+                        <th className="scheduleTable">6</th>
+                        <th className="scheduleTable">7</th>
+                        <th className="scheduleTable">8</th>
+                        <th className="scheduleTable">9</th>
+                        <th className="scheduleTable">R</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>{scoreboards[0].awayTeamAbbreviation}</td>
+                      <tr className="scoreboardTeamScore">
+                        <td className="scheduleTable">{scoreboards[0].awayTeamAbbreviation}</td>
                         {awayTd}
-                        <td>{scoreboards[0].awayScore}</td>
-                     </tr>
-                      <tr>
-                        <td>{scoreboards[0].homeTeamAbbreviation}</td>
+                        <td className="scheduleTable">{scoreboards[0].awayScore}</td>
+                      </tr>
+                      <tr className="scoreboardTeamScore">
+                        <td className="scheduleTable">{scoreboards[0].homeTeamAbbreviation}</td>
                         {homeTd}
-                        <td>{scoreboards[0].homeScore}</td>
+                        <td className="scheduleTable">{scoreboards[0].homeScore}</td>
                       </tr>
                       <table>
                         <tr>
-                          <th>Balls:</th>
-                          <td>{balls}</td>
-                          <th>Strikes:</th>
-                          <td>{strikes}</td>
-                          <th>Out:</th>
-                          <td>{outs}</td>
+                          <th className="scheduleTable">Balls:</th>
+                          <td className="scheduleTable">{balls}</td>
+                          <th className="scheduleTable">Strikes:</th>
+                          <td className="scheduleTable">{strikes}</td>
+                          <th className="scheduleTable">Out:</th>
+                          <td className="scheduleTable">{outs}</td>
                         </tr>
                       </table>
                     </tbody>
                   </table>
                   </div>
-                  <div className='play-by-play-overflow'>
+                  <div className='pre-scrollable scrollheight'>
                     <p className='play-by-play-text'>{eachPlay}</p>
                   </div>
                 </div>
@@ -166,7 +163,7 @@ class Games extends React.Component {
               <div className="col-md-4 gamecard">
                 <div className="card text-center scoretop">
                   <div className="card-header scoreheader">
-                    Today's Game Chatter
+                     Game Chatter
                   </div>
                   <div className="card-block">
                     <ul id="messages">

@@ -106,7 +106,7 @@ var requestLoop = setInterval(() => {
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-}, 10000);
+}, 15000);
 
 app.get('/dailyschedule', (req, res) => {
   const dailySchedule = [];

@@ -191,7 +191,17 @@ p {
   font-weight: bold;
 }
 
+.gameScoreBoard {
+  padding: 20px;
+  .boardHeader {
+    width: 10%;
+  }
+}
 
+#messages {
+  height: 400px;
+
+}
 
 .scorecard {
   margin-top: 20px;
@@ -207,55 +217,64 @@ p {
   opacity: 0.8;
 }
 
-  .boardcard {
-    background: white;
-    width: 105%;
-    margin: inherit;
-  }
-  .boardheader {
-    background: #071c33;
-    color: white;
-    font-size: 17px;
-    padding: 10px;
-    height: 70px;
-    line-height: 20px
-  }
-  .cardsTeamLogo {
-    width: 120px;
-    padding-right: .2em;
-    padding-left: .2em;
-  }
-  .cardScoreContent {
-    margin: 20px 0px;
-  }
-  // .cardHeader {
-  //   text-align: centerl
-  // }
-  .cardHeaderAT {
-    float: left;
-  }
+.boardcard {
+  background: white;
+  width: 105%;
+  margin: inherit;
+}
+.boardheader {
+  background: #071c33;
+  color: white;
+  font-size: 17px;
+  padding: 5px;
+  height: 75px;
+  line-height: 20px
+}
 
-  .scoreboardHead {
-    background: #7e7e7e;
+.cardEventInfo {
+  margin-bottom: 10px;
+  .eventInfo {
     color: white;
   }
+}
+.cardsTeamLogo {
+  width: 120px;
+  padding-right: .2em;
+  padding-left: .2em;
+}
+.cardScoreContent {
+  margin: 20px 0px;
+}
+// .cardHeader {
+//   text-align: centerl
+// }
+.cardHeaderAT {
+  float: left;
+}
 
-  .scoreboardTeamScore {
-    height: 30px;
-    background: #a8a8a8;
-    color: white;
-  }
+.scoreboardHead {
+  background: #7e7e7e;
+  color: white;
+}
 
-  .scoreboardContent {
-    background: #ededed;
-  }
-  .removeBorder {
-    border: none;
-  }
-  .cardHeaderHT {
-    float: left;
-    line-height: 40px;
-  }
+.scoreboardTeamScore {
+  height: 30px;
+  background: #a8a8a8;
+  color: white;
+}
+.scrollheight {
+  max-height: 230px!important;
+}
+.scoreboardContent {
+  background: #ededed;
+}
+.removeBorder {
+  border: none;
+}
+.cardHeaderHT {
+  float: left;
+  line-height: 10px;
+}
   .boardfooter {
     border-top: 1px solid white;
     color: white;
@@ -286,6 +305,7 @@ p {
     box-shadow: 2px 2px 2px grey;
   }
   .scoreheader {
+    font-size: 32px;
     background: #071c33;
     color: white;
     padding: 10px;
@@ -570,6 +590,7 @@ i {
   font-size: 14px;
   background: #151515;
   color: white;
+  line-height: 13px;
 }
 
 .balls {
@@ -616,4 +637,8 @@ i {
 
 .fa.fa-bullhorn {
   cursor: pointer;
+}
+
+.logo h2 {
+  color: white;
 }

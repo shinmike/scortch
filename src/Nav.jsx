@@ -55,12 +55,12 @@ class Nav extends React.Component {
   }
 
   render() {
-    const backgroundImg = '/img/scortchLogo.png';
+    const backgroundImg = '/img/logo.png';
 
     return (
       <div>
         <nav className="navbar navbar-light navbar-fixed-top navbarTop" id="my-navbar">
-          <div className="logo"><img className='scortchLogo' src={backgroundImg} /></div>
+          <div className="logo"><h2>Scortch</h2></div>
           <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle navSidebar" data-toggle="collapse" data-target="#navbarSidebar">
@@ -82,38 +82,6 @@ class Nav extends React.Component {
               <div>
                 <button className="btn btn-primary navbar-right navLogout" onClick={this.handleLogout}>Logout</button>
                 <h2 className="login-name">Hello, {this.properName()}</h2>
-
-                <div className="scorecard navbar">
-                  <div className="card text-center boardcard animated flipInX">
-                    <div className="card-header boardheader">
-                      <p>Games won leaderboard</p>
-                    </div>
-                    <br />
-                    <div className="card-block">
-                      <table>
-                        <tr>
-                          <td><h3>Bill</h3></td>
-                          <td></td>
-                          <td><h3>Chris</h3></td>
-                          <td></td>
-                          <td><h3>Mike</h3></td>
-                          <td></td>
-                          <td><h3>Kian</h3></td>
-                        </tr>
-                        <tr>
-                          <td><p>25</p></td>
-                          <td></td>
-                          <td><p>23</p></td>
-                          <td></td>
-                          <td><p>18</p></td>
-                          <td></td>
-                          <td><p>16</p></td>
-                        </tr>
-                      </table>
-                      <br />
-                    </div>
-                  </div>
-                </div >
 
               </div>
 
@@ -182,9 +150,7 @@ class Nav extends React.Component {
                   </Modal>
                 </div>
               </div>
-
             }
-
           </div>
         </nav>
       </div>

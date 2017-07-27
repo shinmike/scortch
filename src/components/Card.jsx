@@ -129,8 +129,8 @@ function Card({
 
   if (innings == null) {
     for (let index = 0; index < 9; index++) {
-      awayTd.push(<td key={index}></td>)
-      homeTd.push(<td key={index}></td>)
+      awayTd.push(<td className="removeBorder" key={index}></td>)
+      homeTd.push(<td className="removeBorder" key={index}></td>)
     }
   } else {
     for (let index = 0; index < 9; index++) {
@@ -165,7 +165,8 @@ function Card({
           ></i>
           <div className="cardHeader">
             <div className="cardHeaderAT"><img className='mlb-logo' src={mlbLogo} /></div>
-            <div className="cardHeaderHT">{awayTeamName} @ {homeTeamName}</div>
+            <div className="cardEventInfo"><h4 className="eventInfo">{eventInfo}</h4></div>
+            <div className="cardHeaderHT">{awayTeamAbbreviation} @ {homeTeamAbbreviation}</div><br />
           </div>
         </div>
         <br />
@@ -173,7 +174,7 @@ function Card({
           <table className="cardScoreContent">
             <tr>
               <td className="scheduleTable"><img className='cardsTeamLogo' src={awayTeamImage} /></td>
-              <td className="scheduleTable"><h2>{awayScore}:</h2></td>
+              <td className="scheduleTable"><h2>{awayScore}-</h2></td>
               <td className="scheduleTable"><h2>{homeScore}</h2></td>
               <td className="scheduleTable"><img className='cardsTeamLogo' src={homeTeamImage} /></td>
             </tr>
@@ -183,7 +184,7 @@ function Card({
             <table className="box-score">
               <thead>
                 <tr className="scoreboardHead">
-                  <th className="removeBorder">{eventInfo}</th>
+                  <th className="removeBorder"></th>
                   <th className="removeBorder">1</th>
                   <th className="removeBorder">2</th>
                   <th className="removeBorder">3</th>
