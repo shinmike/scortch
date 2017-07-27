@@ -11,7 +11,7 @@ module.exports = function(gameID) {
     'game_playbyplay',
     'json',
     {gameid: gameID,
-    force: false}
+    force: true}
   )
   // .then(data => console.log('pbp data', data))
   // .catch(err => console.log('pbp error', err));

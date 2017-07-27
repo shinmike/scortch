@@ -20,7 +20,9 @@ function Card({
   toggleGameVisibility,
   showPbp,
   togglePbp,
-  currentUser
+  currentUser,
+  awayTeamName,
+  homeTeamName
 }) {
   var eventInfo = null;
   if (isInProgress === 'true' && isCompleted === 'false') {
@@ -104,7 +106,7 @@ function Card({
 
   const awayTeamImage = `/img/mlb/teams/${awayTeamAbbreviation}.png`
   const homeTeamImage = `/img/mlb/teams/${homeTeamAbbreviation}.png`
-
+  const mlbLogo = `/img/mlbLogo.png`
   //create td tag for scoreboard away team
   var awayTd = [];
   var homeTd = [];
@@ -117,11 +119,11 @@ function Card({
   } else {
     for (let index = 0; index < 9; index++) {
       if (innings[index]) {
-        awayTd.push(<td key={index}>{innings[index].awayScore}</td>)
-        homeTd.push(<td key={index}>{innings[index].homeScore}</td>)
+        awayTd.push(<td className="removeBorder" key={index}>{innings[index].awayScore}</td>)
+        homeTd.push(<td className="removeBorder" key={index}>{innings[index].homeScore}</td>)
       } else {
-        awayTd.push(<td key={index}></td>)
-        homeTd.push(<td key={index}></td>)
+        awayTd.push(<td className="removeBorder" key={index}></td>)
+        homeTd.push(<td className="removeBorder" key={index}></td>)
       }
     }
   }
@@ -137,7 +139,6 @@ function Card({
   }
 
   return (
-
     <div className="scorecard">
       <div className="card text-center boardcard animated flipInX">
         <div className="card-header boardheader">
@@ -146,85 +147,79 @@ function Card({
             aria-hidden="true"
             onClick={handleExit}
           ></i>
-          <p>{awayTeamAbbreviation} vs {homeTeamAbbreviation}</p>
+          <div className="cardHeader">
+            <div className="cardHeaderAT"><img className='mlb-logo' src={mlbLogo} /></div>
+            <div className="cardHeaderHT">{awayTeamName} @ {homeTeamName}</div>
+          </div>
         </div>
         <br />
-
         <div className="card-block">
-          <table>
+          <table className="cardScoreContent">
             <tr>
-              <td><img className='team-logo' src={awayTeamImage} /></td>
-              <td></td>
-              <td><img className='team-logo' src={homeTeamImage} /></td>
-            </tr>
-            <tr>
-              <td><h2 className="card-score">{awayScore}</h2></td>
-              <td></td>
-              <td><h2 className="card-score">{homeScore}</h2></td>
+              <td className="scheduleTable"><img className='cardsTeamLogo' src={awayTeamImage} /></td>
+              <td className="scheduleTable"><h2>{awayScore}:</h2></td>
+              <td className="scheduleTable"><h2>{homeScore}</h2></td>
+              <td className="scheduleTable"><img className='cardsTeamLogo' src={homeTeamImage} /></td>
             </tr>
           </table>
-          <br />
 
-          <table className="box-score">
-            <thead>
+          <div className="cardsBackground">
+            <table className="box-score">
+              <thead>
+                <tr className="scoreboardHead">
+                  <th className="removeBorder">{eventInfo}</th>
+                  <th className="removeBorder">1</th>
+                  <th className="removeBorder">2</th>
+                  <th className="removeBorder">3</th>
+                  <th className="removeBorder">4</th>
+                  <th className="removeBorder">5</th>
+                  <th className="removeBorder">6</th>
+                  <th className="removeBorder">7</th>
+                  <th className="removeBorder">8</th>
+                  <th className="removeBorder">9</th>
+                  <th className="removeBorder">R</th>
+                </tr>
+              </thead>
+              <tbody className="scoreboardContent">
+                <tr className="scoreboardTeamScore">
+                  <td className="removeBorder">{awayTeamAbbreviation}</td>
+                  {awayTd}
+                  <td className="removeBorder">{awayScore}</td>
+                </tr>
+                <tr className="scoreboardTeamScore">
+                  <td className="removeBorder">{homeTeamAbbreviation}</td>
+                  {homeTd}
+                  <td className="removeBorder">{homeScore}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <table className="headerBallStrikeOut">
               <tr>
-                <th></th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>Runs</th>
+                <th className="ballStrikeOut scheduleTable">Balls:</th>
+                <td className="scheduleTable">{balls}</td>
+                <th className="ballStrikeOut scheduleTable">Strikes:</th>
+                <td className="scheduleTable">{strikes}</td>
+                <th className="ballStrikeOut scheduleTable">Out:</th>
+                <td className="scheduleTable">{outs}</td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><b>{awayTeamAbbreviation}</b></td>
-                {awayTd}
-                <td>{awayScore}</td>
-              </tr>
-              <tr>
-                <td><b>{homeTeamAbbreviation}</b></td>
-                {homeTd}
-                <td>{homeScore}</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-
-          <table>
-            <tr>
-              <th>Balls:</th>
-              <td>{balls}</td>
-              <th>Strikes:</th>
-              <td>{strikes}</td>
-              <th>Out:</th>
-              <td>{outs}</td>
-            </tr>
-          </table>
-          <br />
-        </div>
-
-        <div className='play-by-play-overflow'>
-          <p className='play-by-play-text'>{eachPlay}</p>
-        </div>
-
-        <div className="card-footer boardfooter">
-          <h4> Who will win? </h4>
-          <button className="pure-button" onClick={handlePickAwayTeam}>{awayTeamAbbreviation}</button>
-          <button className="pure-button" onClick={handlePickHomeTeam}>{homeTeamAbbreviation}</button>
-          <a href={'/#/games/' + gameId}>
-            <i
-              className="fa fa-commenting-o"
-              aria-hidden="true"
-            >
-            </i>
-          </a>
-          <div className="progress">
+            </table>
+            <br />
+          </div>
+          <div className='pre-scrollable'>
+            <p className='play-by-play-text'>{eachPlay}</p>
+          </div>
+          <div className="card-footer boardfooter">
+            <h4 className="whoWillWin"> Who will win? </h4>
+            <button className="pure-button voteButton" onClick={handlePickAwayTeam}>{awayTeamAbbreviation}</button>
+            <button className="pure-button voteButton" onClick={handlePickHomeTeam}>{homeTeamAbbreviation}</button>
+            <a href={'/#/games/' + gameId}>
+              <i
+                className="fa fa-commenting-o chattingIcon"
+                aria-hidden="true"
+              >
+              </i>
+            </a>
           </div>
         </div>
       </div>

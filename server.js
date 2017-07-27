@@ -20,8 +20,6 @@ function getUserData(email, password) {
       .where('email', email).andWhere('password', password);
 }
 
-
-
 app.post(('/user'), (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -50,7 +48,7 @@ const scoreboard = require('./api/scoreboard.js');
 let gameIds = [];
 
 const schedule = require('./api/dailySchedule.js');
-const incomingSchedule = schedule(20170725, true);
+const incomingSchedule = schedule(now, true);
 
 const pbp = require('./api/playByPlay.js');
 
@@ -71,7 +69,7 @@ const getPlayByPlay = (gameIds) => {
 
 var requestLoop = setInterval(() => {
   let scoreboards = [];
-  const incomingScoreboard = scoreboard(20170725, true);
+  const incomingScoreboard = scoreboard(now, true);
   console.log("!......")
 
   let temp = []
@@ -91,7 +89,9 @@ var requestLoop = setInterval(() => {
         currentInningHalf: item.currentInningHalf,
         ballCount: item.playStatus && item.playStatus.ballCount,
         strikeCount: item.playStatus && item.playStatus.strikeCount,
-        outCount: item.playStatus && item.playStatus.strikeCount
+        outCount: item.playStatus && item.playStatus.strikeCount,
+        awayTeamName: item.game.awayTeam.Name,
+        homeTeamName: item.game.homeTeam.Name
       })
 
     });
@@ -106,7 +106,7 @@ var requestLoop = setInterval(() => {
     .then(getGameIds)
     .then(getPlayByPlay)
     .then(data => (io.emit('playbyplay update', JSON.stringify(data))))
-}, 15000);
+}, 10000);
 
 app.get('/dailyschedule', (req, res) => {
   const dailySchedule = [];

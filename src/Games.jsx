@@ -36,7 +36,6 @@ class Games extends React.Component {
     }
 
     const messages = this.state.messages.map((message, index) => {
-      console.log(message);
       return (<p className="msgClass" key={index}> {message.content}</p>);
     });
 
@@ -54,7 +53,7 @@ class Games extends React.Component {
       //for the image
       const awayTeamImage = `/img/mlb/teams/${scoreboards[0].awayTeamAbbreviation}.png`
       const homeTeamImage = `/img/mlb/teams/${scoreboards[0].homeTeamAbbreviation}.png`
-
+      const mlbLogo = `/img/mlbLogo.png`
       const awayTd = [];
       const homeTd = [];
 
@@ -94,7 +93,16 @@ class Games extends React.Component {
               <div className="col-md-8 gamecard">
                 <div className="card text-center scoretop">
                   <div className="card-header scoreheader">
-                    Todays Game between: {scoreboards[0].awayTeamAbbreviation} @ {scoreboards[0].homeTeamAbbreviation}
+                    <div className="gamePageLogo">
+                      <img className='gameLoGo' src={mlbLogo} /> 
+                    </div>
+                    <div className="todayGame">
+                      Todays Game between:
+                    </div>
+                  
+                    <div className="todayTeam">
+                      {scoreboards[0].awayTeamName} @ {scoreboards[0].homeTeamName}
+                    </div>
                   </div>
                   <div className="card-block">
                     <h3 className="card-title">
@@ -121,7 +129,7 @@ class Games extends React.Component {
                         <th>7</th>
                         <th>8</th>
                         <th>9</th>
-                        <th>Runs</th>
+                        <th>R</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -129,15 +137,11 @@ class Games extends React.Component {
                         <td>{scoreboards[0].awayTeamAbbreviation}</td>
                         {awayTd}
                         <td>{scoreboards[0].awayScore}</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
+                     </tr>
                       <tr>
                         <td>{scoreboards[0].homeTeamAbbreviation}</td>
                         {homeTd}
                         <td>{scoreboards[0].homeScore}</td>
-                        <td></td>
-                        <td></td>
                       </tr>
                       <table>
                         <tr>

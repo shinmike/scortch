@@ -6,7 +6,7 @@ h1,h2,h3,h4,h5,a{
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #ededed;
 }
 
 p {
@@ -31,7 +31,7 @@ p {
   background-position: center -100px;
   position: fixed;
   .logo {
-    background-color: #ff5177;
+    //background-color: #ff5177;
     float: left;
     width: 250px;
     height: 100%;
@@ -41,6 +41,11 @@ p {
     line-height: 80px;
     text-align: center;
     margin: 0px!important;
+    //background-image: url('/img/scortchLogo.png');
+  }
+  .scortchLogo {
+    width: 100px;
+    height: 100px;
   }
   .navTitle {
     margin-left: 7%;
@@ -97,11 +102,15 @@ p {
   }
   .schedule {
     border-bottom: 1px solid #46626D;
+   
   }
   .gameListColor {
     color: #333;
     line-height: 30px;
   }
+}
+.scheduleTable {
+  border: none;
 }
 
 .sideMenuBar {
@@ -164,7 +173,7 @@ p {
 .scorecard {
   margin-top: 20px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 17px;
   margin-bottom: 15px;
   display: inline-block;
   width: 290px;
@@ -173,23 +182,72 @@ p {
 
   .boardcard {
     background: white;
-    width: 100%;
+    width: 105%;
     margin: inherit;
   }
   .boardheader {
-    background: #3f3f3f;
+    background: #071c33;
     color: white;
-    font-size: 14px bold;
+    font-size: 17px;
     padding: 10px;
-    height: 35px;
+    height: 70px;
+    line-height: 20px
+  }
+  .cardsTeamLogo {
+    width: 120px;
+    padding-right: .2em;
+    padding-left: .2em;
+  }
+  .cardScoreContent {
+    margin: 20px 0px;
+  }
+  // .cardHeader {
+  //   text-align: centerl
+  // }
+  .cardHeaderAT {
+    float: left;
+  }
+
+  .scoreboardHead {
+    background: #7e7e7e;
+    color: white;
+  }
+
+  .scoreboardTeamScore {
+    height: 30px;
+    background: #a8a8a8;
+    color: white;
+  }
+
+  .scoreboardContent {
+    background: #ededed;
+  }
+  .removeBorder {
+    border: none;
+  }
+  .cardHeaderHT {
+    float: left;
+    line-height: 40px;
   }
   .boardfooter {
-    background: lightgray;
+    border-top: 1px solid white;
     color: white;
     padding: 15px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-  }
+    background: #151515;
+    .whoWillWin {
+      color: white;
+    }
+}
+.voteButton {
+  color: black;
+}
+
+.chattingIcon {
+  color: white;
+  font-size: 30px;
+}
 
 .gamecard {
   margin-top: 20px;
@@ -201,13 +259,31 @@ p {
     box-shadow: 2px 2px 2px grey;
   }
   .scoreheader {
-    background: lightgray;
-    color: black;
+    background: #071c33;
+    color: white;
     padding: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border: none;
+    height: 120px;
+  }
+  .gamePageLogo {
+    float: left;
+  }
+  .gameLoGo {
+    width: 170px;
+    padding-right: .2em;
+    padding-left: .2em;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  .todayGame {
+    font-size: 28px;
+    margin-right: 200px;
+  }
+  .todayTeam {
+    font-size: 40px;
   }
 }
+
 
 i {
   float: right;
@@ -368,9 +444,15 @@ i {
 }
 
 .team-logo {
-    width: 80px;
-    padding-right: .2em;
-    padding-left: .2em;
+  width: 80px;
+  padding-right: .2em;
+  padding-left: .2em;
+}
+.mlb-logo {
+  width: 80px;
+  padding-right: .2em;
+  padding-left: .2em;
+  margin-right: 22px;
 }
 
 .team-logo-lg {
@@ -385,9 +467,10 @@ i {
 
 .card-block {
   background: white;
-  padding: 5px;
 }
-
+.cardsBackground {
+  background: #151515;
+}
 .card-title {
     background-color: white;
     font-size: 22px;
@@ -402,11 +485,13 @@ i {
 }
 
 .box-score {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin: 5px auto;
-  font-size: 1.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 5px auto;
+    font-size: 1.5rem;
+    width: 100%;
+    font-size: 13px;
   }
 
   td {
@@ -435,20 +520,29 @@ i {
 //   transition: background 500ms;
 // }
 
-.play-by-play-overflow {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  overflow: auto;
-  height: 87px;
-  width: 100%;
-  border-top: 1px solid #ccc;
+.pre-scrollable {
+  display: block;
+  max-height: 150px;
+}
+.pre-scrollable::-webkit-scrollbar {
+  display: none;
+}
+.headerBallStrikeOut {
+  margin-left: 38px;
+   .ballStrikeOut {
+    color: white;
+  }
+ 
 }
 
+
+
 .play-by-play-text {
-  margin-top: 10px;
+  border-top: 1px solid white;
   text-align: left;
   font-size: 14px;
+  background: #151515;
+  color: white;
 }
 
 .balls {
@@ -497,9 +591,9 @@ i {
   cursor: pointer;
 }
 
-table, th, td {
-  border: 1px solid white;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-}
+// table, th, td {
+//   border: 1px solid white;
+//   border-collapse: collapse;
+//   margin-left: auto;
+//   margin-right: auto;
+// }

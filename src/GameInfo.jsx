@@ -15,26 +15,26 @@ class GameInfo extends React.Component {
     const homeTeamImage = `/img/mlb/teams/${teamName[2]}.png`
     return (
       <div className="schedule" onClick={this.clickMeBaby}>
-        <table>
+        <table className="scheduleTable">
           <tr>
-            <th></th>
-            <th>
+            <th className="scheduleTable"></th>
+            <th className="scheduleTable">
               <div className="scheduleTime">{this.props.gameTime}</div>
             </th>
-            <th></th>
+            <th className="scheduleTable"></th>
           </tr>
           <tr>
-            <td>
+            <td className="scheduleTable">
               <a className="gameListColor" href="">
                 <img className='team-logo' src={awayTeamImage} />
               </a>
             </td>
-              <td>
+              <td className="scheduleTable">
                 <a className="gameListColor" href="">
                   {this.props.gameTeam}
                 </a>
               </td>
-            <td>
+            <td className="scheduleTable">
               <a className="gameListColor" href="">
                 <img className='team-logo' src={homeTeamImage} />
               </a>
