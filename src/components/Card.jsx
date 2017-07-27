@@ -241,7 +241,7 @@ function Card({
             >
             </i>
           </a>
-          <div class="progress">
+          <div className="progress">
           </div>
 
         </div>

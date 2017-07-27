@@ -31,13 +31,12 @@ class Nav extends React.Component {
       }
       self.setState({ user: user });
       self.props.loginModal();
+      self.props.getUser(this.state.user.email)
     }).catch(function (error) {
-
     });
   }
 
   email(event) {
-    console.log("changing email email()");
     this.setState({ email: event.target.value });
   }
 
@@ -47,7 +46,6 @@ class Nav extends React.Component {
 
   handleLogout = (e) => {
     e.preventDefault();
-    console.log("changing email logout()");
     this.setState({ user: {} });
   }
 

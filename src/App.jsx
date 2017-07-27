@@ -18,6 +18,7 @@ class App extends React.Component {
       games: [],
       scoreboards: [],
       playbyplay: [],
+      currentUser: { name: 'Mike' },
     };
 
     this.getApi = this.getApi.bind(this);
@@ -26,33 +27,33 @@ class App extends React.Component {
     this.socket = io();
   }
 
-  componentDidMount () {
+  componentDidMount() {
     console.log('api componentDidMount');
     this.getApi();
     this.socket.on('scoreboard update', data => {
-      this.setState({ scoreboards:JSON.parse(data) });
+      this.setState({ scoreboards: JSON.parse(data) });
     });
     this.socket.on('playbyplay update', data => {
       let pbp = {}
-        let plays = JSON.parse(data)
-        plays.forEach(ab => {
-          const gameID = ab.gameplaybyplay.game.id;
-          if(!pbp[gameID]){
-            pbp[gameID] = [];
+      let plays = JSON.parse(data)
+      plays.forEach(ab => {
+        const gameID = ab.gameplaybyplay.game.id;
+        if (!pbp[gameID]) {
+          pbp[gameID] = [];
+        }
+        if (ab.gameplaybyplay.atBats) {
+          let atBat = ab.gameplaybyplay.atBats.atBat;
+          if (!Array.isArray(atBat)) {
+            atBat = [atBat];
           }
-          if(ab.gameplaybyplay.atBats){
-            let atBat = ab.gameplaybyplay.atBats.atBat;
-            if (!Array.isArray(atBat)){
-              atBat = [atBat];
+          atBat.forEach(plays => {
+            const result = plays.atBatPlay[0].batterUp.result
+            if (converter[result]) {
+              pbp[gameID].push(converter[result](plays.atBatPlay))
             }
-            atBat.forEach(plays => {
-              const result = plays.atBatPlay[0].batterUp.result
-              if(converter[result]){
-                pbp[gameID].push(converter[result](plays.atBatPlay))
-              }
-            })
-          }
-        })
+          })
+        }
+      })
       this.setState({ playbyplay: pbp });
     });
   }
@@ -67,7 +68,16 @@ class App extends React.Component {
     this.setState({
       isActive2: !this.state.isActive2
     })
-}
+  }
+
+  getUser = (name) => {
+    this.setState({
+      currentUser: { name: name }
+    })
+  }
+  
+
+  
 
   getApi() {
 
@@ -86,27 +96,24 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.games, "chris 00");
     return (
       <div>
         <Nav
           loginModal={this.loginModal}
           registerModal={this.registerModal}
+          currentUser={this.state.currentUser}
+          getUser={this.getUser}
           isActive={this.state.isActive}
-          isActive2={this.state.isActive2} >
+          isActive2={this.state.isActive2}
+        >
         </Nav>
-        {/* <button
-          type="button"
-          className="btn"
-          onClick={this.getApi}>Score!
-        </button> */}
         <Router history={hashHistory} >
           <Route
             exact path="/"
-            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} currentUser={this.state.currentUser}/>} />
+            component={props => <Dashboard { ...props } { ...this.state } games={this.state.games} scoreboards={this.state.scoreboards} playbyplay={this.state.playbyplay} />} />
           <Route
             path="/games/:id"
-            component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} />} />
+            component={(props) => <Games { ...props } { ...this.state } socket={this.socket} playbyplay={this.state.playbyplay} scoreboards={this.state.scoreboards} currentUser={this.state.currentUser.name} />} />
         </Router>
       </div>
     );

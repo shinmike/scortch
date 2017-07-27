@@ -37,7 +37,7 @@ class Games extends React.Component {
 
     const messages = this.state.messages.map((message, index) => {
       console.log(message);
-      return (<p className="msgClass" key={index}> {message.content}</p>);
+      return (<p className="msgClass" key={index}><b>{this.props.currentUser}:</b> {message.content}</p>);
     });
 
     if (index > 1) {
@@ -167,12 +167,10 @@ class Games extends React.Component {
                       {messages}
                     </ul>
                     <input
-                      className="chatbar-username"
-                      defaultValue={this.props.currentUser}
-                      onKeyUp={this.handleSubmitName}
+                      onKeyUp={this.onPost}
+                      value={this.state.inputMessage}
+                      onChange={(event) => this.setState({ inputMessage: event.target.value })}
                     />
-                    <input onKeyUp={this.onPost} value={this.state.inputMessage} onChange={(event) => this.setState({ inputMessage: event.target.value })} />
-                    {/* <button onClick={this.onPost}>Send it!</button> */}
                   </div>
                 </div>
               </div>
